@@ -11,13 +11,13 @@ extends Node2D
 @export var lose_air_sub:float = 10
 
 
-func lose_air():
-	target_height -= lose_air_sub
+func lose_air(amount:float = lose_air_sub):
+	target_height -= amount
 	if target_height < min_height:
 		target_height = min_height
 
-func pump_up():
-	target_height += pump_height_add
+func pump_up(amount:float = pump_height_add):
+	target_height += amount
 	if target_height > max_height:
 		target_height = max_height
 
@@ -28,7 +28,7 @@ var target_height:float = 0
 func _ready():
 	target_height = initial_height
 
-func _process(delta):
+func _process(_delta):
 	# DEBUG
 	if Input.is_action_just_pressed("ui_up"):
 		pump_up()
