@@ -1,7 +1,7 @@
 class_name Boat
 extends Node2D
 
-@export var level_node: Node2D
+@export var level_node: Node2D = get_parent()
 
 var value_scale: float = 5
 
@@ -98,7 +98,10 @@ func _ready() -> void:
 	pump_node.pump_up.connect(_on_Pump_pump_up)
 	boat_bubble_node.hit.connect(func(hit_position: Vector2, hit_severity: float) -> void: get_hit(hit_position, hit_severity))
 	# Extend the signal outwards
-	canon_node.shoot.connect(func(bullet: PackedScene, direction: Vector2, location: Vector2) -> void: shoot.emit(bullet, direction, location))
+	canon_node.shoot.connect(func(bullet: PackedScene, direction: Vector2, location: Vector2) -> void:
+		shoot.emit(bullet, direction, location)
+		_shoot_bullet(bullet, direction, location)
+	)
 
 
 func _process(delta: float) -> void:
@@ -146,3 +149,10 @@ func _handle_horizontal_movement(delta: float) -> void:
 	var horizontal_speed: float = speed_right if horizontal_movement > 0 else speed_left
 	position.x += horizontal_movement * horizontal_speed * delta
 	horizontal_movement_visualization.set_horizontal_movement(horizontal_movement)
+
+
+func _shoot_bullet(bullet: PackedScene, direction: Vector2, location: Vector2) -> void:
+	var bullet_instance: Bullet = bullet.instantiate()
+	bullet_instance.initialize(direction, location)
+	bullet_instance.position = location
+	level_node.add_child(bullet_instance)
