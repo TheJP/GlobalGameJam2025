@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bv40qyrwsekle"]
+
+[ext_resource type="Script" path="res://enemies/boss/boss_bullet.gd" id="1_3xl2x"]
+[ext_resource type="Texture2D" uid="uid://oxevkucxww61" path="res://enemies/boss/boss_bullet.png" id="1_kenfx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k56r5"]
+radius = 38.0789
+
+[node name="BossBullet" type="Area2D" groups=["enemy"]]
+collision_layer = 8
+collision_mask = 18
+script = ExtResource("1_3xl2x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kenfx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_k56r5")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 100.0
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
