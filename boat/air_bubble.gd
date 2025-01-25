@@ -13,6 +13,10 @@ var _position_node: Node2D
 var _horizontal_offset: float = 0
 var _vertical_offset: float = 0
 
+func _ready() -> void:
+	pass
+
+
 func set_position_node(node: Node2D) -> void:
 	_position_node = node
 

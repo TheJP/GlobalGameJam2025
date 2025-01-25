@@ -57,7 +57,6 @@ script = ExtResource("5_rbixw")
 texture = ExtResource("7_o1iwa")
 
 [node name="People" type="Node2D" parent="Pump/PumpBarSprite"]
-scale = Vector2(1, 1)
 
 [node name="PersonLeft" type="Sprite2D" parent="Pump/PumpBarSprite/People"]
 position = Vector2(-115, -39)
