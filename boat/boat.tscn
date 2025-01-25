@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://coo4vnsykx1i1"]
+[gd_scene load_steps=14 format=3 uid="uid://coo4vnsykx1i1"]
 
 [ext_resource type="Script" path="res://boat/boat.gd" id="1_2rl37"]
 [ext_resource type="Script" path="res://boat/body.gd" id="2_yxq3b"]
@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://cvmhyn08vbokq" path="res://boat/canon/canon.tscn" id="6_qdx53"]
 [ext_resource type="Texture2D" uid="uid://ctko1cwrh3i08" path="res://boat/sprites/Wippe_bewegbar.png" id="7_o1iwa"]
 [ext_resource type="Script" path="res://boat/horizontal_movement_visualization.gd" id="9_k6ht6"]
+[ext_resource type="Texture2D" uid="uid://btovuaisrbpte" path="res://boat/sprites/person 1.png" id="9_nb3ok"]
 [ext_resource type="Texture2D" uid="uid://fukgndkxxg0s" path="res://boat/sprites/bubble.png" id="9_un0lo"]
+[ext_resource type="Texture2D" uid="uid://er8c1retoiy3" path="res://boat/sprites/person 2.png" id="10_klxgl"]
 
 [sub_resource type="Gradient" id="Gradient_qcf7q"]
 offsets = PackedFloat32Array(0, 0.786667, 1)
@@ -48,13 +50,22 @@ position = Vector2(1075, -810)
 polygon = PackedVector2Array(-695, -720, -500, -580, -125, -470, 395, -490, 625, -595, 770, -815, 680, -955, 385, -1095, 25, -1115, -245, -1090, -530, -960, -700, -805)
 
 [node name="Pump" type="Node2D" parent="."]
+position = Vector2(-20, -161)
 script = ExtResource("5_rbixw")
 
 [node name="PumpBarSprite" type="Sprite2D" parent="Pump"]
-position = Vector2(-20, -161)
 texture = ExtResource("7_o1iwa")
 
-[node name="Sprite2D" type="Sprite2D" parent="Pump"]
+[node name="People" type="Node2D" parent="Pump/PumpBarSprite"]
+scale = Vector2(1, 1)
+
+[node name="PersonLeft" type="Sprite2D" parent="Pump/PumpBarSprite/People"]
+position = Vector2(-115, -39)
+texture = ExtResource("9_nb3ok")
+
+[node name="PersonLeft2" type="Sprite2D" parent="Pump/PumpBarSprite/People"]
+position = Vector2(115, -39)
+texture = ExtResource("10_klxgl")
 
 [node name="HorizontalMovementVisualization" type="Node2D" parent="."]
 script = ExtResource("9_k6ht6")
