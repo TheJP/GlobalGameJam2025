@@ -6,11 +6,13 @@
 [node name="Canon" type="Node2D"]
 script = ExtResource("1_6yrf0")
 
-[node name="CanonVisual" type="Sprite2D" parent="."]
+[node name="CanonBaseVisual" type="Sprite2D" parent="."]
 scale = Vector2(0.18, 0.18)
 texture = ExtResource("1_ir402")
 
-[node name="CanonAimVisual" type="Sprite2D" parent="."]
-position = Vector2(150, -50)
+[node name="CanonRotatingVisual" type="Sprite2D" parent="."]
+
+[node name="CanonAimVisual" type="Sprite2D" parent="CanonRotatingVisual"]
+position = Vector2(150, 0)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_ir402")
