@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c2bi2n82utfo8" path="res://background/background.png" id="1_8asgn"]
 
 [node name="Background" type="Node2D"]
+position = Vector2(0, 540)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(10000, 1.499)
