@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpahhbkfbi742"]
+[gd_scene load_steps=5 format=3 uid="uid://dp4od13x3llfk"]
 
 [ext_resource type="PackedScene" uid="uid://d2ihot7rs53q7" path="res://background/background.tscn" id="1_4ubko"]
 [ext_resource type="PackedScene" uid="uid://coo4vnsykx1i1" path="res://boat/boat.tscn" id="1_mgfuu"]
@@ -13,7 +13,9 @@
 
 [node name="Dropper" parent="Enemies" instance=ExtResource("2_ppind")]
 
-[node name="Boat" parent="." instance=ExtResource("1_mgfuu")]
+[node name="Boat" parent="." node_paths=PackedStringArray("level_node") instance=ExtResource("1_mgfuu")]
 position = Vector2(720, 773)
+level_node = NodePath("..")
 
 [node name="Boss" parent="." instance=ExtResource("4_qjsig")]
+position = Vector2(1512, 512)

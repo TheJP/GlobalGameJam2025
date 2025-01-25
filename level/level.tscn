@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://level/bullet_spawner.gd" id="2_e8j4d"]
 [ext_resource type="PackedScene" uid="uid://d2ihot7rs53q7" path="res://background/background.tscn" id="4_disay"]
 
-[node name="Level" type="Node2D"]
+[node name="Level2" type="Node2D"]
 
 [node name="Background" parent="." instance=ExtResource("4_disay")]
 

@@ -4,6 +4,7 @@ extends Area2D
 
 @export var fly_speed := 50.0
 @export var wavyness := 1.0
+@export var rotation_speed := 10.0
 var direction := Vector2.LEFT
 
 
@@ -22,6 +23,7 @@ func _process(delta: float) -> void:
 	position += direction * ((fly_speed + _random_speed) * delta)
 	var perpendicular := Vector2(direction.y, -direction.x)
 	position += perpendicular * (sin((Time.get_ticks_msec() - _spawn_time) / 1000.0) * wavyness)
+	$Sprite2D.rotate(rotation_speed * delta)
 
 
 func _on_area_entered(area: Area2D) -> void:

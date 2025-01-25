@@ -2,11 +2,8 @@
 
 [ext_resource type="Script" path="res://enemies/boss/boss.gd" id="1_j8ix8"]
 [ext_resource type="Texture2D" uid="uid://2727mq8yw27w" path="res://icon.svg" id="2_1xh3i"]
+[ext_resource type="Texture2D" uid="uid://dky6ffi3qk3to" path="res://enemies/boss/boss.png" id="2_r5n2e"]
 [ext_resource type="Script" path="res://enemies/boss/health.gd" id="3_t4yh4"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yof4s"]
-radius = 213.0
-height = 842.0
 
 [node name="Boss" type="Node2D"]
 position = Vector2(1784, 538)
@@ -18,20 +15,21 @@ collision_layer = 8
 collision_mask = 16
 
 [node name="Sprite2D" type="Sprite2D" parent="Body"]
-scale = Vector2(3, 6.5)
-texture = ExtResource("2_1xh3i")
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_r5n2e")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
-shape = SubResource("CapsuleShape2D_yof4s")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body"]
+position = Vector2(-1, -1)
+polygon = PackedVector2Array(71, -255, 381, -339, 455, -233, 362, -44, 340, 86, 468, 302, 151, 332, -24, 219, -141, 29, -379, 35, -437, -67, -421, -247, -259, -280, -69, -185)
 
 [node name="HealthParent" type="Node2D" parent="Body"]
-position = Vector2(0, -473)
+position = Vector2(0, -350)
 
 [node name="Health" type="Sprite2D" parent="Body/HealthParent"]
 unique_name_in_owner = true
 modulate = Color(0.435067, 0.65, 0.247, 1)
 z_index = 11
-scale = Vector2(2, 0.3)
+scale = Vector2(3, 0.3)
 texture = ExtResource("2_1xh3i")
 region_enabled = true
 region_rect = Rect2(0, 0, 128, 128)
