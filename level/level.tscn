@@ -15,11 +15,6 @@ position = Vector2(-7, -539)
 [node name="Boat" parent="." node_paths=PackedStringArray("level_node") instance=ExtResource("1_b3wcc")]
 level_node = NodePath("..")
 
-[node name="Camera2D" type="Camera2D" parent="Boat"]
-scale = Vector2(5, 5)
-position_smoothing_speed = 50.0
-rotation_smoothing_speed = 50.0
-
 [node name="BulletSpawner" type="Node2D" parent="." node_paths=PackedStringArray("boat")]
 script = ExtResource("2_e8j4d")
 boat = NodePath("../Boat")

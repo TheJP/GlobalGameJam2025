@@ -54,13 +54,14 @@ script = ExtResource("5_rbixw")
 position = Vector2(-20, -161)
 texture = ExtResource("7_o1iwa")
 
+[node name="Sprite2D" type="Sprite2D" parent="Pump"]
+
 [node name="HorizontalMovementVisualization" type="Node2D" parent="."]
 script = ExtResource("9_k6ht6")
 
 [node name="HorizontalBubbles" type="CPUParticles2D" parent="HorizontalMovementVisualization"]
 z_index = 1
 position = Vector2(-570, 40)
-scale = Vector2(1, 1)
 amount = 30
 lifetime = 3.0
 speed_scale = 2.0
@@ -79,3 +80,8 @@ angle_max = 180.0
 scale_amount_min = 0.8
 scale_amount_max = 1.8
 color_ramp = SubResource("Gradient_qcf7q")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(5, 5)
+position_smoothing_speed = 50.0
+rotation_smoothing_speed = 50.0
