@@ -27,6 +27,12 @@ gdscript/warnings/untyped_declaration=2
 
 fish="The layer of the fish bubble of the ship"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
+
 [input]
 
 player_0_button_0={
