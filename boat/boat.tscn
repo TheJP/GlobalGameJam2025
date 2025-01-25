@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://boat/boat.gd" id="1_2rl37"]
 [ext_resource type="Script" path="res://boat/body.gd" id="2_yxq3b"]
-[ext_resource type="Script" path="res://boat/bubble.gd" id="3_1wwvv"]
+[ext_resource type="Script" path="res://boat/boat_bubble.gd" id="3_1wwvv"]
 [ext_resource type="Texture2D" uid="uid://dvk1b2jg73ob0" path="res://boat/sprites/Boat.png" id="3_hybxx"]
 [ext_resource type="Texture2D" uid="uid://d1nj530x5o7px" path="res://boat/sprites/Soy_fish_balloon.png" id="5_f8ly1"]
 [ext_resource type="Script" path="res://boat/pump.gd" id="5_rbixw"]
@@ -43,6 +43,9 @@ texture = ExtResource("5_f8ly1")
 position = Vector2(85, -791)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_eijk2")
+
+[node name="AirBubbleSpawnPosition" type="Node2D" parent="Bubble"]
+position = Vector2(1075, -810)
 
 [node name="Pump" type="Node2D" parent="."]
 script = ExtResource("5_rbixw")
