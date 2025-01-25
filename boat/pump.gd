@@ -8,7 +8,7 @@ signal pump_up
 var pump_position:float = 0
 var pump_goal:float = 0
 
-func _process(delta):
+func _process(delta: float) -> void:
 	if PlayerInput.is_just_pressed(PlayerInput.Action.ASCEND_A):
 		pump_goal = 1
 	if PlayerInput.is_just_pressed(PlayerInput.Action.ASCEND_B):
