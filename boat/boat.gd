@@ -64,7 +64,6 @@ func _create_air_bubble(air_bubble_position_node: Node2D, target_scale: float = 
 	air_bubble_instance.target_scale = target_scale
 	air_bubble_instance.global_position = air_bubble_position_node.global_position # optional
 	air_bubble_instance.set_position_node(air_bubble_position_node)
-	_current_air_bubble = air_bubble_instance
 	air_bubble_instance.set_finished_expanding_callback(func () -> void:
 		air_bubble_instance.reparent(level_node)
 		print("Air bubble finished expanding")
@@ -105,7 +104,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if PlayerInput.is_just_pressed(PlayerInput.Action.DESCEND):
 		var spawn_position_node := boat_bubble_node.get_air_bubble_spawn_position_node()
-		_create_air_bubble(spawn_position_node)
+		_current_air_bubble = _create_air_bubble(spawn_position_node)
 	if PlayerInput.is_pressed(PlayerInput.Action.DESCEND):
 		_lose_air(delta)
 	if PlayerInput.is_just_released(PlayerInput.Action.DESCEND):
