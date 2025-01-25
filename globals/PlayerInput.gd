@@ -43,7 +43,7 @@ const _input_map: Dictionary = {
 }
 
 
-const _player_to_controller: Array[int] = []
+const _player_to_controller: Array[int] = [0, 1]
 
 
 func is_controller_just_pressed(controller: int, action: String):
