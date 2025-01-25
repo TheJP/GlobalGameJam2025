@@ -12,8 +12,8 @@ var value_scale: float = 5
 @export var max_scale: float = 1.5
 @export var speed_up: float = 80 * value_scale
 @export var speed_down: float = 100 * value_scale
-@export var speed_right: float = 100 * value_scale
-@export var speed_left: float = 50 * value_scale
+@export var speed_right: float = 60 * value_scale
+@export var speed_left: float = 25 * value_scale
 @export var pump_height_add: float = 8 * value_scale
 #@export var lose_air_sub: float = 20
 @export var size_change_speed: float = 0.5
@@ -24,6 +24,7 @@ signal shoot(bullet: PackedScene, direction: Vector2, location: Vector2)
 @onready var boat_bubble_node: BoatBubble = $Bubble
 @onready var pump_node: Pump = $Pump
 @onready var canon_node: Canon = $Canon
+@onready var horizontal_movement_visualization: HorizontalMovementVisualization = $HorizontalMovementVisualization
 
 @onready var air_bubble: PackedScene = preload("res://boat/air_bubble.tscn")
 
@@ -145,3 +146,4 @@ func _handle_horizontal_movement(delta: float) -> void:
 	var horizontal_movement: float = PlayerInput.get_horizontal_movement()
 	var horizontal_speed: float = speed_right if horizontal_movement > 0 else speed_left
 	position.x += horizontal_movement * horizontal_speed * delta
+	horizontal_movement_visualization.set_horizontal_movement(horizontal_movement)
