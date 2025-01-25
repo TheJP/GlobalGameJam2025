@@ -1,15 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://coo4vnsykx1i1"]
+[gd_scene load_steps=8 format=3 uid="uid://coo4vnsykx1i1"]
 
 [ext_resource type="Script" path="res://boat/boat.gd" id="1_2rl37"]
 [ext_resource type="Texture2D" uid="uid://2727mq8yw27w" path="res://icon.svg" id="2_2d0yg"]
 [ext_resource type="Script" path="res://boat/body.gd" id="2_yxq3b"]
 [ext_resource type="Script" path="res://boat/bubble.gd" id="3_1wwvv"]
+[ext_resource type="Script" path="res://boat/pump.gd" id="5_rbixw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifqxd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_joaha"]
 
-[node name="Boat" type="CharacterBody2D"]
+[node name="Boat" type="Node2D"]
 script = ExtResource("1_2rl37")
 
 [node name="Body" type="Area2D" parent="."]
@@ -33,3 +34,6 @@ texture = ExtResource("2_2d0yg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bubble"]
 scale = Vector2(8.5, 8.5)
 shape = SubResource("CircleShape2D_joaha")
+
+[node name="Pump" type="Node2D" parent="."]
+script = ExtResource("5_rbixw")
