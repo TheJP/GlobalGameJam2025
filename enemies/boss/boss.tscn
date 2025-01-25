@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cinovrrfl57s"]
+[gd_scene load_steps=6 format=3 uid="uid://cinovrrfl57s"]
 
 [ext_resource type="Script" path="res://enemies/boss/boss.gd" id="1_j8ix8"]
-[ext_resource type="Texture2D" uid="uid://2727mq8yw27w" path="res://icon.svg" id="2_1xh3i"]
 [ext_resource type="Texture2D" uid="uid://dky6ffi3qk3to" path="res://enemies/boss/boss.png" id="2_r5n2e"]
+[ext_resource type="Texture2D" uid="uid://bysp4m8vp46d8" path="res://enemies/boss/healthbar_foreground.png" id="3_apag1"]
 [ext_resource type="Script" path="res://enemies/boss/health.gd" id="3_t4yh4"]
+[ext_resource type="Texture2D" uid="uid://drqrbkba0jy7t" path="res://enemies/boss/healthbar_background.png" id="5_hu7ao"]
 
 [node name="Boss" type="Node2D"]
 position = Vector2(1784, 538)
@@ -23,23 +24,41 @@ position = Vector2(-1, -1)
 polygon = PackedVector2Array(71, -255, 381, -339, 455, -233, 362, -44, 340, 86, 468, 302, 151, 332, -24, 219, -141, 29, -379, 35, -437, -67, -421, -247, -259, -280, -69, -185)
 
 [node name="HealthParent" type="Node2D" parent="Body"]
-position = Vector2(0, -350)
+position = Vector2(0, -398)
+scale = Vector2(0.5, 0.5)
 
-[node name="Health" type="Sprite2D" parent="Body/HealthParent"]
+[node name="Control" type="Control" parent="Body/HealthParent"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthBar" type="TextureRect" parent="Body/HealthParent/Control"]
+layout_mode = 2
+offset_left = -772.0
+offset_top = -92.0
+offset_right = 772.0
+offset_bottom = 92.0
+texture = ExtResource("5_hu7ao")
+
+[node name="Health" type="NinePatchRect" parent="Body/HealthParent/Control"]
 unique_name_in_owner = true
-modulate = Color(0.435067, 0.65, 0.247, 1)
-z_index = 11
-scale = Vector2(3, 0.3)
-texture = ExtResource("2_1xh3i")
-region_enabled = true
-region_rect = Rect2(0, 0, 128, 128)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -594.0
+offset_top = -39.0
+offset_right = 765.0
+offset_bottom = 38.0
+grow_vertical = 2
+texture = ExtResource("3_apag1")
+region_rect = Rect2(0, 0, 1358, 76)
+patch_margin_right = 30
 script = ExtResource("3_t4yh4")
-
-[node name="HealthBar" type="Sprite2D" parent="Body/HealthParent"]
-modulate = Color(0.737255, 0.337255, 0.878431, 1)
-z_index = 10
-scale = Vector2(2, 0.3)
-texture = ExtResource("2_1xh3i")
-region_rect = Rect2(0, 0, 0, 100)
 
 [connection signal="area_entered" from="Body" to="." method="_on_body_area_entered"]

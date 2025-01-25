@@ -11,6 +11,7 @@ height = 254.0
 collision_layer = 8
 collision_mask = 18
 script = ExtResource("1_wwep6")
+rotation_speed = 0.2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)

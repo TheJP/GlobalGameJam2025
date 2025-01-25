@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dp4od13x3llfk"]
+[gd_scene load_steps=6 format=3 uid="uid://dp4od13x3llfk"]
 
 [ext_resource type="PackedScene" uid="uid://d2ihot7rs53q7" path="res://background/background.tscn" id="1_4ubko"]
 [ext_resource type="PackedScene" uid="uid://coo4vnsykx1i1" path="res://boat/boat.tscn" id="1_mgfuu"]
 [ext_resource type="PackedScene" uid="uid://cbpionso82r22" path="res://enemies/dropper/dropper.tscn" id="2_ppind"]
 [ext_resource type="PackedScene" uid="uid://cinovrrfl57s" path="res://enemies/boss/boss.tscn" id="4_qjsig"]
+[ext_resource type="PackedScene" uid="uid://cymrux1c6gvrv" path="res://enemies/soyfish/soyfish.tscn" id="5_r426a"]
 
 [node name="Level" type="Node2D"]
 
@@ -18,4 +19,7 @@ position = Vector2(720, 773)
 level_node = NodePath("..")
 
 [node name="Boss" parent="." instance=ExtResource("4_qjsig")]
-position = Vector2(1512, 512)
+position = Vector2(3741.48, 607.892)
+
+[node name="Soyfish" parent="." instance=ExtResource("5_r426a")]
+position = Vector2(1540.26, 545.384)

@@ -7,7 +7,7 @@ extends Node2D
 @export var min_spawn_interval := 0.0
 @export var max_spawn_interval := 10.0
 @export var shoot_range := 2000.0
-var health := max_health / 3.0
+var health := max_health
 
 
 var _boat: Boat
