@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cymrux1c6gvrv"]
+
+[ext_resource type="Texture2D" uid="uid://dtkew0o6omx6a" path="res://enemies/soyfish/soyfish.png" id="1_nkxqk"]
+[ext_resource type="Script" path="res://enemies/soyfish/soyfish.gd" id="1_wwep6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q850v"]
+radius = 32.0
+height = 254.0
+
+[node name="Soyfish" type="Area2D" groups=["enemy"]]
+collision_layer = 8
+collision_mask = 18
+script = ExtResource("1_wwep6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_nkxqk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_q850v")
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="BulletSpawner" type="Node2D" parent="."]
+position = Vector2(-118.149, 4.54567)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

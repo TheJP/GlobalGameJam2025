@@ -11,7 +11,7 @@ var health := max_health / 3.0
 
 
 var _boat: Boat
-var _boat_fish: Node2D
+var _boat_fish: BoatBubble
 var _float_tween: Tween
 var _boss_bullet_scene: PackedScene = preload("res://enemies/boss/boss_bullet.tscn")
 var _next_bullet := 0.0
@@ -32,24 +32,18 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if _boat:
-		var y_distance := _boat.global_position.y - global_position.y
-		if y_distance <= swim_speed * delta:
-			global_position.y = _boat.global_position.y
+		var y_distance: float = _boat_fish.get_bubble_centre().y - global_position.y
+		if abs(y_distance) <= swim_speed * delta:
+			global_position.y += y_distance
 		else:
 			global_position.y += sign(y_distance) * swim_speed * delta
 
 		if Time.get_ticks_msec() >= _next_bullet:
 			if global_position.distance_squared_to(_boat.global_position) <= shoot_range * shoot_range:
-				var areas := _boat_fish.find_children("*", "Sprite2D", true)
 				var bullet_position := global_position
-				var direction: Vector2
-				if areas.is_empty():
-					direction = _boat_fish.global_position - bullet_position
-				else:
-					direction = areas[0].global_position - bullet_position
 				var bullet: BossBullet = _boss_bullet_scene.instantiate()
 				bullet.global_position = bullet_position
-				bullet.direction = direction.normalized()
+				bullet.direction = (_boat_fish.get_bubble_centre() - bullet_position).normalized()
 				get_parent().add_child(bullet)
 			_next_bullet = randf_range(min_spawn_interval, max_spawn_interval) * 1000 + Time.get_ticks_msec()
 

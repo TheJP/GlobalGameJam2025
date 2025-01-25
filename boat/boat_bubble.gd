@@ -9,6 +9,10 @@ func get_air_bubble_spawn_position_node() -> Node2D:
 	return air_bubble_spawn_position
 
 
+func get_bubble_centre() -> Vector2:
+	return $BubbleVisualization.global_position
+
+
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
 

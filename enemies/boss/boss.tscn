@@ -8,7 +8,7 @@
 [node name="Boss" type="Node2D"]
 position = Vector2(1784, 538)
 script = ExtResource("1_j8ix8")
-swim_speed = 50.0
+swim_speed = 400.0
 
 [node name="Body" type="Area2D" parent="." groups=["enemy"]]
 collision_layer = 8
