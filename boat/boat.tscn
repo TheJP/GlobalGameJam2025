@@ -8,10 +8,10 @@
 [ext_resource type="Script" path="res://boat/pump.gd" id="5_rbixw"]
 [ext_resource type="PackedScene" uid="uid://cvmhyn08vbokq" path="res://boat/canon/canon.tscn" id="6_qdx53"]
 [ext_resource type="Texture2D" uid="uid://ctko1cwrh3i08" path="res://boat/sprites/Wippe_bewegbar.png" id="7_o1iwa"]
+[ext_resource type="Texture2D" uid="uid://cjxen5kl68iuc" path="res://boat/sprites/person 1 new.png" id="9_hub34"]
 [ext_resource type="Script" path="res://boat/horizontal_movement_visualization.gd" id="9_k6ht6"]
-[ext_resource type="Texture2D" uid="uid://btovuaisrbpte" path="res://boat/sprites/person 1.png" id="9_nb3ok"]
 [ext_resource type="Texture2D" uid="uid://fukgndkxxg0s" path="res://boat/sprites/bubble.png" id="9_un0lo"]
-[ext_resource type="Texture2D" uid="uid://er8c1retoiy3" path="res://boat/sprites/person 2.png" id="10_klxgl"]
+[ext_resource type="Texture2D" uid="uid://yvuaj45mjmcd" path="res://boat/sprites/person 2 new.png" id="10_fw2ny"]
 
 [sub_resource type="Gradient" id="Gradient_qcf7q"]
 offsets = PackedFloat32Array(0, 0.786667, 1)
@@ -61,11 +61,11 @@ scale = Vector2(1, 1)
 
 [node name="PersonLeft" type="Sprite2D" parent="Pump/PumpBarSprite/People"]
 position = Vector2(-115, -39)
-texture = ExtResource("9_nb3ok")
+texture = ExtResource("9_hub34")
 
-[node name="PersonLeft2" type="Sprite2D" parent="Pump/PumpBarSprite/People"]
+[node name="PersonRight" type="Sprite2D" parent="Pump/PumpBarSprite/People"]
 position = Vector2(115, -39)
-texture = ExtResource("10_klxgl")
+texture = ExtResource("10_fw2ny")
 
 [node name="HorizontalMovementVisualization" type="Node2D" parent="."]
 script = ExtResource("9_k6ht6")
@@ -93,6 +93,7 @@ scale_amount_max = 1.8
 color_ramp = SubResource("Gradient_qcf7q")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1795, -860)
 scale = Vector2(5, 5)
 position_smoothing_speed = 50.0
 rotation_smoothing_speed = 50.0
