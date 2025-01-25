@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cprgiusndevns"]
+
+[ext_resource type="Texture2D" uid="uid://2727mq8yw27w" path="res://icon.svg" id="1_gi3jh"]
+[ext_resource type="Script" path="res://boat/canon/bullet.gd" id="1_xtve0"]
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource("1_xtve0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_gi3jh")

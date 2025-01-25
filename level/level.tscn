@@ -1,9 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://bedvjvquj330j"]
+[gd_scene load_steps=3 format=3 uid="uid://bedvjvquj330j"]
 
 [ext_resource type="PackedScene" uid="uid://coo4vnsykx1i1" path="res://boat/boat.tscn" id="1_b3wcc"]
+[ext_resource type="Script" path="res://level/bullet_spawner.gd" id="2_e8j4d"]
 
 [node name="Level" type="Node2D"]
 
 [node name="Boat" parent="." instance=ExtResource("1_b3wcc")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="BulletSpawner" type="Node2D" parent="." node_paths=PackedStringArray("boat")]
+script = ExtResource("2_e8j4d")
+boat = NodePath("../Boat")

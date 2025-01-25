@@ -1,43 +1,51 @@
-[gd_scene load_steps=9 format=3 uid="uid://coo4vnsykx1i1"]
+[gd_scene load_steps=10 format=3 uid="uid://coo4vnsykx1i1"]
 
 [ext_resource type="Script" path="res://boat/boat.gd" id="1_2rl37"]
-[ext_resource type="Texture2D" uid="uid://2727mq8yw27w" path="res://icon.svg" id="2_2d0yg"]
 [ext_resource type="Script" path="res://boat/body.gd" id="2_yxq3b"]
 [ext_resource type="Script" path="res://boat/bubble.gd" id="3_1wwvv"]
+[ext_resource type="Texture2D" uid="uid://dvk1b2jg73ob0" path="res://boat/sprites/Boat.png" id="3_hybxx"]
+[ext_resource type="Texture2D" uid="uid://d1nj530x5o7px" path="res://boat/sprites/Soy_fish_balloon.png" id="5_f8ly1"]
 [ext_resource type="Script" path="res://boat/pump.gd" id="5_rbixw"]
 [ext_resource type="PackedScene" uid="uid://cvmhyn08vbokq" path="res://boat/canon/canon.tscn" id="6_qdx53"]
+[ext_resource type="Texture2D" uid="uid://ctko1cwrh3i08" path="res://boat/sprites/Wippe_bewegbar.png" id="7_o1iwa"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifqxd"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_joaha"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eijk2"]
+radius = 370.0
+height = 1410.0
 
 [node name="Boat" type="Node2D"]
 script = ExtResource("1_2rl37")
+
+[node name="Canon" parent="." instance=ExtResource("6_qdx53")]
+position = Vector2(362, -223)
 
 [node name="Body" type="Area2D" parent="."]
 script = ExtResource("2_yxq3b")
 
 [node name="BodyVisualization" type="Sprite2D" parent="Body"]
-texture = ExtResource("2_2d0yg")
+texture = ExtResource("3_hybxx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
-scale = Vector2(6, 6)
-shape = SubResource("RectangleShape2D_ifqxd")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body"]
+polygon = PackedVector2Array(252, 221, -299, 220, -442, 93, -539, -65, 146, -147, 551, -145, 522, -77, 438, 68, 341, 185)
 
-[node name="Bubble" type="Area2D" parent="."]
+[node name="Bubble" type="Area2D" parent="." groups=["fish"]]
 position = Vector2(0, -200)
-scale = Vector2(1.2, 1.2)
+collision_layer = 2
+collision_mask = 8
 script = ExtResource("3_1wwvv")
 
 [node name="BubbleVisualization" type="Sprite2D" parent="Bubble"]
-texture = ExtResource("2_2d0yg")
+position = Vector2(0, -800)
+texture = ExtResource("5_f8ly1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bubble"]
-scale = Vector2(8.5, 8.5)
-shape = SubResource("CircleShape2D_joaha")
+position = Vector2(85, -791)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_eijk2")
 
 [node name="Pump" type="Node2D" parent="."]
 script = ExtResource("5_rbixw")
 
-[node name="Canon" parent="." instance=ExtResource("6_qdx53")]
-position = Vector2(50, -75)
+[node name="PumpBarSprite" type="Sprite2D" parent="Pump"]
+position = Vector2(-20, -161)
+texture = ExtResource("7_o1iwa")
