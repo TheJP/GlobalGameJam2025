@@ -23,10 +23,6 @@ PlayerInput="*res://globals/PlayerInput.gd"
 
 gdscript/warnings/untyped_declaration=2
 
-[global_group]
-
-fish="The layer of the fish bubble of the ship"
-
 [display]
 
 window/size/viewport_width=1920
@@ -35,7 +31,9 @@ window/stretch/mode="canvas_items"
 
 [global_group]
 
+fish="The layer of the fish bubble of the ship"
 enemy="Bullets or enemies that can hit the fish"
+player_bullet="The bullets shot by the players"
 
 [input]
 
@@ -340,6 +338,7 @@ player_6_down={
 2d_physics/layer_2="fish"
 2d_physics/layer_3="ship"
 2d_physics/layer_4="enemies"
+2d_physics/layer_5="player_bullets"
 
 [rendering]
 

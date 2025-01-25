@@ -7,10 +7,11 @@ extends Node2D
 @export var min_scale:float = 0.5
 @export var max_scale:float = 1.5
 
-@export var speed_up:float = 60
+@export var speed_up:float = 80
 @export var speed_down:float = 100
 @export var pump_height_add:float = 8
 @export var lose_air_sub:float = 20
+@export var size_change_duration:float = 0.2
 
 @onready var body_node: BoatBody = $Body
 @onready var bubble_node: BoatBubble = $Bubble
@@ -21,16 +22,21 @@ extends Node2D
 signal shoot(bullet: PackedScene, direction: Vector2, location: Vector2)
 
 func lose_air(amount:float = lose_air_sub) -> void:
+	if target_height <= min_height:
+		return
 	target_height -= amount
 	if target_height < min_height:
 		target_height = min_height
-		_update_scale()
+	_update_scale()
+
 
 func pump_up(amount:float = pump_height_add) -> void:
+	if target_height >= max_height:
+		return
 	target_height += amount
 	if target_height > max_height:
 		target_height = max_height
-		_update_scale()
+	_update_scale()
 
 var balloon_scale_tween:Tween
 var target_height:float = 0
@@ -54,8 +60,16 @@ func _on_Pump_pump_up() -> void:
 
 
 func _update_scale() -> void:
-	# TODO
-	pass
+	if balloon_scale_tween != null:
+		balloon_scale_tween.kill()
+#		balloon_scale_tween.pause()
+#		balloon_scale_tween.free()
+		balloon_scale_tween = null
 
-func _get_balloon_size() -> float:
+	var target_scale:float = _get_target_bubble_size()
+	balloon_scale_tween = get_tree().create_tween()
+	balloon_scale_tween.tween_property(bubble_node, "scale", Vector2(target_scale, target_scale), size_change_duration)
+	balloon_scale_tween.play()
+
+func _get_target_bubble_size() -> float:
 	return (target_height - min_height) / (max_height - min_height) * (max_scale - min_scale) + min_scale
