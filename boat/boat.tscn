@@ -14,6 +14,7 @@ radius = 370.0
 height = 1410.0
 
 [node name="Boat" type="Node2D"]
+scale = Vector2(0.2, 0.2)
 script = ExtResource("1_2rl37")
 
 [node name="Canon" parent="." instance=ExtResource("6_qdx53")]
