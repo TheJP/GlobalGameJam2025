@@ -23,6 +23,10 @@ PlayerInput="*res://globals/PlayerInput.gd"
 
 gdscript/warnings/untyped_declaration=2
 
+[global_group]
+
+fish="The layer of the fish bubble of the ship"
+
 [input]
 
 player_0_button_0={
