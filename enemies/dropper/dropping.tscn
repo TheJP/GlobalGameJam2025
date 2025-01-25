@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://6h6uvhv5ampc"]
+
+[ext_resource type="Script" path="res://enemies/dropper/dropping.gd" id="1_l8tl1"]
+[ext_resource type="Texture2D" uid="uid://d37wctktctj82" path="res://enemies/dropper/dropping.png" id="2_m2gdq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kcov6"]
+radius = 46.1736
+
+[node name="Dropping" type="Area2D" groups=["enemy"]]
+z_index = 2
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_l8tl1")
+fall_speed = 50.0
+rotation_speed = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kcov6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("2_m2gdq")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 100.0
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

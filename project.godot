@@ -33,6 +33,10 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
 
+[global_group]
+
+enemy="Bullets or enemies that can hit the fish"
+
 [input]
 
 player_0_button_0={
@@ -329,6 +333,13 @@ player_6_down={
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":4,"axis":1,"axis_value":1.0,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="general"
+2d_physics/layer_2="fish"
+2d_physics/layer_3="ship"
+2d_physics/layer_4="enemies"
 
 [rendering]
 

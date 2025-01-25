@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpahhbkfbi742"]
+
+[ext_resource type="PackedScene" uid="uid://coo4vnsykx1i1" path="res://boat/boat.tscn" id="1_mgfuu"]
+[ext_resource type="PackedScene" uid="uid://cbpionso82r22" path="res://enemies/dropper/dropper.tscn" id="2_ppind"]
+
+[node name="Level" type="Node2D"]
+
+[node name="Boat" parent="." instance=ExtResource("1_mgfuu")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Dropper" parent="Enemies" instance=ExtResource("2_ppind")]
