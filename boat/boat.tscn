@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://coo4vnsykx1i1"]
+[gd_scene load_steps=11 format=3 uid="uid://coo4vnsykx1i1"]
 
 [ext_resource type="Script" path="res://boat/boat.gd" id="1_2rl37"]
 [ext_resource type="Script" path="res://boat/body.gd" id="2_yxq3b"]
@@ -8,10 +8,11 @@
 [ext_resource type="Script" path="res://boat/pump.gd" id="5_rbixw"]
 [ext_resource type="PackedScene" uid="uid://cvmhyn08vbokq" path="res://boat/canon/canon.tscn" id="6_qdx53"]
 [ext_resource type="Texture2D" uid="uid://ctko1cwrh3i08" path="res://boat/sprites/Wippe_bewegbar.png" id="7_o1iwa"]
+[ext_resource type="Texture2D" uid="uid://fukgndkxxg0s" path="res://boat/sprites/bubble.png" id="9_un0lo"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eijk2"]
-radius = 370.0
-height = 1410.0
+[sub_resource type="Gradient" id="Gradient_qcf7q"]
+offsets = PackedFloat32Array(0, 0.786667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Boat" type="Node2D"]
 scale = Vector2(0.2, 0.2)
@@ -39,13 +40,11 @@ script = ExtResource("3_1wwvv")
 position = Vector2(0, -800)
 texture = ExtResource("5_f8ly1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bubble"]
-position = Vector2(85, -791)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_eijk2")
-
 [node name="AirBubbleSpawnPosition" type="Node2D" parent="Bubble"]
 position = Vector2(1075, -810)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bubble"]
+polygon = PackedVector2Array(-695, -720, -500, -580, -125, -470, 395, -490, 625, -595, 770, -815, 680, -955, 385, -1095, 25, -1115, -245, -1090, -530, -960, -700, -805)
 
 [node name="Pump" type="Node2D" parent="."]
 script = ExtResource("5_rbixw")
@@ -53,3 +52,18 @@ script = ExtResource("5_rbixw")
 [node name="PumpBarSprite" type="Sprite2D" parent="Pump"]
 position = Vector2(-20, -161)
 texture = ExtResource("7_o1iwa")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+visible = false
+z_index = -1
+position = Vector2(-600, 55)
+texture = ExtResource("9_un0lo")
+emission_shape = 1
+emission_sphere_radius = 40.0
+gravity = Vector2(-200, 100)
+tangential_accel_min = 50.0
+tangential_accel_max = 50.0
+angle_max = 180.0
+scale_amount_min = 0.15
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_qcf7q")

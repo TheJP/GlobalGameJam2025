@@ -5,11 +5,13 @@ extends Node2D
 @export var scale_increase_speed: float = 15
 @export var target_scale: float = 10
 @export var horizontal_speed_while_expanding: float = 270
+@export var vertical_speed_while_expanding: float = 0
 
 var _float_upwards: bool = false
 var _finished_expanding_callback: Callable
 var _position_node: Node2D
 var _horizontal_offset: float = 0
+var _vertical_offset: float = 0
 
 func set_position_node(node: Node2D) -> void:
 	_position_node = node
@@ -32,8 +34,12 @@ func _process(_delta: float) -> void:
 
 	scale = Vector2(scale.x + scale_increase_speed * _delta, scale.y + scale_increase_speed * _delta)
 	_horizontal_offset += horizontal_speed_while_expanding * _delta * _position_node.global_scale.x
-	if _position_node:
-		global_position = _position_node.global_position + Vector2(_horizontal_offset, 0)
+	_vertical_offset += vertical_speed_while_expanding * _delta * _position_node.global_scale.y
+	if _position_node != null:
+		global_position = _position_node.global_position + Vector2(_horizontal_offset, _vertical_offset)
+	else:
+		print("No position node set for air bubble")
 
 	if target_scale > 0 && scale.x > target_scale:
+		print("Finished expanding to target scale: ", target_scale)
 		finish_expanding()
