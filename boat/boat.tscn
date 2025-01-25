@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://coo4vnsykx1i1"]
+[gd_scene load_steps=9 format=3 uid="uid://coo4vnsykx1i1"]
 
 [ext_resource type="Script" path="res://boat/boat.gd" id="1_2rl37"]
 [ext_resource type="Texture2D" uid="uid://2727mq8yw27w" path="res://icon.svg" id="2_2d0yg"]
 [ext_resource type="Script" path="res://boat/body.gd" id="2_yxq3b"]
 [ext_resource type="Script" path="res://boat/bubble.gd" id="3_1wwvv"]
 [ext_resource type="Script" path="res://boat/pump.gd" id="5_rbixw"]
+[ext_resource type="PackedScene" uid="uid://cvmhyn08vbokq" path="res://boat/canon/canon.tscn" id="6_qdx53"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifqxd"]
 
@@ -37,3 +38,6 @@ shape = SubResource("CircleShape2D_joaha")
 
 [node name="Pump" type="Node2D" parent="."]
 script = ExtResource("5_rbixw")
+
+[node name="Canon" parent="." instance=ExtResource("6_qdx53")]
+position = Vector2(50, -75)
