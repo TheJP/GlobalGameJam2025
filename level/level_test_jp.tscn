@@ -6,6 +6,7 @@
 [node name="Level" type="Node2D"]
 
 [node name="Boat" parent="." instance=ExtResource("1_mgfuu")]
+scale = Vector2(1, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
