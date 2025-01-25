@@ -1,10 +1,12 @@
 class_name Bullet
 extends Area2D
 
-@export var default_speed: float = 1000
+@export var default_speed: float = 500
 @export var lifetime: float = 5
 @export var continue_after_hit: bool = false
-@export var rotation_speed: float = 1
+@export var rotation_speed: float = 1.3
+
+@onready var bullet_visual: Sprite2D = $BulletVisual
 
 var velocity: Vector2 = Vector2()
 var lifetime_timer: float = 0
@@ -20,7 +22,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	position += velocity * _delta
 	lifetime_timer += _delta
-	rotate(rotation_speed * _delta)
+	bullet_visual.rotate(2 * PI * rotation_speed * _delta)
 	if lifetime_timer >= lifetime:
 		queue_free()
 

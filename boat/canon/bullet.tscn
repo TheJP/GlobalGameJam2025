@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cprgiusndevns"]
 
-[ext_resource type="Texture2D" uid="uid://2727mq8yw27w" path="res://icon.svg" id="1_gi3jh"]
 [ext_resource type="Script" path="res://boat/canon/bullet.gd" id="1_xtve0"]
+[ext_resource type="Texture2D" uid="uid://bbfqrsrmvvjqf" path="res://boat/canon/bullet.png" id="2_e3jbp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ld5u"]
 radius = 9.0
@@ -11,9 +11,10 @@ collision_layer = 16
 collision_mask = 8
 script = ExtResource("1_xtve0")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_gi3jh")
+[node name="BulletVisual" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_e3jbp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4ld5u")
