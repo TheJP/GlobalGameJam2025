@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4hxiisq8voaq"]
+[gd_scene load_steps=3 format=3 uid="uid://b4hxiisq8voaq"]
 
 [ext_resource type="Script" path="res://menu/player_selection/player_selection.gd" id="1_kwafg"]
+
+[sub_resource type="SystemFont" id="SystemFont_oxed7"]
+font_names = PackedStringArray("Consolas", "Cascadia Mono", "Courier New")
 
 [node name="PlayerSelection" type="Control"]
 layout_mode = 3
@@ -10,9 +13,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kwafg")
+hold_to_start_duration = 1.0
 
 [node name="DebugText" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
 layout_mode = 0
 offset_right = 801.0
 offset_bottom = 384.0
+theme_override_fonts/normal_font = SubResource("SystemFont_oxed7")
+theme_override_font_sizes/normal_font_size = 50
