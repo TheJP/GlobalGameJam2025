@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bedvjvquj330j"]
+[gd_scene load_steps=4 format=3 uid="uid://bedvjvquj330j"]
 
 [ext_resource type="PackedScene" uid="uid://coo4vnsykx1i1" path="res://boat/boat.tscn" id="1_b3wcc"]
+[ext_resource type="PackedScene" uid="uid://cbpionso82r22" path="res://enemies/dropper/dropper.tscn" id="1_qgiuj"]
 [ext_resource type="Script" path="res://level/bullet_spawner.gd" id="2_e8j4d"]
 
 [node name="Level" type="Node2D"]
+
+[node name="Dropper" parent="." instance=ExtResource("1_qgiuj")]
+position = Vector2(465, -539)
 
 [node name="Boat" parent="." instance=ExtResource("1_b3wcc")]
 
