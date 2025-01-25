@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2uj36np6a2b2"]
+
+[ext_resource type="Script" path="res://enemies/wall/wall.gd" id="1_f04th"]
+[ext_resource type="Texture2D" uid="uid://2727mq8yw27w" path="res://icon.svg" id="1_hqlx7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uexdh"]
+size = Vector2(257.5, 571.75)
+
+[node name="Wall" type="Area2D" groups=["enemy"]]
+collision_layer = 8
+collision_mask = 22
+script = ExtResource("1_f04th")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 4.5)
+texture = ExtResource("1_hqlx7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uexdh")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
