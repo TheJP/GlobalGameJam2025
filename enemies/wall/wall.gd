@@ -5,7 +5,7 @@ var _destroyed := false
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if not area.is_in_group("bullet") and not area.is_in_group("fish"):
+	if not area.is_in_group("player_bullet") and not area.is_in_group("fish"):
 		return
 	if _destroyed:
 		return

@@ -31,8 +31,8 @@ window/stretch/mode="canvas_items"
 
 [global_group]
 
-fish="The layer of the fish bubble of the ship"
 enemy="Bullets or enemies that can hit the fish"
+fish="The layer of the fish bubble of the ship"
 player_bullet="The bullets shot by the players"
 
 [input]

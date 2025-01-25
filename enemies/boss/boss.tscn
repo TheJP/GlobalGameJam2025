@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://cinovrrfl57s"]
+
+[ext_resource type="Script" path="res://enemies/boss/boss.gd" id="1_j8ix8"]
+[ext_resource type="Texture2D" uid="uid://2727mq8yw27w" path="res://icon.svg" id="2_1xh3i"]
+[ext_resource type="Script" path="res://enemies/boss/health.gd" id="3_t4yh4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yof4s"]
+radius = 213.0
+height = 842.0
+
+[node name="Boss" type="Node2D"]
+position = Vector2(1784, 538)
+script = ExtResource("1_j8ix8")
+swim_speed = 50.0
+
+[node name="Body" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 8
+collision_mask = 16
+
+[node name="Sprite2D" type="Sprite2D" parent="Body"]
+scale = Vector2(3, 6.5)
+texture = ExtResource("2_1xh3i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+shape = SubResource("CapsuleShape2D_yof4s")
+
+[node name="HealthParent" type="Node2D" parent="Body"]
+position = Vector2(0, -473)
+
+[node name="Health" type="Sprite2D" parent="Body/HealthParent"]
+unique_name_in_owner = true
+modulate = Color(0.435067, 0.65, 0.247, 1)
+z_index = 11
+scale = Vector2(2, 0.3)
+texture = ExtResource("2_1xh3i")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 128)
+script = ExtResource("3_t4yh4")
+
+[node name="HealthBar" type="Sprite2D" parent="Body/HealthParent"]
+modulate = Color(0.737255, 0.337255, 0.878431, 1)
+z_index = 10
+scale = Vector2(2, 0.3)
+texture = ExtResource("2_1xh3i")
+region_rect = Rect2(0, 0, 0, 100)
+
+[connection signal="area_entered" from="Body" to="." method="_on_body_area_entered"]

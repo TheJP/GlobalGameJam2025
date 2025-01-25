@@ -27,6 +27,6 @@ func _on_area_entered(area: Area2D) -> void:
 		tween.set_parallel(true)
 		tween.tween_property($Sprite2D, "modulate", Color($Sprite2D.modulate, 0), 1.5)
 		tween.set_trans(Tween.TRANS_ELASTIC)
-		tween.tween_property($Sprite2D, "scale", $Sprite2D.scale * 2, 0.7)
+		tween.tween_property($Sprite2D, "scale", $Sprite2D.scale * 1.5, 0.7)
 		tween.set_parallel(false)
 		tween.tween_callback(func() -> void: queue_free())
