@@ -9,7 +9,7 @@ var _destroyed := false
 
 func _process(delta: float) -> void:
 	position += Vector2.DOWN * (fall_speed * delta)
-	rotate(rotation_speed * delta)
+	$Sprite2D.rotate(rotation_speed * delta)
 
 
 func _on_despawn_timer_timeout() -> void:

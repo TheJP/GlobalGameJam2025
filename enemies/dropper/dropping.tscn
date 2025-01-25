@@ -1,13 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://6h6uvhv5ampc"]
+[gd_scene load_steps=6 format=3 uid="uid://6h6uvhv5ampc"]
 
 [ext_resource type="Script" path="res://enemies/dropper/dropping.gd" id="1_l8tl1"]
 [ext_resource type="Texture2D" uid="uid://d37wctktctj82" path="res://enemies/dropper/dropping.png" id="2_m2gdq"]
+[ext_resource type="Texture2D" uid="uid://bpgcntyyi2xfd" path="res://enemies/dropper/dropping_particle.png" id="3_la2mj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kcov6"]
 radius = 46.1736
 
+[sub_resource type="Gradient" id="Gradient_56woc"]
+offsets = PackedFloat32Array(0, 0.786667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="Dropping" type="Area2D" groups=["enemy"]]
 z_index = 2
+position = Vector2(83, 0)
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_l8tl1")
@@ -25,6 +31,20 @@ texture = ExtResource("2_m2gdq")
 wait_time = 100.0
 one_shot = true
 autostart = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(1, -21)
+texture = ExtResource("3_la2mj")
+emission_shape = 1
+emission_sphere_radius = 40.0
+gravity = Vector2(0, -200)
+tangential_accel_min = 50.0
+tangential_accel_max = 50.0
+angle_max = 180.0
+scale_amount_min = 0.15
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_56woc")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
