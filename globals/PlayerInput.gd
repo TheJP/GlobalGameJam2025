@@ -43,26 +43,52 @@ const _input_map: Dictionary = {
 }
 
 
-const _player_to_controller: Array[int] = [0, 1]
+var player_to_controller: Array[int] = [0, 1]
 
 
-func is_controller_just_pressed(controller: int, action: String):
-	Input.is_action_just_pressed("%s_%s" % [_controllers[controller], action])
+func is_controller_just_pressed(controller: int, action: String) -> bool:
+	#print("%s_%s" % [_controllers[controller], action])
+	return Input.is_action_just_pressed("%s_%s" % [_controllers[controller], action])
 
 
 func get_just_pressed_controllers(action: String) -> Array[int]:
 	var result: Array[int] = []
-	for i in range(len(_controllers)):
-		if is_controller_just_pressed(i, action):
-			result.append(i)
+	for controller in _controllers.size():
+		if is_controller_just_pressed(controller, action):
+			result.append(controller)
+	return result
+
+
+func is_controller_pressed(controller: int, action: String) -> bool:
+	return Input.is_action_pressed("%s_%s" % [_controllers[controller], action])
+
+
+func get_pressed_controllers(action: String) -> Array[int]:
+	var result: Array[int] = []
+	for controller in _controllers.size():
+		if is_controller_pressed(controller, action):
+			result.append(controller)
 	return result
 
 
 func add_player(controller: int) -> bool:
-	if len(_player_to_controller) >= 2:
+	if player_to_controller.size() >= 2:
 		return false
-	_player_to_controller.append(controller)
+	if player_to_controller.find(controller) >= 0:
+		return false
+	player_to_controller.append(controller)
 	return true
+
+
+func remove_player(controller: int) -> bool:
+	var index := player_to_controller.find(controller)
+	if index >= 0:
+		player_to_controller.remove_at(index)
+	return index >= 0
+
+
+func clear_players() -> void:
+	player_to_controller.clear()
 
 
 func is_pressed(action: Action) -> bool:
@@ -90,6 +116,6 @@ func get_horizontal_movement() -> float:
 
 
 func _get_action_name(action: Action) -> String:
-	var mapping = _input_map[action]
-	var controller = _player_to_controller[mapping[0]]
+	var mapping: Array = _input_map[action]
+	var controller := player_to_controller[mapping[0]]
 	return "%s_%s" % [_controllers[controller], mapping[1]]
