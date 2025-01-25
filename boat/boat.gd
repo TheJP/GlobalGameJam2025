@@ -5,10 +5,10 @@ extends Node2D
 @export var max_height:float = 200
 @export var min_height:float = -200
 
-@export var speed_up:float = 30
-@export var speed_down:float = 50
-@export var pump_height_add:float = 3
-@export var lose_air_sub:float = 10
+@export var speed_up:float = 60
+@export var speed_down:float = 100
+@export var pump_height_add:float = 8
+@export var lose_air_sub:float = 20
 
 @onready var body_node: BoatBody = $Body
 @onready var bubble_node: BoatBubble = $Bubble
