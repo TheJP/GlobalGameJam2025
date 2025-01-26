@@ -57,17 +57,25 @@ script = ExtResource("1_jphff")
 layout_mode = 0
 offset_left = 60.0
 offset_top = 51.0
-offset_right = 541.0
-offset_bottom = 300.0
+offset_right = 576.0
+offset_bottom = 251.0
 texture = ExtResource("1_638yq")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="Player2Controls" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 1502.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -344.0
 offset_top = 51.0
-offset_right = 1860.0
-offset_bottom = 298.0
+offset_right = -53.0
+offset_bottom = 251.0
+grow_horizontal = 0
 texture = ExtResource("2_38vsy")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="PauseMenu" type="Panel" parent="."]
 unique_name_in_owner = true

@@ -1,19 +1,22 @@
-[gd_scene load_steps=15 format=3 uid="uid://bedvjvquj330j"]
+[gd_scene load_steps=16 format=3 uid="uid://bedvjvquj330j"]
 
 [ext_resource type="PackedScene" uid="uid://coo4vnsykx1i1" path="res://boat/boat.tscn" id="1_b3wcc"]
 [ext_resource type="Script" path="res://level/level.gd" id="1_lgprj"]
-[ext_resource type="PackedScene" uid="uid://cbpionso82r22" path="res://enemies/dropper/dropper.tscn" id="1_qgiuj"]
 [ext_resource type="PackedScene" uid="uid://ccnyonfbawctu" path="res://level/spawn.tscn" id="3_hw2up"]
 [ext_resource type="Texture2D" uid="uid://2i6qttbmkkqw" path="res://level/walls.png" id="4_c1riv"]
 [ext_resource type="PackedScene" uid="uid://d2ihot7rs53q7" path="res://background/background.tscn" id="4_disay"]
-[ext_resource type="PackedScene" uid="uid://lgx1jgymgdu7" path="res://level/checkpoint.tscn" id="4_yc56p"]
+[ext_resource type="PackedScene" path="res://level/checkpoint.tscn" id="4_yc56p"]
 [ext_resource type="PackedScene" uid="uid://b2uj36np6a2b2" path="res://enemies/wall/wall.tscn" id="5_mkdy1"]
 [ext_resource type="PackedScene" uid="uid://c1ayh7vkt7a28" path="res://menu/victory/victory.tscn" id="5_nrtof"]
 [ext_resource type="Texture2D" uid="uid://bnfgrus8t7neq" path="res://level/EndFlag.png" id="5_qfy3s"]
-[ext_resource type="PackedScene" uid="uid://cinovrrfl57s" path="res://enemies/boss/boss.tscn" id="5_tahg4"]
-[ext_resource type="PackedScene" uid="uid://cymrux1c6gvrv" path="res://enemies/soyfish/soyfish.tscn" id="7_ufvdd"]
 [ext_resource type="Script" path="res://level/terrain.gd" id="10_ew3cp"]
 [ext_resource type="Script" path="res://level/checkpoint_manager.gd" id="10_pqt28"]
+[ext_resource type="Texture2D" uid="uid://b2ecxhr8eyvmf" path="res://menu/sprites/ui_sprites/tutorial01.png" id="13_0gkho"]
+[ext_resource type="Texture2D" uid="uid://bir0s000t7b0t" path="res://menu/sprites/ui_sprites/tutorial02.png" id="14_ba8lb"]
+[ext_resource type="Texture2D" uid="uid://tvhrno6vv7ly" path="res://menu/sprites/ui_sprites/tutorial03.png" id="15_swv0l"]
+[ext_resource type="PackedScene" uid="uid://css2u2s5nqsx5" path="res://menu/in_game/in_game.tscn" id="15_yklb0"]
+[ext_resource type="Texture2D" uid="uid://d2awdygr0n3n1" path="res://menu/sprites/ui_sprites/tutorial04.png" id="16_pqvxe"]
+[ext_resource type="Texture2D" uid="uid://151kpftf5h26" path="res://menu/sprites/ui_sprites/tutorial05.png" id="17_28f1d"]
 
 [node name="Level2" type="Node2D"]
 script = ExtResource("1_lgprj")
@@ -38,24 +41,6 @@ texture = ExtResource("5_qfy3s")
 offset = Vector2(150, 0)
 reached_sprite = ExtResource("5_qfy3s")
 next_scene = ExtResource("5_nrtof")
-
-[node name="Soyfish" parent="." instance=ExtResource("7_ufvdd")]
-position = Vector2(8261, 1315)
-
-[node name="Soyfish2" parent="." instance=ExtResource("7_ufvdd")]
-position = Vector2(8510, 1066)
-
-[node name="Dropper" parent="." instance=ExtResource("1_qgiuj")]
-position = Vector2(9050, -1063)
-
-[node name="Dropper2" parent="." instance=ExtResource("1_qgiuj")]
-position = Vector2(8359, -1063)
-
-[node name="Dropper3" parent="." instance=ExtResource("1_qgiuj")]
-position = Vector2(9858, -1086)
-
-[node name="Boss" parent="." instance=ExtResource("5_tahg4")]
-position = Vector2(11374, 1377)
 
 [node name="Wall" parent="." instance=ExtResource("5_mkdy1")]
 position = Vector2(4404, 1318)
@@ -82,12 +67,12 @@ collision_mask = 4
 script = ExtResource("10_ew3cp")
 
 [node name="Walls" type="Sprite2D" parent="Terrain"]
-position = Vector2(4816, 485)
+position = Vector2(4816, 611)
 texture = ExtResource("4_c1riv")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terrain"]
 build_mode = 1
-polygon = PackedVector2Array(708, 538, 1339, 457, 1539, 281, 1578, -143, 1868, -219, 2047, -225, 2247, -36, 2326, 135, 2530, 267, 2701, 548, 2769, 996, 3125, 1370, 3989, 1595, 5300, 1638, 5324, 1530, 6984, 732, 7367, 889, 7964, 1518, 11113, 1607, 11120, 2149, -1467, 2155, -1459, -101, -691, -78, -685, 83, -613, 161, -598, 327, -388, 392, -308, 467, -293, 600, -5, 746, 614, 717, 614, 717, 614, 717, 614, 717)
+polygon = PackedVector2Array(708, 538, 1339, 457, 1539, 281, 1578, -143, 1868, -219, 2047, -225, 2247, -36, 2326, 135, 2530, 267, 2701, 548, 2769, 996, 3125, 1370, 3989, 1595, 5300, 1638, 5324, 1530, 6984, 732, 7317, 854, 7338, 628, 7675, 468, 7911, 562, 8075, 448, 8446, 511, 8594, 988, 8435, 1168, 8492, 1397, 8371, 1527, 11113, 1607, 11120, 2149, -1467, 2155, -1459, -101, -691, -78, -685, 83, -613, 161, -598, 327, -388, 392, -308, 467, -104, 540, -5, 746, 614, 717, 614, 717, 614, 717, 614, 717)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Terrain"]
 build_mode = 1
@@ -95,3 +80,32 @@ polygon = PackedVector2Array(3263, -1174, 3470, -676, 3447, -354, 3747, 565, 399
 
 [node name="CheckpointManager" type="Node2D" parent="."]
 script = ExtResource("10_pqt28")
+
+[node name="Tutorial01" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(-2, -125)
+texture = ExtResource("13_0gkho")
+
+[node name="Tutorial02" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(338, 315)
+texture = ExtResource("14_ba8lb")
+
+[node name="Tutorial03" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(3155, -558)
+texture = ExtResource("15_swv0l")
+
+[node name="Tutorial04" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(1258, 281)
+texture = ExtResource("16_pqvxe")
+
+[node name="Tutorial05" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(4052, 1397)
+texture = ExtResource("17_28f1d")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InGame" parent="CanvasLayer" instance=ExtResource("15_yklb0")]
