@@ -1,7 +1,7 @@
 class_name Canon
 extends Node2D
 
-@export var canon_aim_duration: float = 7 # seconds for the canon to move 2pi
+@export var canon_aim_speed: float = 4
 @export var canon_input_deadzone: float = 0.1
 @export var canon_fire_rate: float = 2 # shots per second
 @export var canon_bullet_capacity: int = 5
@@ -64,6 +64,15 @@ func on_shoot() -> void:
 
 func _physics_process(delta: float) -> void:
 	if is_rotating:
-		# TODO move over 0/2pi
-		aim_angle = move_toward(aim_angle, aim_angle_target, 2 * PI / canon_aim_duration * delta)
+#		# TODO move over 0/2pi
+#		aim_angle = move_toward(aim_angle, aim_angle_target, 2 * PI / canon_aim_duration * delta)
+#		aim_rotating_node.rotation = aim_angle
+		# using angle_difference to rotate the shortest way:
+#		aim_angle = aim_angle + angle_difference(aim_angle, aim_angle_target) * 2 * PI / canon_aim_duration * delta
+#		aim_rotating_node.rotation = aim_angle
+		var difference := angle_difference(aim_angle, aim_angle_target)
+		if abs(difference) <= canon_aim_speed * delta:
+			aim_angle = aim_angle_target
+		else:
+			aim_angle += sign(difference) * canon_aim_speed * delta
 		aim_rotating_node.rotation = aim_angle
