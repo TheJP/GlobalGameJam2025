@@ -27,6 +27,9 @@ const _controllers: Array[String] = [
 ]
 
 
+const _controller_to_device: Array[int] = [-1, -1, 0, 1, 2, 3, 4]
+
+
 const _input_map: Dictionary = {
 	# [player_id, action]
 	Action.FIRE: [1, "button_2"],
@@ -113,6 +116,16 @@ func get_targetting_vector() -> Vector2:
 
 func get_horizontal_movement() -> float:
 	return Input.get_axis(_get_action_name(Action.FLY_LEFT), _get_action_name(Action.FLY_RIGHT))
+
+
+func vibrate(action: Action, weak_magnitude: float, strong_magnitude: float, duration: float) -> void:
+	assert(duration > 0.0)
+	var mapping: Array = _input_map[action]
+	var controller := player_to_controller[mapping[0]]
+	var device := _controller_to_device[controller]
+	if device >= 0:
+		print(device, " ", weak_magnitude, " ", duration)
+		Input.start_joy_vibration(device, weak_magnitude, strong_magnitude, duration)
 
 
 func _get_action_name(action: Action) -> String:
