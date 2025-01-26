@@ -1,6 +1,8 @@
 class_name Checkpoint
 extends Sprite2D
 
+@export var reached_sprite: Texture
+
 signal checkpoint_reached(index: int)
 
 @onready var _level_node: Node2D = get_parent()
@@ -19,4 +21,5 @@ func _process(_delta: float) -> void:
 	if _boat.global_position.x >= global_position.x:
 		is_reached = true
 		checkpoint_reached.emit(index)
+		texture = reached_sprite
 		print("checkpoint ", index, " reached!")
