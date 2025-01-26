@@ -14,6 +14,7 @@ enum Sounds {
 	Hit_ceiling,
 	Menu_click,
 	Menu_hover,
+	Water_bubbles_start,
 }
 
 
@@ -65,4 +66,5 @@ var _sounds: Dictionary = {
 	Sounds.Hit_ceiling: SoundInfo.new(Sounds.Hit_ceiling, "Hit_ceiling.mp3", true),
 	Sounds.Menu_click: SoundInfo.new(Sounds.Menu_click, "Menu_click.mp3", true),
 	Sounds.Menu_hover: SoundInfo.new(Sounds.Menu_hover, "Menu_hover.mp3", true),
+	Sounds.Water_bubbles_start: SoundInfo.new(Sounds.Water_bubbles_start, "water-bubbles.mp3", true),
 }
