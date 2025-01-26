@@ -124,8 +124,20 @@ func vibrate(action: Action, weak_magnitude: float, strong_magnitude: float, dur
 	var controller := player_to_controller[mapping[0]]
 	var device := _controller_to_device[controller]
 	if device >= 0:
-		print(device, " ", weak_magnitude, " ", duration)
 		Input.start_joy_vibration(device, weak_magnitude, strong_magnitude, duration)
+
+
+func vibrate_all(weak_magnitude: float, strong_magnitude: float, duration: float) -> void:
+	var devices := {}
+	for action: Action in Action.values():
+		var mapping: Array = _input_map[action]
+		var controller := player_to_controller[mapping[0]]
+		var device := _controller_to_device[controller]
+		if device >= 0:
+			devices[device] = true
+	for device: int in devices.values():
+		Input.start_joy_vibration(device, weak_magnitude, strong_magnitude, duration)
+
 
 
 func _get_action_name(action: Action) -> String:
