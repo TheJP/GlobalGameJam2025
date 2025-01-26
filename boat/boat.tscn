@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://boat/boat.gd" id="1_2rl37"]
 [ext_resource type="Script" path="res://boat/bobbing.gd" id="2_s3atp"]
-[ext_resource type="Script" path="res://boat/body.gd" id="2_yxq3b"]
+[ext_resource type="Script" path="res://boat/boat_body.gd" id="2_yxq3b"]
 [ext_resource type="Script" path="res://boat/boat_bubble.gd" id="3_1wwvv"]
 [ext_resource type="Texture2D" uid="uid://dvk1b2jg73ob0" path="res://boat/sprites/Boat.png" id="3_hybxx"]
 [ext_resource type="Texture2D" uid="uid://d1nj530x5o7px" path="res://boat/sprites/Soy_fish_balloon.png" id="5_f8ly1"]
@@ -18,7 +18,7 @@
 offsets = PackedFloat32Array(0, 0.786667, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="Boat" type="Node2D"]
+[node name="Boat" type="Node2D" groups=["boat"]]
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_2rl37")
 
@@ -34,10 +34,8 @@ script = ExtResource("2_s3atp")
 
 [node name="Canon" parent="Bobbing" instance=ExtResource("6_qdx53")]
 position = Vector2(362, -223)
-scale = Vector2(1, 1)
 
 [node name="Body" type="Area2D" parent="Bobbing"]
-scale = Vector2(1, 1)
 collision_layer = 4
 collision_mask = 32
 script = ExtResource("2_yxq3b")
@@ -50,7 +48,6 @@ polygon = PackedVector2Array(252, 221, -299, 220, -442, 93, -539, -65, 146, -147
 
 [node name="Bubble" type="Area2D" parent="Bobbing" groups=["fish"]]
 position = Vector2(0, -200)
-scale = Vector2(1, 1)
 collision_layer = 2
 collision_mask = 8
 script = ExtResource("3_1wwvv")
@@ -67,7 +64,6 @@ polygon = PackedVector2Array(-695, -720, -500, -580, -125, -470, 395, -490, 625,
 
 [node name="Pump" type="Node2D" parent="Bobbing"]
 position = Vector2(-20, -161)
-scale = Vector2(1, 1)
 script = ExtResource("5_rbixw")
 
 [node name="PumpBarSprite" type="Sprite2D" parent="Bobbing/Pump"]
@@ -84,7 +80,6 @@ position = Vector2(115, -39)
 texture = ExtResource("10_fw2ny")
 
 [node name="HorizontalMovementVisualization" type="Node2D" parent="Bobbing"]
-scale = Vector2(1, 1)
 script = ExtResource("9_k6ht6")
 
 [node name="HorizontalBubbles" type="CPUParticles2D" parent="Bobbing/HorizontalMovementVisualization"]

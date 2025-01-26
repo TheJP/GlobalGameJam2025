@@ -1,14 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://bedvjvquj330j"]
+[gd_scene load_steps=12 format=3 uid="uid://bedvjvquj330j"]
 
 [ext_resource type="PackedScene" uid="uid://coo4vnsykx1i1" path="res://boat/boat.tscn" id="1_b3wcc"]
 [ext_resource type="PackedScene" uid="uid://cbpionso82r22" path="res://enemies/dropper/dropper.tscn" id="1_qgiuj"]
-[ext_resource type="Texture2D" uid="uid://bob2o637g4mrs" path="res://level/spawn.png" id="3_nucw2"]
-[ext_resource type="Texture2D" uid="uid://db0aum5u1qlma" path="res://level/checkpoint.png" id="4_3qeun"]
+[ext_resource type="PackedScene" uid="uid://ccnyonfbawctu" path="res://level/spawn.tscn" id="3_hw2up"]
 [ext_resource type="Texture2D" uid="uid://2i6qttbmkkqw" path="res://level/walls.png" id="4_c1riv"]
 [ext_resource type="PackedScene" uid="uid://d2ihot7rs53q7" path="res://background/background.tscn" id="4_disay"]
+[ext_resource type="PackedScene" uid="uid://lgx1jgymgdu7" path="res://level/checkpoint.tscn" id="4_yc56p"]
 [ext_resource type="PackedScene" uid="uid://b2uj36np6a2b2" path="res://enemies/wall/wall.tscn" id="5_mkdy1"]
 [ext_resource type="PackedScene" uid="uid://cinovrrfl57s" path="res://enemies/boss/boss.tscn" id="5_tahg4"]
 [ext_resource type="PackedScene" uid="uid://cymrux1c6gvrv" path="res://enemies/soyfish/soyfish.tscn" id="7_ufvdd"]
+[ext_resource type="Script" path="res://level/terrain.gd" id="10_ew3cp"]
+[ext_resource type="Script" path="res://level/checkpoint_manager.gd" id="10_pqt28"]
 
 [node name="Level2" type="Node2D"]
 
@@ -19,19 +21,12 @@ position = Vector2(-235, 248)
 level_node = NodePath("..")
 initial_height = -235.0
 
-[node name="Spawn" type="Sprite2D" parent="."]
-position = Vector2(-356, 302)
-texture = ExtResource("3_nucw2")
+[node name="Spawn" parent="." instance=ExtResource("3_hw2up")]
 
-[node name="Checkpoint" type="Sprite2D" parent="."]
-position = Vector2(1966, -421)
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("4_3qeun")
+[node name="Checkpoint" parent="." instance=ExtResource("4_yc56p")]
 
-[node name="Checkpoint2" type="Sprite2D" parent="."]
+[node name="Checkpoint2" parent="." instance=ExtResource("4_yc56p")]
 position = Vector2(6992, 539)
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("4_3qeun")
 
 [node name="Soyfish" parent="." instance=ExtResource("7_ufvdd")]
 position = Vector2(8261, 1315)
@@ -70,9 +65,10 @@ position = Vector2(5725, 1006)
 rotation = -0.418879
 scale = Vector2(1.2, 1.2)
 
-[node name="Terrain" type="StaticBody2D" parent="."]
+[node name="Terrain" type="Area2D" parent="."]
 collision_layer = 32
 collision_mask = 4
+script = ExtResource("10_ew3cp")
 
 [node name="Walls" type="Sprite2D" parent="Terrain"]
 position = Vector2(4816, 485)
@@ -85,3 +81,6 @@ polygon = PackedVector2Array(708, 538, 1339, 457, 1539, 281, 1578, -143, 1868, -
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Terrain"]
 build_mode = 1
 polygon = PackedVector2Array(3263, -1174, 3470, -676, 3447, -354, 3747, 565, 3996, 964, 4762, 1023, 5899, 619, 6352, -230, 6363, -809, 6558, -1166)
+
+[node name="CheckpointManager" type="Node2D" parent="."]
+script = ExtResource("10_pqt28")

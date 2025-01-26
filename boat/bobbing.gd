@@ -19,3 +19,12 @@ func start_bobbing() -> void:
 	_float_tween.tween_property(self, "position", self.position + Vector2.DOWN * 100.0, 2)
 	_float_tween.tween_property(self, "position", self.position, 2)
 	_float_tween.set_loops()
+
+func reset() -> void:
+	if _float_tween != null:
+		_float_tween.stop()
+		_float_tween.kill()
+		_float_tween = null
+		position = Vector2(0, 0)
+	_float_tween = null
+#	global_position = Vector2(0, 0)

@@ -6,19 +6,20 @@ extends Node2D
 var value_scale: float = 5
 
 @export var initial_height: float = 100
-@export var max_height: float = 1080.0 * 3 / 2
-@export var min_height: float = -1080.0 * 3 / 2
+@export var max_height: float = 1080-550
+@export var min_height: float = -(2160-250)
 @export var min_scale: float = 0.5
 @export var max_scale: float = 1.5
 @export var speed_up: float = 20 * value_scale
-@export var speed_down: float = 100 * value_scale
+@export var speed_down: float = 60 * value_scale
 @export var speed_right: float = 60 * value_scale
 @export var speed_left: float = 25 * value_scale
 @export var pump_height_add: float = 10 * value_scale
-#@export var lose_air_sub: float = 20
+@export var speed_air_release: float = 100 * value_scale
 @export var size_change_speed: float = 0.5
 
 signal shoot(bullet: PackedScene, direction: Vector2, location: Vector2)
+signal crashed_on_ground()
 
 @onready var body_node: BoatBody = $Bobbing/Body
 @onready var boat_bubble_node: BoatBubble = $Bobbing/Bubble
@@ -47,7 +48,7 @@ func get_hit(hit_position: Vector2, hit_severity: float) -> void:
 func _lose_air(air_loss: float) -> void:
 	if _target_height <= min_height:
 		return
-	_target_height -= air_loss * speed_down
+	_target_height -= air_loss * speed_air_release
 	if _target_height < min_height:
 		# arrived at the bottom
 		_target_height = min_height
@@ -88,6 +89,19 @@ func pump_up(amount: float = pump_height_add) -> void:
 		_target_height = max_height
 	_update_scale()
 
+
+func reset_for_re_spawn(respawn_position: Vector2) -> void:
+	if _current_air_bubble != null:
+		_current_air_bubble.finish_expanding()
+	global_position = respawn_position
+	_target_height = -global_position.y
+	_update_scale()
+	$Bobbing.reset()
+	_respawn_pause_timer = respawn_pause_time
+
+@export var respawn_pause_time: float = 0.6
+var _respawn_pause_timer: float = 0
+
 var _balloon_scale_tween: Tween
 var _target_height: float
 
@@ -97,15 +111,27 @@ func _ready() -> void:
 	_update_scale()
 	pump_node.pump_up.connect(_on_Pump_pump_up)
 	boat_bubble_node.hit.connect(func(hit_position: Vector2, hit_severity: float) -> void: get_hit(hit_position, hit_severity))
-	# Extend the signal outwards
+	# Extend some signals outwards
 	canon_node.shoot.connect(func(bullet: PackedScene, direction: Vector2, location: Vector2) -> void:
 		shoot.emit(bullet, direction, location)
 		_shoot_bullet(bullet, direction, location)
 	)
+	body_node.crashed_on_ground.connect(func() -> void:
+		crashed_on_ground.emit()
+	)
+
 
 
 func _process(delta: float) -> void:
-	if PlayerInput.is_just_pressed(PlayerInput.Action.DESCEND):
+	var _respawn_timer_reached_zero: bool = false
+	if _respawn_pause_timer > 0:
+		_respawn_pause_timer -= delta
+		if _respawn_pause_timer <= 0:
+			_respawn_pause_timer = 0
+			_respawn_timer_reached_zero = true
+		else:
+			return
+	if PlayerInput.is_just_pressed(PlayerInput.Action.DESCEND) or (_respawn_timer_reached_zero and PlayerInput.is_pressed(PlayerInput.Action.DESCEND)):
 		var spawn_position_node := boat_bubble_node.get_air_bubble_spawn_position_node()
 		_current_air_bubble = _create_air_bubble(spawn_position_node)
 	if PlayerInput.is_pressed(PlayerInput.Action.DESCEND):
@@ -145,6 +171,8 @@ func _get_target_bubble_size() -> float:
 
 
 func _handle_horizontal_movement(delta: float) -> void:
+	if _respawn_pause_timer > 0:
+		return
 	var horizontal_movement: float = PlayerInput.get_horizontal_movement()
 	var horizontal_speed: float = speed_right if horizontal_movement > 0 else speed_left
 	position.x += horizontal_movement * horizontal_speed * delta

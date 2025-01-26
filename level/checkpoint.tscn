@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://lgx1jgymgdu7"]
+
+[ext_resource type="Texture2D" uid="uid://db0aum5u1qlma" path="res://level/checkpoint.png" id="1_wh5i6"]
+[ext_resource type="Script" path="res://level/checkpoint.gd" id="2_f0noi"]
+
+[node name="Checkpoint" type="Sprite2D" groups=["checkpoint"]]
+position = Vector2(1966, -421)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_wh5i6")
+script = ExtResource("2_f0noi")
+
+[node name="RespawnPosition" type="Node2D" parent="."]
+position = Vector2(0, 40)
+scale = Vector2(1e-05, 1e-05)
