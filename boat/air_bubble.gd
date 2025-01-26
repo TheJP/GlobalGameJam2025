@@ -1,7 +1,7 @@
 class_name AirBubble
 extends Node2D
 
-@export var upwards_speed: float = 100
+@export var upwards_speed: float = 150
 @export var scale_increase_speed: float = 15
 @export var target_scale: float = 10
 @export var horizontal_speed_while_expanding: float = 270
