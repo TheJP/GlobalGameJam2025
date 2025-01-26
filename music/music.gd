@@ -58,7 +58,7 @@ var _sounds: Dictionary = {
 	Sounds.Reload: SoundInfo.new(Sounds.Reload, "Reload.mp3", true),
 	Sounds.Shoot: SoundInfo.new(Sounds.Shoot, "Shoot.mp3", true),
 	Sounds.Pump: SoundInfo.new(Sounds.Pump, "Pump_neu.mp3", true),
-	Sounds.Air_release: SoundInfo.new(Sounds.Air_release, "Air_release.mp3", true),
+	Sounds.Air_release: SoundInfo.new(Sounds.Air_release, "Air_release_new.mp3", true),
 	Sounds.Shoot_enemy: SoundInfo.new(Sounds.Shoot_enemy, "Shoot_enemy.mp3", true),
 	Sounds.Being_shot_losing_air: SoundInfo.new(Sounds.Being_shot_losing_air, "Being_shot_losing_air.mp3", true),
 	Sounds.Hit_ground: SoundInfo.new(Sounds.Hit_ground, "Hit_ground.mp3", true),
