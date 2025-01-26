@@ -1,12 +1,11 @@
 extends TextureRect
 
 
-var _player_selection_scene: PackedScene = preload("res://menu/player_selection/player_selection.tscn")
-var _credits_scene: PackedScene = preload("res://menu/credits/credits.tscn")
+var _main_menu_scene: PackedScene = load("res://menu/main_menu/main_menu.tscn")
 
 
 func _ready() -> void:
-	%Play.grab_focus()
+	%Back.grab_focus()
 
 	# TODO: Play hover sound:
 	get_viewport().gui_focus_changed.connect(func(_control: Control) -> void: pass)
@@ -21,12 +20,8 @@ func _process(_delta: float) -> void:
 			control.button_up.emit()
 
 
-func _on_play_button_up() -> void:
-	_switch_scene(_player_selection_scene)
-
-
-func _on_credits_button_up() -> void:
-	_switch_scene(_credits_scene)
+func _on_back_button_up() -> void:
+	_switch_scene(_main_menu_scene)
 
 
 func _switch_scene(scene: PackedScene) -> void:
