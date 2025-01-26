@@ -15,9 +15,7 @@ func _process(delta: float) -> void:
 func _on_despawn_timer_timeout() -> void:
 	if not _destroyed:
 		_destroyed = true
-		var tween := create_tween()
-		tween.tween_property($Sprite2D, "modulate", Color($Sprite2D.modulate, 0), 1.0)
-		tween.tween_callback(func() -> void: queue_free())
+		_destroy()
 
 
 func _on_area_entered(area: Area2D) -> void:
@@ -30,3 +28,13 @@ func _on_area_entered(area: Area2D) -> void:
 		tween.tween_property($Sprite2D, "scale", $Sprite2D.scale * 1.5, 0.7)
 		tween.set_parallel(false)
 		tween.tween_callback(func() -> void: queue_free())
+	elif area.is_in_group("player_bullet") and not _destroyed:
+		_destroyed = true
+		_destroy()
+
+
+func _destroy() -> void:
+	_destroyed = true
+	var tween := create_tween()
+	tween.tween_property($Sprite2D, "modulate", Color($Sprite2D.modulate, 0), 0.3)
+	tween.tween_callback(func() -> void: queue_free())

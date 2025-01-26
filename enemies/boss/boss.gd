@@ -49,8 +49,10 @@ func _process(delta: float) -> void:
 
 
 func _on_body_area_entered(area: Area2D) -> void:
+	print("b ",health)
 	if area.is_in_group("player_bullet"):
-		health = min(0.0, health - 5.0)
+		health = max(0.0, health - 5.0)
 		%Health.update_health(health / max_health)
+	print("a ", health)
 	if health <= 0.0:
 		queue_free() # TODO: Animation

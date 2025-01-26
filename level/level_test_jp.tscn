@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dp4od13x3llfk"]
+[gd_scene load_steps=7 format=3 uid="uid://dp4od13x3llfk"]
 
 [ext_resource type="PackedScene" uid="uid://d2ihot7rs53q7" path="res://background/background.tscn" id="1_4ubko"]
 [ext_resource type="PackedScene" uid="uid://coo4vnsykx1i1" path="res://boat/boat.tscn" id="1_mgfuu"]
 [ext_resource type="PackedScene" uid="uid://cbpionso82r22" path="res://enemies/dropper/dropper.tscn" id="2_ppind"]
 [ext_resource type="PackedScene" uid="uid://cinovrrfl57s" path="res://enemies/boss/boss.tscn" id="4_qjsig"]
 [ext_resource type="PackedScene" uid="uid://cymrux1c6gvrv" path="res://enemies/soyfish/soyfish.tscn" id="5_r426a"]
+[ext_resource type="PackedScene" uid="uid://b2uj36np6a2b2" path="res://enemies/wall/wall.tscn" id="6_vmxtq"]
 
 [node name="Level" type="Node2D"]
 
@@ -13,13 +14,17 @@
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Dropper" parent="Enemies" instance=ExtResource("2_ppind")]
+position = Vector2(737.167, -200.383)
 
 [node name="Boat" parent="." node_paths=PackedStringArray("level_node") instance=ExtResource("1_mgfuu")]
-position = Vector2(720, 773)
+position = Vector2(183.606, 521.284)
 level_node = NodePath("..")
 
 [node name="Boss" parent="." instance=ExtResource("4_qjsig")]
-position = Vector2(3741.48, 607.892)
+position = Vector2(2309.1, 646.848)
 
 [node name="Soyfish" parent="." instance=ExtResource("5_r426a")]
 position = Vector2(1540.26, 545.384)
+
+[node name="Wall" parent="." instance=ExtResource("6_vmxtq")]
+position = Vector2(533.397, -17.9797)
