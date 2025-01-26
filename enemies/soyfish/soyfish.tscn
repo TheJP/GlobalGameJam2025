@@ -1,7 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://cymrux1c6gvrv"]
+[gd_scene load_steps=7 format=3 uid="uid://cymrux1c6gvrv"]
 
 [ext_resource type="Texture2D" uid="uid://dtkew0o6omx6a" path="res://enemies/soyfish/soyfish.png" id="1_nkxqk"]
 [ext_resource type="Script" path="res://enemies/soyfish/soyfish.gd" id="1_wwep6"]
+[ext_resource type="Texture2D" uid="uid://cde21ctvwq773" path="res://enemies/soyfish/soyfish1.png" id="3_vj7k0"]
+[ext_resource type="Texture2D" uid="uid://c6ts2y43uopol" path="res://enemies/soyfish/soyfish2.png" id="4_5ht1m"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cg7eb"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": ExtResource("1_nkxqk")
+}, {
+"duration": 3.0,
+"texture": ExtResource("3_vj7k0")
+}, {
+"duration": 3.0,
+"texture": ExtResource("4_5ht1m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q850v"]
 radius = 32.0
@@ -13,9 +32,11 @@ collision_mask = 18
 script = ExtResource("1_wwep6")
 rotation_speed = 0.2
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_nkxqk")
+sprite_frames = SubResource("SpriteFrames_cg7eb")
+autoplay = "default"
+frame_progress = 0.496698
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
