@@ -8,17 +8,25 @@ var level_scene: PackedScene = preload("res://level/level.tscn")
 
 var _start_hold_time := 0.0
 var _started := false
+var _start_bar_max_width: float
 
 
 func _ready() -> void:
+	_start_bar_max_width = %StartProgress.size.x
+	%StartProgress.size.x = 0
 	PlayerInput.clear_players()
 
 
 func _process(delta: float) -> void:
 	for just_joined in PlayerInput.get_just_pressed_controllers("button_0"):
-		PlayerInput.add_player(just_joined)
+		if PlayerInput.add_player(just_joined):
+			pass # TODO: play join sound
 	for just_cancelled in PlayerInput.get_just_pressed_controllers("cancel"):
-		PlayerInput.remove_player(just_cancelled)
+		if PlayerInput.remove_player(just_cancelled):
+			pass # TODO: play leave sound
+
+	%AvatarPlayer1.visible = PlayerInput.player_to_controller.size() >= 1
+	%AvatarPlayer2.visible = PlayerInput.player_to_controller.size() >= 2
 
 	if PlayerInput.player_to_controller.size() == 2:
 		var pressed := false
@@ -30,9 +38,14 @@ func _process(delta: float) -> void:
 		else:
 			_start_hold_time = 0.0
 		if _start_hold_time >= hold_to_start_duration and not _started:
+			# TODO: Play start game sound
 			get_tree().change_scene_to_packed(level_scene)
 			_started = true
 
+	if PlayerInput.player_to_controller.size() >= 2:
+		var duration := minf(_start_hold_time, hold_to_start_duration)
+		var fraction := duration / hold_to_start_duration
+		%StartProgress.size.x = _start_bar_max_width * fraction
 
 	%DebugText.text = "";
 	for player_index in PlayerInput.player_to_controller.size():

@@ -1,24 +1,112 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4hxiisq8voaq"]
+[gd_scene load_steps=11 format=3 uid="uid://b4hxiisq8voaq"]
 
+[ext_resource type="Texture2D" uid="uid://c83rsxl6qkue8" path="res://menu/sprites/player_selection/player_selection.png" id="1_2gk54"]
 [ext_resource type="Script" path="res://menu/player_selection/player_selection.gd" id="1_kwafg"]
+[ext_resource type="Texture2D" uid="uid://1g6i1jkorj4b" path="res://menu/sprites/connect_empty_template.png" id="3_lo1ja"]
+[ext_resource type="Texture2D" uid="uid://b3qxg05fpxu3p" path="res://menu/sprites/connect_template.png" id="4_n73t6"]
+[ext_resource type="Texture2D" uid="uid://wptx8sce287a" path="res://menu/sprites/player_selection/player1.png" id="5_dg7jt"]
+[ext_resource type="Texture2D" uid="uid://c2vp6vyjj7xk" path="res://menu/sprites/player_selection/player2.png" id="6_kqnut"]
+[ext_resource type="Texture2D" uid="uid://bvmoud1vbq1sh" path="res://menu/sprites/player_selection/avatar_player1.png" id="7_10m5j"]
+[ext_resource type="Texture2D" uid="uid://ckoywtfucbnbj" path="res://menu/sprites/player_selection/avatar_player2.png" id="8_4jj25"]
+[ext_resource type="FontFile" uid="uid://cmutgcnnjhv18" path="res://fonts/lexend/Lexend-VariableFont_wght.ttf" id="9_4b7cr"]
 
 [sub_resource type="SystemFont" id="SystemFont_oxed7"]
 font_names = PackedStringArray("Consolas", "Cascadia Mono", "Courier New")
+subpixel_positioning = 0
 
-[node name="PlayerSelection" type="Control"]
-layout_mode = 3
+[node name="PlayerSelection" type="TextureRect"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("1_2gk54")
 script = ExtResource("1_kwafg")
 hold_to_start_duration = 1.0
 
+[node name="Template" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.188235)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("3_lo1ja")
+
+[node name="Template2" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.196078)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("4_n73t6")
+
 [node name="DebugText" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_right = 801.0
 offset_bottom = 384.0
 theme_override_fonts/normal_font = SubResource("SystemFont_oxed7")
 theme_override_font_sizes/normal_font_size = 50
+
+[node name="StartProgress" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 549.0
+offset_top = 959.0
+offset_right = 1370.0
+offset_bottom = 999.0
+
+[node name="Player1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 688.0
+offset_top = 540.0
+offset_right = 809.0
+offset_bottom = 625.0
+texture = ExtResource("5_dg7jt")
+
+[node name="Player2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1113.0
+offset_top = 539.0
+offset_right = 1234.0
+offset_bottom = 624.0
+texture = ExtResource("6_kqnut")
+
+[node name="AvatarPlayer1" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 599.0
+offset_top = 388.0
+offset_right = 894.0
+offset_bottom = 777.0
+texture = ExtResource("7_10m5j")
+
+[node name="AvatarPlayer2" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 1025.0
+offset_top = 387.0
+offset_right = 1320.0
+offset_bottom = 776.0
+texture = ExtResource("8_4jj25")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 682.0
+offset_top = 852.0
+offset_right = 747.0
+offset_bottom = 925.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 690.0
+offset_top = 845.0
+offset_right = 761.0
+offset_bottom = 939.0
+theme_override_colors/font_color = Color(0.882353, 0.545098, 0.584314, 1)
+theme_override_fonts/font = ExtResource("9_4b7cr")
+theme_override_font_sizes/font_size = 70
+text = "A"

@@ -28,7 +28,6 @@ func play_sound(sound: Sounds, sound_position: Vector2 = Vector2(0, 0), sound_pa
 				sound_instance.reparent(sound_parent)
 			else:
 				sound_parent.add_child(sound_instance)
-		add_child(sound_instance)
 		sound_instance.play()
 		if sound_instance.stream.loop_mode == AudioStreamWAV.LOOP_DISABLED:
 			sound_instance.finished.connect(func () -> void:
