@@ -1,10 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://g25fasetaabu"]
+[gd_scene load_steps=19 format=3 uid="uid://g25fasetaabu"]
 
 [ext_resource type="Script" path="res://level/level.gd" id="1_hc870"]
 [ext_resource type="PackedScene" uid="uid://d2ihot7rs53q7" path="res://background/background.tscn" id="1_olam6"]
 [ext_resource type="PackedScene" uid="uid://coo4vnsykx1i1" path="res://boat/boat.tscn" id="2_t7wkv"]
-[ext_resource type="PackedScene" path="res://level/spawn.tscn" id="3_i53wn"]
-[ext_resource type="PackedScene" path="res://level/checkpoint.tscn" id="4_h7dxs"]
+[ext_resource type="PackedScene" uid="uid://ccnyonfbawctu" path="res://level/spawn.tscn" id="3_i53wn"]
+[ext_resource type="PackedScene" uid="uid://lgx1jgymgdu7" path="res://level/checkpoint.tscn" id="4_h7dxs"]
 [ext_resource type="PackedScene" uid="uid://c1ayh7vkt7a28" path="res://menu/victory/victory.tscn" id="5_4rv0o"]
 [ext_resource type="PackedScene" uid="uid://cbpionso82r22" path="res://enemies/dropper/dropper.tscn" id="6_7we14"]
 [ext_resource type="PackedScene" uid="uid://b2uj36np6a2b2" path="res://enemies/wall/wall.tscn" id="6_b8tfq"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://c4usagk3orvby" path="res://menu/sprites/ui_sprites/tutorial06.png" id="15_40u74"]
 [ext_resource type="PackedScene" uid="uid://css2u2s5nqsx5" path="res://menu/in_game/in_game.tscn" id="15_oe74t"]
 [ext_resource type="Texture2D" uid="uid://bl1aqtq42tc5y" path="res://level2/walls_background.png" id="17_rc1lu"]
+[ext_resource type="PackedScene" uid="uid://d2x2ja21qnior" path="res://level/start_bubbles.tscn" id="18_sf51w"]
 
 [node name="Level2" type="Node2D"]
 script = ExtResource("1_hc870")
@@ -120,3 +121,6 @@ texture = ExtResource("15_40u74")
 z_index = -20
 position = Vector2(1666, 1053)
 texture = ExtResource("17_rc1lu")
+
+[node name="StartBubbles" parent="." instance=ExtResource("18_sf51w")]
+position = Vector2(-331, -446)

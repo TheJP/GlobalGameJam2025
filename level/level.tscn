@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bedvjvquj330j"]
+[gd_scene load_steps=19 format=3 uid="uid://bedvjvquj330j"]
 
 [ext_resource type="PackedScene" uid="uid://coo4vnsykx1i1" path="res://boat/boat.tscn" id="1_b3wcc"]
 [ext_resource type="Script" path="res://level/level.gd" id="1_lgprj"]
@@ -13,16 +13,11 @@
 [ext_resource type="Script" path="res://level/checkpoint_manager.gd" id="10_pqt28"]
 [ext_resource type="Texture2D" uid="uid://b2ecxhr8eyvmf" path="res://menu/sprites/ui_sprites/tutorial01.png" id="13_0gkho"]
 [ext_resource type="Texture2D" uid="uid://bir0s000t7b0t" path="res://menu/sprites/ui_sprites/tutorial02.png" id="14_ba8lb"]
-[ext_resource type="Script" path="res://level/start_bubbles.gd" id="15_1tejt"]
-[ext_resource type="Texture2D" uid="uid://fukgndkxxg0s" path="res://boat/sprites/bubble.png" id="15_ou4op"]
 [ext_resource type="Texture2D" uid="uid://tvhrno6vv7ly" path="res://menu/sprites/ui_sprites/tutorial03.png" id="15_swv0l"]
 [ext_resource type="PackedScene" uid="uid://css2u2s5nqsx5" path="res://menu/in_game/in_game.tscn" id="15_yklb0"]
 [ext_resource type="Texture2D" uid="uid://d2awdygr0n3n1" path="res://menu/sprites/ui_sprites/tutorial04.png" id="16_pqvxe"]
 [ext_resource type="Texture2D" uid="uid://151kpftf5h26" path="res://menu/sprites/ui_sprites/tutorial05.png" id="17_28f1d"]
-
-[sub_resource type="Gradient" id="Gradient_apl6a"]
-offsets = PackedFloat32Array(0, 0.786667, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+[ext_resource type="PackedScene" uid="uid://d2x2ja21qnior" path="res://level/start_bubbles.tscn" id="18_rtkhe"]
 
 [node name="Level2" type="Node2D"]
 script = ExtResource("1_lgprj")
@@ -116,145 +111,4 @@ texture = ExtResource("17_28f1d")
 
 [node name="InGame" parent="CanvasLayer" instance=ExtResource("15_yklb0")]
 
-[node name="StartBubbles" type="Node2D" parent="."]
-script = ExtResource("15_1tejt")
-
-[node name="StartBubbles" type="CPUParticles2D" parent="StartBubbles"]
-z_index = 1
-position = Vector2(-666, 500)
-emitting = false
-amount = 50
-lifetime = 5.0
-one_shot = true
-explosiveness = 1.0
-local_coords = true
-texture = ExtResource("15_ou4op")
-emission_shape = 5
-emission_points = PackedVector2Array(100, 0, 0, 0, 200, 0, 300, 0, 400, 0, 500, 0, 600, 0, 700, 0, 800, 0, 900, 0, 1000, 0, 1100, 0, 1200, 0, 1300, 0)
-emission_normals = PackedVector2Array(0, 0)
-emission_colors = PackedColorArray()
-direction = Vector2(0, -1)
-spread = 8.4
-gravity = Vector2(0, -100)
-initial_velocity_min = 28.08
-initial_velocity_max = 124.04
-linear_accel_min = 500.0
-linear_accel_max = 1500.0
-tangential_accel_min = 20.0
-tangential_accel_max = 20.0
-angle_max = 180.0
-scale_amount_min = 1.5
-scale_amount_max = 3.5
-color_ramp = SubResource("Gradient_apl6a")
-
-[node name="StartBubbles2" type="CPUParticles2D" parent="StartBubbles"]
-z_index = 1
-position = Vector2(-666, 350)
-emitting = false
-amount = 50
-lifetime = 5.0
-one_shot = true
-explosiveness = 1.0
-local_coords = true
-texture = ExtResource("15_ou4op")
-emission_shape = 5
-emission_points = PackedVector2Array(100, 0, 0, 0, 200, 0, 300, 0, 400, 0, 500, 0, 600, 0, 700, 0, 800, 0, 900, 0, 1000, 0, 1100, 0, 1200, 0, 1300, 0)
-emission_normals = PackedVector2Array(0, 0)
-emission_colors = PackedColorArray()
-direction = Vector2(0, -1)
-spread = 8.4
-gravity = Vector2(0, -100)
-initial_velocity_min = 28.08
-initial_velocity_max = 124.04
-linear_accel_min = 500.0
-linear_accel_max = 1500.0
-tangential_accel_min = 20.0
-tangential_accel_max = 20.0
-angle_max = 180.0
-scale_amount_min = 1.5
-scale_amount_max = 3.5
-color_ramp = SubResource("Gradient_apl6a")
-
-[node name="StartBubbles3" type="CPUParticles2D" parent="StartBubbles"]
-z_index = 1
-position = Vector2(-661, 200)
-emitting = false
-amount = 50
-lifetime = 5.0
-one_shot = true
-explosiveness = 1.0
-local_coords = true
-texture = ExtResource("15_ou4op")
-emission_shape = 5
-emission_points = PackedVector2Array(100, 0, 0, 0, 200, 0, 300, 0, 400, 0, 500, 0, 600, 0, 700, 0, 800, 0, 900, 0, 1000, 0, 1100, 0, 1200, 0, 1300, 0)
-emission_normals = PackedVector2Array(0, 0)
-emission_colors = PackedColorArray()
-direction = Vector2(0, -1)
-spread = 8.4
-gravity = Vector2(0, -100)
-initial_velocity_min = 28.08
-initial_velocity_max = 124.04
-linear_accel_min = 500.0
-linear_accel_max = 1500.0
-tangential_accel_min = 20.0
-tangential_accel_max = 20.0
-angle_max = 180.0
-scale_amount_min = 1.5
-scale_amount_max = 3.5
-color_ramp = SubResource("Gradient_apl6a")
-
-[node name="StartBubbles4" type="CPUParticles2D" parent="StartBubbles"]
-z_index = 1
-position = Vector2(-661, 0)
-emitting = false
-amount = 50
-lifetime = 5.0
-one_shot = true
-explosiveness = 1.0
-local_coords = true
-texture = ExtResource("15_ou4op")
-emission_shape = 5
-emission_points = PackedVector2Array(100, 0, 0, 0, 200, 0, 300, 0, 400, 0, 500, 0, 600, 0, 700, 0, 800, 0, 900, 0, 1000, 0, 1100, 0, 1200, 0, 1300, 0)
-emission_normals = PackedVector2Array(0, 0)
-emission_colors = PackedColorArray()
-direction = Vector2(0, -1)
-spread = 8.4
-gravity = Vector2(0, -100)
-initial_velocity_min = 28.08
-initial_velocity_max = 124.04
-linear_accel_min = 500.0
-linear_accel_max = 1500.0
-tangential_accel_min = 20.0
-tangential_accel_max = 20.0
-angle_max = 180.0
-scale_amount_min = 1.5
-scale_amount_max = 3.5
-color_ramp = SubResource("Gradient_apl6a")
-
-[node name="StartBubbles5" type="CPUParticles2D" parent="StartBubbles"]
-z_index = 1
-position = Vector2(-661, -200)
-emitting = false
-amount = 50
-lifetime = 5.0
-one_shot = true
-explosiveness = 1.0
-local_coords = true
-texture = ExtResource("15_ou4op")
-emission_shape = 5
-emission_points = PackedVector2Array(100, 0, 0, 0, 200, 0, 300, 0, 400, 0, 500, 0, 600, 0, 700, 0, 800, 0, 900, 0, 1000, 0, 1100, 0, 1200, 0, 1300, 0)
-emission_normals = PackedVector2Array(0, 0)
-emission_colors = PackedColorArray()
-direction = Vector2(0, -1)
-spread = 8.4
-gravity = Vector2(0, -100)
-initial_velocity_min = 28.08
-initial_velocity_max = 124.04
-linear_accel_min = 500.0
-linear_accel_max = 1500.0
-tangential_accel_min = 20.0
-tangential_accel_max = 20.0
-angle_max = 180.0
-scale_amount_min = 1.5
-scale_amount_max = 3.5
-color_ramp = SubResource("Gradient_apl6a")
+[node name="StartBubbles" parent="." instance=ExtResource("18_rtkhe")]
