@@ -25,6 +25,8 @@ script = ExtResource("1_2rl37")
 position = Vector2(362, -223)
 
 [node name="Body" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 32
 script = ExtResource("2_yxq3b")
 
 [node name="BodyVisualization" type="Sprite2D" parent="Body"]
