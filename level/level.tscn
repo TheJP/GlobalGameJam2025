@@ -1,8 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://bedvjvquj330j"]
+[gd_scene load_steps=18 format=3 uid="uid://bedvjvquj330j"]
 
 [ext_resource type="PackedScene" uid="uid://coo4vnsykx1i1" path="res://boat/boat.tscn" id="1_b3wcc"]
 [ext_resource type="Script" path="res://level/level.gd" id="1_lgprj"]
-[ext_resource type="PackedScene" uid="uid://ccnyonfbawctu" path="res://level/spawn.tscn" id="3_hw2up"]
+[ext_resource type="PackedScene" path="res://level/spawn.tscn" id="3_hw2up"]
 [ext_resource type="Texture2D" uid="uid://2i6qttbmkkqw" path="res://level/walls.png" id="4_c1riv"]
 [ext_resource type="PackedScene" uid="uid://d2ihot7rs53q7" path="res://background/background.tscn" id="4_disay"]
 [ext_resource type="PackedScene" path="res://level/checkpoint.tscn" id="4_yc56p"]
@@ -36,10 +36,10 @@ initial_height = -235.0
 position = Vector2(6992, 539)
 
 [node name="End" parent="." instance=ExtResource("3_hw2up")]
+position = Vector2(10506, 1038)
 texture = ExtResource("5_qfy3s")
 offset = Vector2(150, 0)
 reached_sprite = ExtResource("5_qfy3s")
-position = Vector2(10506, 1505)
 next_scene = ExtResource("5_6jirc")
 
 [node name="Wall" parent="." instance=ExtResource("5_mkdy1")]

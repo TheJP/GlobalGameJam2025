@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://g25fasetaabu"]
+[gd_scene load_steps=17 format=3 uid="uid://g25fasetaabu"]
 
+[ext_resource type="Script" path="res://level/level.gd" id="1_hc870"]
 [ext_resource type="PackedScene" uid="uid://d2ihot7rs53q7" path="res://background/background.tscn" id="1_olam6"]
 [ext_resource type="PackedScene" uid="uid://coo4vnsykx1i1" path="res://boat/boat.tscn" id="2_t7wkv"]
 [ext_resource type="PackedScene" path="res://level/spawn.tscn" id="3_i53wn"]
@@ -17,6 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://css2u2s5nqsx5" path="res://menu/in_game/in_game.tscn" id="15_oe74t"]
 
 [node name="Level2" type="Node2D"]
+script = ExtResource("1_hc870")
+min_x = -1640.0
+max_x = 11418.0
 
 [node name="Background" parent="." instance=ExtResource("1_olam6")]
 
