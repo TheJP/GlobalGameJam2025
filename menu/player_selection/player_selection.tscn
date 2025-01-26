@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4hxiisq8voaq"]
+[gd_scene load_steps=11 format=3 uid="uid://b4hxiisq8voaq"]
 
 [ext_resource type="Texture2D" uid="uid://c83rsxl6qkue8" path="res://menu/sprites/player_selection/player_selection.png" id="1_2gk54"]
 [ext_resource type="Script" path="res://menu/player_selection/player_selection.gd" id="1_kwafg"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c2vp6vyjj7xk" path="res://menu/sprites/player_selection/player2.png" id="6_kqnut"]
 [ext_resource type="Texture2D" uid="uid://bvmoud1vbq1sh" path="res://menu/sprites/player_selection/avatar_player1.png" id="7_10m5j"]
 [ext_resource type="Texture2D" uid="uid://ckoywtfucbnbj" path="res://menu/sprites/player_selection/avatar_player2.png" id="8_4jj25"]
+[ext_resource type="FontFile" uid="uid://cmutgcnnjhv18" path="res://fonts/lexend/Lexend-VariableFont_wght.ttf" id="9_4b7cr"]
 
 [sub_resource type="SystemFont" id="SystemFont_oxed7"]
 font_names = PackedStringArray("Consolas", "Cascadia Mono", "Courier New")
@@ -91,3 +92,21 @@ offset_top = 387.0
 offset_right = 1320.0
 offset_bottom = 776.0
 texture = ExtResource("8_4jj25")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 682.0
+offset_top = 852.0
+offset_right = 747.0
+offset_bottom = 925.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 690.0
+offset_top = 845.0
+offset_right = 761.0
+offset_bottom = 939.0
+theme_override_colors/font_color = Color(0.882353, 0.545098, 0.584314, 1)
+theme_override_fonts/font = ExtResource("9_4b7cr")
+theme_override_font_sizes/font_size = 70
+text = "A"
