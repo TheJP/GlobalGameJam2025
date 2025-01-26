@@ -53,4 +53,5 @@ class SoundInfo:
 var _sounds: Dictionary = {
 	Sounds.Bubbles: SoundInfo.new(Sounds.Bubbles, "res://music/496242__kevinhilt__water_bubbles.wav", true),
 	Sounds.Reload: SoundInfo.new(Sounds.Reload, "res://music/363167__samsterbirdies__mag-reload.wav", true),
+	Sounds.Shoot: SoundInfo.new(Sounds.Shoot, "res://music/212594__klankbeeld__loud-explosion-131231_04.wav", true),
 }

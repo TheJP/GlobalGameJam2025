@@ -65,6 +65,7 @@ func on_shoot() -> void:
 	bullet_count -= 1
 	shot_cooldown = 1 / canon_fire_rate
 	ammo_counter.set_ammo_count(bullet_count)
+	Music.play_sound(Music.Sounds.Shoot)
 	if shoot.get_connections().size() > 0:
 		shoot.emit(bullet, Vector2(cos(aim_angle), sin(aim_angle)), global_position)
 
