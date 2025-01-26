@@ -5,7 +5,7 @@ extends Node2D
 @export var canon_input_deadzone: float = 0.1
 @export var canon_fire_rate: float = 2 # shots per second
 @export var canon_bullet_capacity: int = 5
-@export var canon_reload_time: float = 2.3 # seconds to reload
+@export var canon_reload_time: float = 1.1 # seconds to reload
 
 @onready var aim_rotating_node: Node2D = $CanonRotatingNode
 @onready var ammo_counter: AmmoCounter = $AmmoCounter

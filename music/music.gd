@@ -4,15 +4,17 @@ extends Node2D
 
 enum Sounds {
 	Bubbles,
-	Bubble_blow_up,
-	Bubble_pop,
 	Shoot,
 	Reload,
-	Pump_up,
+	Pump,
 	Air_release,
-	Hit_enemy,
-	Being_hit,
+	Shoot_enemy,
+	Being_shot_losing_air,
 	Hit_ground,
+	Hit_ceiling,
+	Menu_click,
+	Menu_hover,
+
 }
 
 
@@ -30,7 +32,7 @@ func play_sound(sound: Sounds, sound_position: Vector2 = Vector2(0, 0), sound_pa
 		else:
 			sound_parent.add_child(sound_instance)
 		sound_instance.play()
-		if sound_instance.stream.loop_mode == AudioStreamWAV.LOOP_DISABLED:
+		if not sound_info.is_loop:
 			sound_instance.finished.connect(func () -> void:
 				sound_instance.queue_free()
 				print("Sound finished: ", sound)
@@ -45,13 +47,23 @@ class SoundInfo:
 	var sound: Sounds
 	var sound_resource_path: String
 	var is_sfx: bool = false
-	func _init(_sound: Sounds, _sound_resource_path: String, _is_sfx: bool = true) -> void:
+	var is_loop: bool = false
+	func _init(_sound: Sounds, _sound_resource_path: String, _is_sfx: bool = true, _is_loop: bool = false) -> void:
 		self.sound = _sound
-		self.sound_resource_path = _sound_resource_path
+		self.sound_resource_path = "res://music/" + _sound_resource_path
 		self.is_sfx = _is_sfx
+		self.is_loop = _is_loop
 
 var _sounds: Dictionary = {
-	Sounds.Bubbles: SoundInfo.new(Sounds.Bubbles, "res://music/496242__kevinhilt__water_bubbles.wav", true),
-	Sounds.Reload: SoundInfo.new(Sounds.Reload, "res://music/363167__samsterbirdies__mag-reload.wav", true),
-	Sounds.Shoot: SoundInfo.new(Sounds.Shoot, "res://music/212594__klankbeeld__loud-explosion-131231_04.wav", true),
+	Sounds.Bubbles: SoundInfo.new(Sounds.Bubbles, "496242__kevinhilt__water_bubbles.wav", true, true),
+	Sounds.Reload: SoundInfo.new(Sounds.Reload, "Reload.mp3", true),
+	Sounds.Shoot: SoundInfo.new(Sounds.Shoot, "Shoot.mp3", true),
+	Sounds.Pump: SoundInfo.new(Sounds.Pump, "Pump.mp3", true),
+	Sounds.Air_release: SoundInfo.new(Sounds.Air_release, "Air_release.mp3", true),
+	Sounds.Shoot_enemy: SoundInfo.new(Sounds.Shoot_enemy, "Shoot_enemy.mp3", true),
+	Sounds.Being_shot_losing_air: SoundInfo.new(Sounds.Being_shot_losing_air, "Being_shot_losing_air.mp3", true),
+	Sounds.Hit_ground: SoundInfo.new(Sounds.Hit_ground, "Hit_ground.mp3", true),
+	Sounds.Hit_ceiling: SoundInfo.new(Sounds.Hit_ceiling, "Hit_ceiling.mp3", true),
+	Sounds.Menu_click: SoundInfo.new(Sounds.Menu_click, "Menu_click.mp3", true),
+	Sounds.Menu_hover: SoundInfo.new(Sounds.Menu_hover, "Menu_hover.mp3", true),
 }
