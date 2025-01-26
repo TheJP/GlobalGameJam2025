@@ -340,6 +340,7 @@ player_6_down={
 2d_physics/layer_3="ship"
 2d_physics/layer_4="enemies"
 2d_physics/layer_5="player_bullets"
+2d_physics/layer_6="terrain"
 
 [rendering]
 

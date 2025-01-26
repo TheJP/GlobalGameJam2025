@@ -89,7 +89,7 @@ func pump_up(amount: float = pump_height_add) -> void:
 	_update_scale()
 
 var _balloon_scale_tween: Tween
-var _target_height: float = 0
+var _target_height: float
 
 
 func _ready() -> void:
