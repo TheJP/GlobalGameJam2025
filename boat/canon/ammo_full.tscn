@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr4200lwqifn7"]
+
+[ext_resource type="Texture2D" uid="uid://b7scaf82k2q1c" path="res://boat/canon/Ammo_Count_80.png" id="1_f7o30"]
+
+[node name="AmmoFull" type="Sprite2D"]
+position = Vector2(0, 275)
+texture = ExtResource("1_f7o30")
