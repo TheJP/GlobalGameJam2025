@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bedvjvquj330j"]
+[gd_scene load_steps=13 format=3 uid="uid://bedvjvquj330j"]
 
 [ext_resource type="PackedScene" uid="uid://coo4vnsykx1i1" path="res://boat/boat.tscn" id="1_b3wcc"]
 [ext_resource type="PackedScene" uid="uid://cbpionso82r22" path="res://enemies/dropper/dropper.tscn" id="1_qgiuj"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d2ihot7rs53q7" path="res://background/background.tscn" id="4_disay"]
 [ext_resource type="PackedScene" uid="uid://lgx1jgymgdu7" path="res://level/checkpoint.tscn" id="4_yc56p"]
 [ext_resource type="PackedScene" uid="uid://b2uj36np6a2b2" path="res://enemies/wall/wall.tscn" id="5_mkdy1"]
+[ext_resource type="PackedScene" uid="uid://c1ayh7vkt7a28" path="res://menu/victory/victory.tscn" id="5_nrtof"]
 [ext_resource type="PackedScene" uid="uid://cinovrrfl57s" path="res://enemies/boss/boss.tscn" id="5_tahg4"]
 [ext_resource type="PackedScene" uid="uid://cymrux1c6gvrv" path="res://enemies/soyfish/soyfish.tscn" id="7_ufvdd"]
 [ext_resource type="Script" path="res://level/terrain.gd" id="10_ew3cp"]
@@ -27,6 +28,10 @@ initial_height = -235.0
 
 [node name="Checkpoint2" parent="." instance=ExtResource("4_yc56p")]
 position = Vector2(6992, 539)
+
+[node name="End" parent="." instance=ExtResource("3_hw2up")]
+position = Vector2(10506, 1505)
+next_scene = ExtResource("5_nrtof")
 
 [node name="Soyfish" parent="." instance=ExtResource("7_ufvdd")]
 position = Vector2(8261, 1315)

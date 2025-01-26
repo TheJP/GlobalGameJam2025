@@ -2,6 +2,7 @@ class_name Checkpoint
 extends Sprite2D
 
 @export var reached_sprite: Texture
+@export var next_scene: PackedScene = null
 
 signal checkpoint_reached(index: int)
 
@@ -19,6 +20,9 @@ func _process(_delta: float) -> void:
 	if is_reached:
 		return
 	if _boat.global_position.x >= global_position.x:
+		if next_scene != null:
+			get_tree().change_scene_to_packed(next_scene)
+			return
 		is_reached = true
 		checkpoint_reached.emit(index)
 		texture = reached_sprite

@@ -5,7 +5,7 @@ extends Node2D
 @onready var _checkpoints: Array = _level_node.get_tree().get_nodes_in_group("checkpoint")
 @onready var _boat: Boat = _level_node.get_tree().get_first_node_in_group("boat")
 
-var _current_checkpoint_index: int = 0 # TODO: Set to 0
+var _current_checkpoint_index: int = 0
 
 func _ready() -> void:
 	_boat.crashed_on_ground.connect(_on_boat_crashed_on_ground)
