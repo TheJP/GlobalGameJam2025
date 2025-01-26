@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://g25fasetaabu"]
+[gd_scene load_steps=20 format=3 uid="uid://g25fasetaabu"]
 
 [ext_resource type="Script" path="res://level/level.gd" id="1_hc870"]
 [ext_resource type="PackedScene" uid="uid://d2ihot7rs53q7" path="res://background/background.tscn" id="1_olam6"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://lgx1jgymgdu7" path="res://level/checkpoint.tscn" id="4_h7dxs"]
 [ext_resource type="PackedScene" uid="uid://c1ayh7vkt7a28" path="res://menu/victory/victory.tscn" id="5_4rv0o"]
 [ext_resource type="PackedScene" uid="uid://cbpionso82r22" path="res://enemies/dropper/dropper.tscn" id="6_7we14"]
+[ext_resource type="Texture2D" uid="uid://bnfgrus8t7neq" path="res://level/EndFlag.png" id="6_8q7m8"]
 [ext_resource type="PackedScene" uid="uid://b2uj36np6a2b2" path="res://enemies/wall/wall.tscn" id="6_b8tfq"]
 [ext_resource type="PackedScene" uid="uid://cymrux1c6gvrv" path="res://enemies/soyfish/soyfish.tscn" id="7_0m6k1"]
 [ext_resource type="Script" path="res://level/terrain.gd" id="7_1262t"]
@@ -41,7 +42,8 @@ position = Vector2(1909, -31)
 position = Vector2(6723, 1024)
 
 [node name="End" parent="." instance=ExtResource("3_i53wn")]
-position = Vector2(10985, 1217)
+position = Vector2(10985, 728)
+texture = ExtResource("6_8q7m8")
 next_scene = ExtResource("5_4rv0o")
 
 [node name="Dropper" parent="." instance=ExtResource("6_7we14")]
