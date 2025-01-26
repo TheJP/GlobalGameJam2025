@@ -1,0 +1,89 @@
+[gd_scene load_steps=20 format=3 uid="uid://dy1lxgucfmchy"]
+
+[ext_resource type="Texture2D" uid="uid://cl7lvhv06q2os" path="res://menu/sprites/background_no_buttons/main_menu.png" id="1_5codc"]
+[ext_resource type="Script" path="res://menu/main_menu/main_menu.gd" id="2_ai1mm"]
+[ext_resource type="Texture2D" uid="uid://ciebsaxh7i8u5" path="res://menu/sprites/main_menu_template.png" id="2_rdf1e"]
+[ext_resource type="Texture2D" uid="uid://drnd34g7k48j1" path="res://menu/sprites/ui_sprites/buttons/play_hover.png" id="3_s1g2s"]
+[ext_resource type="Texture2D" uid="uid://ckb1vw83v5wqo" path="res://menu/sprites/ui_sprites/buttons/play_pressed.png" id="4_un54j"]
+[ext_resource type="Texture2D" uid="uid://c5vxyw4utllwx" path="res://menu/sprites/ui_sprites/buttons/play_default.png" id="5_swy6t"]
+[ext_resource type="Texture2D" uid="uid://dtt42kbevanda" path="res://menu/sprites/ui_sprites/buttons/credits_hover.png" id="6_uhebx"]
+[ext_resource type="Texture2D" uid="uid://ugpkgi46nitf" path="res://menu/sprites/ui_sprites/buttons/credits_pressed.png" id="7_d0l6p"]
+[ext_resource type="Texture2D" uid="uid://bymk5yc3wegu3" path="res://menu/sprites/ui_sprites/buttons/credits_default.png" id="8_pxsmp"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fokc1"]
+texture = ExtResource("3_s1g2s")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sfhrn"]
+texture = ExtResource("4_un54j")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cjca6"]
+texture = ExtResource("3_s1g2s")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yih05"]
+texture = ExtResource("4_un54j")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iurds"]
+texture = ExtResource("5_swy6t")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_burt7"]
+texture = ExtResource("6_uhebx")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_42quo"]
+texture = ExtResource("7_d0l6p")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_24kbm"]
+texture = ExtResource("6_uhebx")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_idky2"]
+texture = ExtResource("7_d0l6p")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_86bne"]
+texture = ExtResource("8_pxsmp")
+
+[node name="MainMenu" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_5codc")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("2_ai1mm")
+
+[node name="Template" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.4)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_rdf1e")
+
+[node name="Play" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1197.0
+offset_top = 264.0
+offset_right = 1575.0
+offset_bottom = 386.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_fokc1")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_sfhrn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_cjca6")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_yih05")
+theme_override_styles/normal = SubResource("StyleBoxTexture_iurds")
+
+[node name="Credits" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1197.0
+offset_top = 397.5
+offset_right = 1575.0
+offset_bottom = 519.5
+theme_override_styles/focus = SubResource("StyleBoxTexture_burt7")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_42quo")
+theme_override_styles/hover = SubResource("StyleBoxTexture_24kbm")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_idky2")
+theme_override_styles/normal = SubResource("StyleBoxTexture_86bne")
+
+[connection signal="button_up" from="Play" to="." method="_on_play_button_up"]
+[connection signal="button_up" from="Credits" to="." method="_on_credits_button_up"]
