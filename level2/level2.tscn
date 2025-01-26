@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://g25fasetaabu"]
+[gd_scene load_steps=18 format=3 uid="uid://g25fasetaabu"]
 
 [ext_resource type="Script" path="res://level/level.gd" id="1_hc870"]
 [ext_resource type="PackedScene" uid="uid://d2ihot7rs53q7" path="res://background/background.tscn" id="1_olam6"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://151kpftf5h26" path="res://menu/sprites/ui_sprites/tutorial05.png" id="14_06xkd"]
 [ext_resource type="Texture2D" uid="uid://c4usagk3orvby" path="res://menu/sprites/ui_sprites/tutorial06.png" id="15_40u74"]
 [ext_resource type="PackedScene" uid="uid://css2u2s5nqsx5" path="res://menu/in_game/in_game.tscn" id="15_oe74t"]
+[ext_resource type="Texture2D" uid="uid://bl1aqtq42tc5y" path="res://level2/walls_background.png" id="17_rc1lu"]
 
 [node name="Level2" type="Node2D"]
 script = ExtResource("1_hc870")
@@ -113,3 +114,8 @@ texture = ExtResource("14_06xkd")
 [node name="Tutorial06" type="Sprite2D" parent="."]
 position = Vector2(1437, 1551)
 texture = ExtResource("15_40u74")
+
+[node name="WallsBackground" type="Sprite2D" parent="."]
+z_index = -20
+position = Vector2(1666, 1053)
+texture = ExtResource("17_rc1lu")
