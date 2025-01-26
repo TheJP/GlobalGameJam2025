@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://bedvjvquj330j"]
+[gd_scene load_steps=15 format=3 uid="uid://bedvjvquj330j"]
 
 [ext_resource type="PackedScene" uid="uid://coo4vnsykx1i1" path="res://boat/boat.tscn" id="1_b3wcc"]
+[ext_resource type="Script" path="res://level/level.gd" id="1_lgprj"]
 [ext_resource type="PackedScene" uid="uid://cbpionso82r22" path="res://enemies/dropper/dropper.tscn" id="1_qgiuj"]
 [ext_resource type="PackedScene" uid="uid://ccnyonfbawctu" path="res://level/spawn.tscn" id="3_hw2up"]
 [ext_resource type="Texture2D" uid="uid://2i6qttbmkkqw" path="res://level/walls.png" id="4_c1riv"]
@@ -15,6 +16,7 @@
 [ext_resource type="Script" path="res://level/checkpoint_manager.gd" id="10_pqt28"]
 
 [node name="Level2" type="Node2D"]
+script = ExtResource("1_lgprj")
 
 [node name="Background" parent="." instance=ExtResource("4_disay")]
 
