@@ -1,10 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://cinovrrfl57s"]
+[gd_scene load_steps=9 format=3 uid="uid://cinovrrfl57s"]
 
 [ext_resource type="Script" path="res://enemies/boss/boss.gd" id="1_j8ix8"]
 [ext_resource type="Texture2D" uid="uid://dky6ffi3qk3to" path="res://enemies/boss/boss.png" id="2_r5n2e"]
+[ext_resource type="Texture2D" uid="uid://7thjfvah53mb" path="res://enemies/boss/boss1.png" id="3_0s8f4"]
 [ext_resource type="Texture2D" uid="uid://bysp4m8vp46d8" path="res://enemies/boss/healthbar_foreground.png" id="3_apag1"]
 [ext_resource type="Script" path="res://enemies/boss/health.gd" id="3_t4yh4"]
+[ext_resource type="Texture2D" uid="uid://cyv4l3fb6lth6" path="res://enemies/boss/boss2.png" id="4_ex7cr"]
 [ext_resource type="Texture2D" uid="uid://drqrbkba0jy7t" path="res://enemies/boss/healthbar_background.png" id="5_hu7ao"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2bv1r"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": ExtResource("2_r5n2e")
+}, {
+"duration": 3.0,
+"texture": ExtResource("3_0s8f4")
+}, {
+"duration": 3.0,
+"texture": ExtResource("4_ex7cr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
 
 [node name="Boss" type="Node2D"]
 position = Vector2(1784, 538)
@@ -15,9 +34,11 @@ swim_speed = 400.0
 collision_layer = 8
 collision_mask = 16
 
-[node name="Sprite2D" type="Sprite2D" parent="Body"]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Body"]
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_r5n2e")
+sprite_frames = SubResource("SpriteFrames_2bv1r")
+autoplay = "default"
+frame_progress = 0.197336
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body"]
 position = Vector2(-1, -1)
