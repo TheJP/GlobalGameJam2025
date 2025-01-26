@@ -19,11 +19,11 @@ offsets = PackedFloat32Array(0, 0.786667, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Boat" type="Node2D"]
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.3, 0.3)
 script = ExtResource("1_2rl37")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1795, -860)
+position = Vector2(1180, -703.333)
 scale = Vector2(5, 5)
 position_smoothing_speed = 50.0
 rotation_smoothing_speed = 50.0
