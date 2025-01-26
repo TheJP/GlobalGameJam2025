@@ -43,6 +43,7 @@ func get_hit(hit_position: Vector2, hit_severity: float) -> void:
 	airbubble.vertical_speed_while_expanding = 0
 	airbubble.scale_increase_speed /= 2
 	var height_loss: float = hit_severity
+	Music.play_sound(Music.Sounds.Being_shot_losing_air)
 	_lose_air(height_loss)
 
 func _lose_air(air_loss: float) -> void:
@@ -93,6 +94,10 @@ func pump_up(amount: float = pump_height_add) -> void:
 func reset_for_re_spawn(respawn_position: Vector2) -> void:
 	if _current_air_bubble != null:
 		_current_air_bubble.finish_expanding()
+	if _current_air_release_sound != null:
+		_current_air_release_sound.stop()
+		_current_air_release_sound.queue_free()
+		_current_air_release_sound = null
 	global_position = respawn_position
 	_target_height = -global_position.y
 	_update_scale()
@@ -122,6 +127,7 @@ func _ready() -> void:
 	)
 
 
+var _current_air_release_sound: AudioStreamPlayer2D = null
 
 func _process(delta: float) -> void:
 	var _respawn_timer_reached_zero: bool = false
@@ -135,11 +141,16 @@ func _process(delta: float) -> void:
 	if PlayerInput.is_just_pressed(PlayerInput.Action.DESCEND) or (_respawn_timer_reached_zero and PlayerInput.is_pressed(PlayerInput.Action.DESCEND)):
 		var spawn_position_node := boat_bubble_node.get_air_bubble_spawn_position_node()
 		_current_air_bubble = _create_air_bubble(spawn_position_node)
+		_current_air_release_sound = Music.play_sound(Music.Sounds.Air_release)
 	if PlayerInput.is_pressed(PlayerInput.Action.DESCEND):
 		_lose_air(delta)
 	if PlayerInput.is_just_released(PlayerInput.Action.DESCEND):
 		if _current_air_bubble != null:
 			_current_air_bubble.finish_expanding()
+		if _current_air_release_sound != null:
+			_current_air_release_sound.stop()
+			_current_air_release_sound.queue_free()
+			_current_air_release_sound = null
 
 
 
