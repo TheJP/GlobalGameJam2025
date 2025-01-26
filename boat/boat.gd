@@ -14,7 +14,7 @@ var value_scale: float = 5
 @export var speed_down: float = 100 * value_scale
 @export var speed_right: float = 60 * value_scale
 @export var speed_left: float = 25 * value_scale
-@export var pump_height_add: float = 8 * value_scale
+@export var pump_height_add: float = 10 * value_scale
 #@export var lose_air_sub: float = 20
 @export var size_change_speed: float = 0.5
 
