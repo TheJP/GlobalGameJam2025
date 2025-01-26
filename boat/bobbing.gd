@@ -7,7 +7,9 @@ func _process(_delta: float) -> void:
 		return
 	if PlayerInput.is_just_pressed(PlayerInput.Action.ASCEND_A)\
 			or PlayerInput.is_just_pressed(PlayerInput.Action.ASCEND_B)\
-			or PlayerInput.is_just_pressed(PlayerInput.Action.TARGET_UP):
+			or PlayerInput.is_just_pressed(PlayerInput.Action.TARGET_UP)\
+			or PlayerInput.is_just_pressed(PlayerInput.Action.FLY_RIGHT)\
+			or PlayerInput.is_just_pressed(PlayerInput.Action.FLY_LEFT):
 		start_bobbing()
 
 func start_bobbing() -> void:
