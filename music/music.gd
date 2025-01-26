@@ -6,6 +6,13 @@ enum Sounds {
 	Bubbles,
 	Bubble_blow_up,
 	Bubble_pop,
+	Shoot,
+	Reload,
+	Pump_up,
+	Air_release,
+	Hit_enemy,
+	Being_hit,
+	Hit_ground,
 }
 
 
@@ -38,12 +45,12 @@ class SoundInfo:
 	var sound: Sounds
 	var sound_resource_path: String
 	var is_sfx: bool = false
-	func _init(_sound: Sounds, _sound_resource_path: String, _is_sfx: bool) -> void:
+	func _init(_sound: Sounds, _sound_resource_path: String, _is_sfx: bool = true) -> void:
 		self.sound = _sound
 		self.sound_resource_path = _sound_resource_path
 		self.is_sfx = _is_sfx
 
 var _sounds: Dictionary = {
-#	Sounds.Bubbles: "res://music/496242__kevinhilt__water_bubbles.wav",
 	Sounds.Bubbles: SoundInfo.new(Sounds.Bubbles, "res://music/496242__kevinhilt__water_bubbles.wav", true),
+	Sounds.Reload: SoundInfo.new(Sounds.Reload, "res://music/363167__samsterbirdies__mag-reload.wav", true),
 }
