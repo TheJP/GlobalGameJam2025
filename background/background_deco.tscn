@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvqp0m7n3u0gx"]
+
+[ext_resource type="Script" path="res://background/background_deco.gd" id="1_g6pki"]
+[ext_resource type="Texture2D" uid="uid://cjw1lx7vvmn62" path="res://background/background_deco01.png" id="1_tqpck"]
+
+[node name="BackgroundDeco" type="Node2D"]
+script = ExtResource("1_g6pki")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.25098)
+z_index = -200
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_tqpck")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+z_index = 100
+scale = Vector2(21.1895, 17.552)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
