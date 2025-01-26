@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://coo4vnsykx1i1"]
+[gd_scene load_steps=15 format=3 uid="uid://coo4vnsykx1i1"]
 
 [ext_resource type="Script" path="res://boat/boat.gd" id="1_2rl37"]
+[ext_resource type="Script" path="res://boat/bobbing.gd" id="2_s3atp"]
 [ext_resource type="Script" path="res://boat/body.gd" id="2_yxq3b"]
 [ext_resource type="Script" path="res://boat/boat_bubble.gd" id="3_1wwvv"]
 [ext_resource type="Texture2D" uid="uid://dvk1b2jg73ob0" path="res://boat/sprites/Boat.png" id="3_hybxx"]
@@ -21,57 +22,71 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_2rl37")
 
-[node name="Canon" parent="." instance=ExtResource("6_qdx53")]
-position = Vector2(362, -223)
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1795, -860)
+scale = Vector2(5, 5)
+position_smoothing_speed = 50.0
+rotation_smoothing_speed = 50.0
 
-[node name="Body" type="Area2D" parent="."]
+[node name="Bobbing" type="Node2D" parent="."]
+script = ExtResource("2_s3atp")
+
+[node name="Canon" parent="Bobbing" instance=ExtResource("6_qdx53")]
+position = Vector2(362, -223)
+scale = Vector2(1, 1)
+
+[node name="Body" type="Area2D" parent="Bobbing"]
+scale = Vector2(1, 1)
 collision_layer = 4
 collision_mask = 32
 script = ExtResource("2_yxq3b")
 
-[node name="BodyVisualization" type="Sprite2D" parent="Body"]
+[node name="BodyVisualization" type="Sprite2D" parent="Bobbing/Body"]
 texture = ExtResource("3_hybxx")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bobbing/Body"]
 polygon = PackedVector2Array(252, 221, -299, 220, -442, 93, -539, -65, 146, -147, 551, -145, 522, -77, 438, 68, 341, 185)
 
-[node name="Bubble" type="Area2D" parent="." groups=["fish"]]
+[node name="Bubble" type="Area2D" parent="Bobbing" groups=["fish"]]
 position = Vector2(0, -200)
+scale = Vector2(1, 1)
 collision_layer = 2
 collision_mask = 8
 script = ExtResource("3_1wwvv")
 
-[node name="BubbleVisualization" type="Sprite2D" parent="Bubble"]
+[node name="BubbleVisualization" type="Sprite2D" parent="Bobbing/Bubble"]
 position = Vector2(0, -800)
 texture = ExtResource("5_f8ly1")
 
-[node name="AirBubbleSpawnPosition" type="Node2D" parent="Bubble"]
+[node name="AirBubbleSpawnPosition" type="Node2D" parent="Bobbing/Bubble"]
 position = Vector2(1075, -810)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bubble"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bobbing/Bubble"]
 polygon = PackedVector2Array(-695, -720, -500, -580, -125, -470, 395, -490, 625, -595, 770, -815, 680, -955, 385, -1095, 25, -1115, -245, -1090, -530, -960, -700, -805)
 
-[node name="Pump" type="Node2D" parent="."]
+[node name="Pump" type="Node2D" parent="Bobbing"]
 position = Vector2(-20, -161)
+scale = Vector2(1, 1)
 script = ExtResource("5_rbixw")
 
-[node name="PumpBarSprite" type="Sprite2D" parent="Pump"]
+[node name="PumpBarSprite" type="Sprite2D" parent="Bobbing/Pump"]
 texture = ExtResource("7_o1iwa")
 
-[node name="People" type="Node2D" parent="Pump/PumpBarSprite"]
+[node name="People" type="Node2D" parent="Bobbing/Pump/PumpBarSprite"]
 
-[node name="PersonLeft" type="Sprite2D" parent="Pump/PumpBarSprite/People"]
+[node name="PersonLeft" type="Sprite2D" parent="Bobbing/Pump/PumpBarSprite/People"]
 position = Vector2(-115, -39)
 texture = ExtResource("9_hub34")
 
-[node name="PersonRight" type="Sprite2D" parent="Pump/PumpBarSprite/People"]
+[node name="PersonRight" type="Sprite2D" parent="Bobbing/Pump/PumpBarSprite/People"]
 position = Vector2(115, -39)
 texture = ExtResource("10_fw2ny")
 
-[node name="HorizontalMovementVisualization" type="Node2D" parent="."]
+[node name="HorizontalMovementVisualization" type="Node2D" parent="Bobbing"]
+scale = Vector2(1, 1)
 script = ExtResource("9_k6ht6")
 
-[node name="HorizontalBubbles" type="CPUParticles2D" parent="HorizontalMovementVisualization"]
+[node name="HorizontalBubbles" type="CPUParticles2D" parent="Bobbing/HorizontalMovementVisualization"]
 z_index = 1
 position = Vector2(-570, 40)
 amount = 30
@@ -92,9 +107,3 @@ angle_max = 180.0
 scale_amount_min = 0.8
 scale_amount_max = 1.8
 color_ramp = SubResource("Gradient_qcf7q")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1795, -860)
-scale = Vector2(5, 5)
-position_smoothing_speed = 50.0
-rotation_smoothing_speed = 50.0

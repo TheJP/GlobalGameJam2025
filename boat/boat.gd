@@ -20,11 +20,11 @@ var value_scale: float = 5
 
 signal shoot(bullet: PackedScene, direction: Vector2, location: Vector2)
 
-@onready var body_node: BoatBody = $Body
-@onready var boat_bubble_node: BoatBubble = $Bubble
-@onready var pump_node: Pump = $Pump
-@onready var canon_node: Canon = $Canon
-@onready var horizontal_movement_visualization: HorizontalMovementVisualization = $HorizontalMovementVisualization
+@onready var body_node: BoatBody = $Bobbing/Body
+@onready var boat_bubble_node: BoatBubble = $Bobbing/Bubble
+@onready var pump_node: Pump = $Bobbing/Pump
+@onready var canon_node: Canon = $Bobbing/Canon
+@onready var horizontal_movement_visualization: HorizontalMovementVisualization = $Bobbing/HorizontalMovementVisualization
 
 @onready var air_bubble: PackedScene = preload("res://boat/air_bubble.tscn")
 

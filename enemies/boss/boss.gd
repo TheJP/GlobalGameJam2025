@@ -20,7 +20,7 @@ var _next_bullet := 0.0
 func _ready() -> void:
 	var fish := get_tree().get_first_node_in_group("fish")
 	if fish:
-		_boat = fish.get_parent()
+		_boat = fish.get_parent().get_parent()
 		_boat_fish = fish
 	_float_tween = create_tween()
 	_float_tween.set_ease(Tween.EASE_IN_OUT)
