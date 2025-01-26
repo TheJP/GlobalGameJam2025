@@ -26,7 +26,7 @@ max_x = 11418.0
 [node name="Background" parent="." instance=ExtResource("1_olam6")]
 
 [node name="Boat" parent="." node_paths=PackedStringArray("level_node") instance=ExtResource("2_t7wkv")]
-position = Vector2(-576.5, -130.5)
+position = Vector2(-580, -134)
 level_node = NodePath("..")
 initial_height = 130.5
 
@@ -63,6 +63,7 @@ position = Vector2(6510, -440)
 
 [node name="Boss" parent="." instance=ExtResource("8_jjg0u")]
 position = Vector2(9021, 1250)
+scale = Vector2(0.6, 0.6)
 
 [node name="Wall" parent="." instance=ExtResource("6_b8tfq")]
 position = Vector2(-139, 532)
