@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://2i6qttbmkkqw" path="res://level/walls.png" id="4_c1riv"]
 [ext_resource type="PackedScene" uid="uid://d2ihot7rs53q7" path="res://background/background.tscn" id="4_disay"]
 [ext_resource type="PackedScene" path="res://level/checkpoint.tscn" id="4_yc56p"]
+[ext_resource type="PackedScene" uid="uid://g25fasetaabu" path="res://level2/level2.tscn" id="5_6jirc"]
 [ext_resource type="PackedScene" uid="uid://b2uj36np6a2b2" path="res://enemies/wall/wall.tscn" id="5_mkdy1"]
-[ext_resource type="PackedScene" uid="uid://c1ayh7vkt7a28" path="res://menu/victory/victory.tscn" id="5_nrtof"]
 [ext_resource type="Texture2D" uid="uid://bnfgrus8t7neq" path="res://level/EndFlag.png" id="5_qfy3s"]
 [ext_resource type="Script" path="res://level/terrain.gd" id="10_ew3cp"]
 [ext_resource type="Script" path="res://level/checkpoint_manager.gd" id="10_pqt28"]
@@ -36,11 +36,11 @@ initial_height = -235.0
 position = Vector2(6992, 539)
 
 [node name="End" parent="." instance=ExtResource("3_hw2up")]
-position = Vector2(10506, 1053)
 texture = ExtResource("5_qfy3s")
 offset = Vector2(150, 0)
 reached_sprite = ExtResource("5_qfy3s")
-next_scene = ExtResource("5_nrtof")
+position = Vector2(10506, 1505)
+next_scene = ExtResource("5_6jirc")
 
 [node name="Wall" parent="." instance=ExtResource("5_mkdy1")]
 position = Vector2(4404, 1318)
