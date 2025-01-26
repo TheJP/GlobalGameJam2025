@@ -1,7 +1,7 @@
 class_name Boat
 extends Node2D
 
-@export var level_node: Node2D = get_parent()
+@export var level_node: Level = get_parent()
 
 var value_scale: float = 5
 
@@ -188,6 +188,12 @@ func _handle_horizontal_movement(delta: float) -> void:
 	var horizontal_movement: float = PlayerInput.get_horizontal_movement()
 	var horizontal_speed: float = speed_right if horizontal_movement > 0 else speed_left
 	position.x += horizontal_movement * horizontal_speed * delta
+	var max_x := level_node.max_x
+	var min_x := level_node.min_x
+	if position.x > max_x:
+		position.x = max_x
+	if position.x < min_x:
+		position.x = min_x
 	horizontal_movement_visualization.set_horizontal_movement(horizontal_movement)
 
 
