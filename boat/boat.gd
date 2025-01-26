@@ -100,7 +100,8 @@ func reset_for_re_spawn(respawn_position: Vector2) -> void:
 	_respawn_pause_timer = respawn_pause_time
 
 @export var respawn_pause_time: float = 0.6
-var _respawn_pause_timer: float = 0
+@export var initial_spawn_pause_time: float = 0.0
+var _respawn_pause_timer: float = initial_spawn_pause_time
 
 var _balloon_scale_tween: Tween
 var _target_height: float
@@ -114,7 +115,7 @@ func _ready() -> void:
 	# Extend some signals outwards
 	canon_node.shoot.connect(func(bullet: PackedScene, direction: Vector2, location: Vector2) -> void:
 		shoot.emit(bullet, direction, location)
-		_shoot_bullet(bullet, direction, location)
+		self._shoot_bullet(bullet, direction, location)
 	)
 	body_node.crashed_on_ground.connect(func() -> void:
 		crashed_on_ground.emit()

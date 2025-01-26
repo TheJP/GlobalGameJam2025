@@ -23,11 +23,12 @@ func play_sound(sound: Sounds, sound_position: Vector2 = Vector2(0, 0), sound_pa
 		sound_instance.stream = load(sound_info.sound_resource_path)
 		sound_instance.bus = "SFX" if sound_info.is_sfx else "Music"
 		sound_instance.global_position = sound_position
-		if sound_parent != null:
-			if sound_instance.get_parent() != null:
-				sound_instance.reparent(sound_parent)
-			else:
-				sound_parent.add_child(sound_instance)
+		if sound_parent == null:
+			sound_parent = self
+		if sound_instance.get_parent() != null:
+			sound_instance.reparent(sound_parent)
+		else:
+			sound_parent.add_child(sound_instance)
 		sound_instance.play()
 		if sound_instance.stream.loop_mode == AudioStreamWAV.LOOP_DISABLED:
 			sound_instance.finished.connect(func () -> void:
