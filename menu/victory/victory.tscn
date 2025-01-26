@@ -1,0 +1,84 @@
+[gd_scene load_steps=20 format=3 uid="uid://c1ayh7vkt7a28"]
+
+[ext_resource type="Texture2D" uid="uid://yy5s0wliko0h" path="res://menu/sprites/background_no_buttons/victory.png" id="1_vnsue"]
+[ext_resource type="Texture2D" uid="uid://dbvk4vd6umlpm" path="res://menu/sprites/victory_template.png" id="2_31sx4"]
+[ext_resource type="Script" path="res://menu/victory/victory.gd" id="2_mls4d"]
+[ext_resource type="Texture2D" uid="uid://8vaf5kpnn5km" path="res://menu/sprites/ui_sprites/buttons/replay_hover.png" id="3_0221k"]
+[ext_resource type="Texture2D" uid="uid://bh5lgyf7l8mdi" path="res://menu/sprites/ui_sprites/buttons/replay_pressed.png" id="4_ciypk"]
+[ext_resource type="Texture2D" uid="uid://by3oqro3288ml" path="res://menu/sprites/ui_sprites/buttons/replay_default.png" id="5_njnn2"]
+[ext_resource type="Texture2D" uid="uid://5ijhgpv6ykts" path="res://menu/sprites/ui_sprites/buttons/home_hover.png" id="6_x5igk"]
+[ext_resource type="Texture2D" uid="uid://cvdtjrtd5hsos" path="res://menu/sprites/ui_sprites/buttons/home_pressed.png" id="7_pqqqy"]
+[ext_resource type="Texture2D" uid="uid://jwq7ch5gaptl" path="res://menu/sprites/ui_sprites/buttons/home_default.png" id="8_mqh4j"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tpvuu"]
+texture = ExtResource("3_0221k")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iw24j"]
+texture = ExtResource("4_ciypk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rcu8s"]
+texture = ExtResource("3_0221k")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v7une"]
+texture = ExtResource("4_ciypk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hwb74"]
+texture = ExtResource("5_njnn2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g6g8k"]
+texture = ExtResource("6_x5igk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qu1rt"]
+texture = ExtResource("7_pqqqy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ldafl"]
+texture = ExtResource("6_x5igk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xrqo3"]
+texture = ExtResource("7_pqqqy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rbr3s"]
+texture = ExtResource("8_mqh4j")
+
+[node name="Victory" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_vnsue")
+script = ExtResource("2_mls4d")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.227451)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_31sx4")
+
+[node name="Play" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = 1197.0
+offset_top = 264.0
+offset_right = 1575.0
+offset_bottom = 386.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_tpvuu")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_iw24j")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rcu8s")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_v7une")
+theme_override_styles/normal = SubResource("StyleBoxTexture_hwb74")
+
+[node name="Home" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = 1197.0
+offset_top = 398.0
+offset_right = 1575.0
+offset_bottom = 520.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_g6g8k")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_qu1rt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ldafl")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_xrqo3")
+theme_override_styles/normal = SubResource("StyleBoxTexture_rbr3s")
+
+[connection signal="button_up" from="Play" to="." method="_on_play_button_up"]
+[connection signal="button_up" from="Home" to="." method="_on_home_button_up"]
