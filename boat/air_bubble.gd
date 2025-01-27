@@ -1,5 +1,5 @@
 class_name AirBubble
-extends Node2D
+extends Area2D
 
 @export var upwards_speed: float = 150
 @export var scale_increase_speed: float = 15
@@ -25,6 +25,7 @@ func set_finished_expanding_callback(callback: Callable) -> void:
 
 func finish_expanding() -> void:
 	_float_upwards = true
+	area_entered.connect(_on_area_entered)
 	if _finished_expanding_callback:
 		_finished_expanding_callback.call()
 
@@ -47,3 +48,15 @@ func _process(_delta: float) -> void:
 	if target_scale > 0 && scale.x > target_scale:
 		print("Finished expanding to target scale: ", target_scale)
 		finish_expanding()
+
+
+func _on_area_entered(area: Area2D) -> void:
+#	if area.is_in_group("enemy") or area.is_in_group("terrain"): # don't use groups, just use collision masks to define what can pop the bubble
+	_pop()
+
+
+func _pop() -> void:
+	print("AirBubble popped (by enemy or terrain)")
+	# TODO animate popping
+	# TODO play sound
+	queue_free()

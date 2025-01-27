@@ -1,11 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://ba5spa37bwmbw"]
+[gd_scene load_steps=4 format=3 uid="uid://ba5spa37bwmbw"]
 
 [ext_resource type="Texture2D" uid="uid://fukgndkxxg0s" path="res://boat/sprites/bubble.png" id="1_8rax1"]
 [ext_resource type="Script" path="res://boat/air_bubble.gd" id="1_15mmr"]
 
-[node name="AirBubble" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_0k8fi"]
+radius = 18.0278
+
+[node name="AirBubble" type="Area2D"]
+collision_mask = 56
 script = ExtResource("1_15mmr")
 
 [node name="AirBubbleVisual" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_8rax1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0k8fi")
