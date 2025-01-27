@@ -86,7 +86,7 @@ scale = Vector2(1.5, 1.5)
 position = Vector2(911, 1278)
 scale = Vector2(1.5, 1.5)
 
-[node name="Terrain" type="Area2D" parent="."]
+[node name="Terrain" type="Area2D" parent="." groups=["terrain"]]
 collision_layer = 32
 collision_mask = 4
 script = ExtResource("7_1262t")

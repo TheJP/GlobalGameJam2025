@@ -39,6 +39,7 @@ fish="The layer of the fish bubble of the ship"
 player_bullet="The bullets shot by the players"
 boat="the player boat"
 checkpoint=""
+terrain=""
 
 [input]
 

@@ -65,7 +65,7 @@ position = Vector2(5725, 1006)
 rotation = -0.418879
 scale = Vector2(1.2, 1.2)
 
-[node name="Terrain" type="Area2D" parent="."]
+[node name="Terrain" type="Area2D" parent="." groups=["terrain"]]
 collision_layer = 32
 collision_mask = 4
 script = ExtResource("10_ew3cp")

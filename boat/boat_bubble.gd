@@ -23,3 +23,10 @@ func _on_area_entered(other: Area2D) -> void:
 		var hit_severity: float   = 1 # TODO get from enemy
 		hit.emit(hit_position, hit_severity)
 		print("BoatBubble hit by enemy")
+	if other.is_in_group("terrain"):
+		var hit_position: Vector2 = other.global_position
+		var hit_severity: float   = 1
+		hit.emit(hit_position, hit_severity)
+		print("BoatBubble hit wall")
+		# TODO: Check again after some time, if still in area, and if so, hit again.
+		#       Currently only first time hit is registered, which is ok if hit from below, but when hit from side, it might stay in there.
