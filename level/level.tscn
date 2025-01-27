@@ -38,12 +38,11 @@ initial_height = -235.0
 [node name="Checkpoint" parent="." instance=ExtResource("4_yc56p")]
 
 [node name="Checkpoint2" parent="." instance=ExtResource("4_yc56p")]
-position = Vector2(6992, 539)
+position = Vector2(6782, 619)
 
 [node name="End" parent="." instance=ExtResource("3_hw2up")]
-position = Vector2(10506, 1038)
+position = Vector2(8169, -27)
 texture = ExtResource("5_qfy3s")
-offset = Vector2(150, 0)
 reached_sprite = ExtResource("5_qfy3s")
 next_scene = ExtResource("5_6jirc")
 
