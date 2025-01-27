@@ -9,7 +9,7 @@ func _ready() -> void:
 	get_viewport().gui_focus_changed.connect(func(_control: Control) -> void: pass)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("all_menu"):
 		_set_pause(not %PauseMenu.visible)
 
