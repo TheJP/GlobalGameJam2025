@@ -15,7 +15,7 @@ var value_scale: float = 5
 @export var speed_right: float = 60 * value_scale
 @export var speed_left: float = 25 * value_scale
 @export var pump_height_add: float = 10 * value_scale
-@export var speed_air_release: float = 100 * value_scale
+@export var speed_air_release: float = 65 * value_scale # the higher speed_air_release is compared to speed_down, the longer the boat will sink after stopping to release air.
 @export var size_change_speed: float = 0.5
 
 signal shoot(bullet: PackedScene, direction: Vector2, location: Vector2)
