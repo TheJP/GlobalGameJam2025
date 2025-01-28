@@ -14,6 +14,9 @@ enum Sounds {
 	Hit_ceiling,
 	Menu_click,
 	Menu_hover,
+	Start_game,
+	Player_joined,
+	Player_left,
 	Water_bubbles_start,
 }
 
@@ -67,4 +70,7 @@ var _sounds: Dictionary = {
 	Sounds.Menu_click: SoundInfo.new(Sounds.Menu_click, "Menu_click.mp3", true),
 	Sounds.Menu_hover: SoundInfo.new(Sounds.Menu_hover, "Menu_hover.mp3", true),
 	Sounds.Water_bubbles_start: SoundInfo.new(Sounds.Water_bubbles_start, "water-bubbles.mp3", true),
+	Sounds.Start_game: SoundInfo.new(Sounds.Start_game, "Menu_click.mp3", true), # TODO add separate sound
+	Sounds.Player_joined: SoundInfo.new(Sounds.Player_joined, "Menu_click.mp3", true), # TODO add separate sound
+	Sounds.Player_left: SoundInfo.new(Sounds.Player_left, "Menu_click.mp3", true), # TODO add separate sound
 }

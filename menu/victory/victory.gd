@@ -8,8 +8,7 @@ var _main_menu_scene: PackedScene = load("res://menu/main_menu/main_menu.tscn")
 func _ready() -> void:
 	%Play.grab_focus()
 
-	# TODO: Play hover sound:
-	get_viewport().gui_focus_changed.connect(func(_control: Control) -> void: pass)
+	get_viewport().gui_focus_changed.connect(func(_control: Control) -> void: Music.play_sound(Music.Sounds.Menu_hover))
 
 
 func _process(_delta: float) -> void:
@@ -26,7 +25,7 @@ func _on_back_button_up() -> void:
 
 
 func _switch_scene(scene: PackedScene) -> void:
-	# TODO: play click sound
+	Music.play_sound(Music.Sounds.Menu_click)
 	get_tree().change_scene_to_packed(scene)
 
 
@@ -36,7 +35,7 @@ func _on_play_button_up() -> void:
 	PlayerInput._controller_to_device.remove_at(0)
 	PlayerInput._controller_to_device.append(device)
 
-	# TODO: Play start game sound
+	Music.play_sound(Music.Sounds.Start_game)
 	_switch_scene(_level_scene)
 
 
