@@ -41,6 +41,7 @@ func _process(delta: float) -> void:
 			# TODO: Play start game sound
 			get_tree().change_scene_to_packed(level_scene)
 			_started = true
+			ScoreManager.start_new_run()
 
 	if PlayerInput.player_to_controller.size() >= 2:
 		var duration := minf(_start_hold_time, hold_to_start_duration)

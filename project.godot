@@ -21,6 +21,7 @@ config/icon="res://thumbnail.png"
 
 PlayerInput="*res://globals/PlayerInput.gd"
 Music="*res://music/music.gd"
+ScoreManager="*res://score/score_manager.gd"
 
 [debug]
 

@@ -27,6 +27,7 @@ func _switch_scene(scene: PackedScene) -> void:
 
 
 func _set_pause(value: bool) -> void:
+	ScoreManager.set_pause(value)
 	%PauseMenu.visible = value
 	get_tree().paused = %PauseMenu.visible
 	if %PauseMenu.visible:
@@ -39,4 +40,5 @@ func _on_back_button_up() -> void:
 
 func _on_home_button_up() -> void:
 	get_tree().paused = false
+	ScoreManager.cancel_current_run()
 	_switch_scene(_main_menu_scene)
