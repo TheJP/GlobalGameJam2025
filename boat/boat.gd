@@ -62,7 +62,8 @@ func _create_air_bubble(air_bubble_position_node: Node2D, target_scale: float = 
 	if _target_height <= min_height:
 		return
 	var air_bubble_instance : AirBubble = air_bubble.instantiate()
-	add_child(air_bubble_instance)
+	call_deferred("add_child", air_bubble_instance)
+#	add_child(air_bubble_instance)
 	air_bubble_instance.target_scale = target_scale
 	air_bubble_instance.global_position = air_bubble_position_node.global_position # optional
 	air_bubble_instance.set_position_node(air_bubble_position_node)

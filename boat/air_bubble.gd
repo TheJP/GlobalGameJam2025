@@ -50,7 +50,7 @@ func _process(_delta: float) -> void:
 		finish_expanding()
 
 
-func _on_area_entered(area: Area2D) -> void:
+func _on_area_entered(_area: Area2D) -> void:
 #	if area.is_in_group("enemy") or area.is_in_group("terrain"): # don't use groups, just use collision masks to define what can pop the bubble
 	_pop()
 
