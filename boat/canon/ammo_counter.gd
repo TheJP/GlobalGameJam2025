@@ -7,6 +7,10 @@ extends Node2D
 @export var full_sprite: PackedScene
 
 var _max_ammo: int = 5
+var ammo_count: int = _max_ammo:
+	set(value):
+		ammo_count = min(_max_ammo, max(0, value))
+		_update_ammo_visuals()
 
 var full_ammo_sprites: Array = []
 
@@ -20,10 +24,11 @@ func initialize(max_ammo_count: int) -> void:
 		full_ammo_sprite.position = ammo_position
 		add_child(full_ammo_sprite)
 		full_ammo_sprites.append(full_ammo_sprite)
+	ammo_count = _max_ammo
 
-func set_ammo_count(count: int) -> void:
+func _update_ammo_visuals() -> void:
 	for i in range(_max_ammo):
-		if i < count:
+		if i < ammo_count:
 			full_ammo_sprites[i].show()
 		else:
 			full_ammo_sprites[i].hide()

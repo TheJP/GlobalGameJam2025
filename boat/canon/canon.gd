@@ -5,7 +5,7 @@ extends Node2D
 @export var canon_input_deadzone: float = 0.1
 @export var canon_fire_rate: float = 2 # shots per second
 @export var canon_bullet_capacity: int = 5
-@export var canon_reload_time: float = 1.1 # seconds to reload
+@export var canon_reload_time: float = 0.7 # seconds to reload
 
 @onready var aim_rotating_node: Node2D = $CanonRotatingNode
 @onready var ammo_counter: AmmoCounter = $AmmoCounter
@@ -26,8 +26,6 @@ var reload_timer: float  = 0
 func _ready() -> void:
 	aim_angle = aim_rotating_node.rotation
 	ammo_counter.initialize(canon_bullet_capacity)
-	ammo_counter.set_ammo_count(bullet_count)
-
 
 func _process(_delta: float) -> void:
 	if shot_cooldown > 0:
@@ -36,7 +34,7 @@ func _process(_delta: float) -> void:
 		reload_timer -= _delta
 		if reload_timer <= 0:
 			bullet_count = canon_bullet_capacity
-			ammo_counter.set_ammo_count(bullet_count)
+			ammo_counter.ammo_count = bullet_count
 			finished_reloading.emit()
 
 	# Rotate the canon
@@ -54,17 +52,20 @@ func _process(_delta: float) -> void:
 
 	# Reload the canon
 	if PlayerInput.is_just_pressed(PlayerInput.Action.RELOAD):
-		if bullet_count < canon_bullet_capacity:
+		if bullet_count < canon_bullet_capacity and reload_timer <= 0:
 			reload_timer = canon_reload_time
-			ammo_counter.set_ammo_count(0)
+			ammo_counter.ammo_count = 0
 			Music.play_sound(Music.Sounds.Reload)
 			started_reloading.emit()
+			var bullet_reload_tween := get_tree().create_tween()
+			bullet_reload_tween.tween_property(ammo_counter, "ammo_count", canon_bullet_capacity, canon_reload_time)
+			bullet_reload_tween.play()
 
 
 func on_shoot() -> void:
 	bullet_count -= 1
 	shot_cooldown = 1 / canon_fire_rate
-	ammo_counter.set_ammo_count(bullet_count)
+	ammo_counter.ammo_count = bullet_count
 	Music.play_sound(Music.Sounds.Shoot)
 	if shoot.get_connections().size() > 0:
 		shoot.emit(bullet, Vector2(cos(aim_angle), sin(aim_angle)), global_position)
