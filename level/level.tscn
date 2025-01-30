@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bedvjvquj330j"]
+[gd_scene load_steps=19 format=3 uid="uid://bedvjvquj330j"]
 
 [ext_resource type="PackedScene" uid="uid://coo4vnsykx1i1" path="res://boat/boat.tscn" id="1_b3wcc"]
 [ext_resource type="Script" path="res://level/level.gd" id="1_lgprj"]
@@ -16,17 +16,14 @@
 [ext_resource type="Texture2D" uid="uid://tvhrno6vv7ly" path="res://menu/sprites/ui_sprites/tutorial03.png" id="15_swv0l"]
 [ext_resource type="PackedScene" uid="uid://css2u2s5nqsx5" path="res://menu/in_game/in_game.tscn" id="15_yklb0"]
 [ext_resource type="Texture2D" uid="uid://d2awdygr0n3n1" path="res://menu/sprites/ui_sprites/tutorial04.png" id="16_pqvxe"]
-[ext_resource type="Texture2D" uid="uid://14advy70kr68" path="res://menu/sprites/ui_sprites/pump1.png" id="16_tn8mh"]
 [ext_resource type="Texture2D" uid="uid://151kpftf5h26" path="res://menu/sprites/ui_sprites/tutorial05.png" id="17_28f1d"]
-[ext_resource type="Texture2D" uid="uid://cjkfcum0dmwbg" path="res://menu/sprites/ui_sprites/reload.png" id="18_dtx8g"]
 [ext_resource type="PackedScene" uid="uid://d2x2ja21qnior" path="res://level/start_bubbles.tscn" id="18_rtkhe"]
-[ext_resource type="Texture2D" uid="uid://5vjmpbmfbrdp" path="res://menu/sprites/ui_sprites/fire.png" id="19_ioph3"]
-[ext_resource type="Texture2D" uid="uid://djrbxwo731a4n" path="res://menu/sprites/ui_sprites/move_target.png" id="20_ty2at"]
 
 [node name="Level2" type="Node2D"]
 script = ExtResource("1_lgprj")
 
 [node name="Background" parent="." instance=ExtResource("4_disay")]
+position = Vector2(7, 462)
 
 [node name="Boat" parent="." node_paths=PackedStringArray("level_node") instance=ExtResource("1_b3wcc")]
 position = Vector2(-235, 248)
@@ -105,26 +102,72 @@ z_index = -10
 position = Vector2(1258, 281)
 texture = ExtResource("16_pqvxe")
 
-[node name="Pump1" type="Sprite2D" parent="Tutorial04"]
-position = Vector2(133, -55)
-texture = ExtResource("16_tn8mh")
+[node name="UIFixes" type="Node2D" parent="Tutorial04"]
+
+[node name="ColorRect" type="ColorRect" parent="Tutorial04/UIFixes"]
+offset_left = 114.0
+offset_top = -21.0
+offset_right = 154.0
+offset_bottom = 19.0
+color = Color(0.996078, 0.968627, 0.882353, 1)
+
+[node name="RB" type="Label" parent="Tutorial04/UIFixes"]
+offset_left = 116.0
+offset_top = -23.0
+offset_right = 144.0
+offset_bottom = 16.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "A"
 
 [node name="Tutorial05" type="Sprite2D" parent="."]
 z_index = -10
 position = Vector2(4052, 1397)
 texture = ExtResource("17_28f1d")
 
-[node name="Reload" type="Sprite2D" parent="Tutorial05"]
-position = Vector2(180, -84)
-texture = ExtResource("18_dtx8g")
+[node name="UIFixes" type="Node2D" parent="Tutorial05"]
+position = Vector2(-4052, -1397)
 
-[node name="Fire" type="Sprite2D" parent="Tutorial05"]
-position = Vector2(180, 90)
-texture = ExtResource("19_ioph3")
+[node name="ColorRect" type="ColorRect" parent="Tutorial05/UIFixes"]
+offset_left = 3906.0
+offset_top = 1382.0
+offset_right = 4173.0
+offset_bottom = 1411.0
+color = Color(0.984314, 0.858824, 0.835294, 1)
 
-[node name="MoveTarget" type="Sprite2D" parent="Tutorial05"]
-position = Vector2(-187, 90)
-texture = ExtResource("20_ty2at")
+[node name="ColorRect2" type="ColorRect" parent="Tutorial05/UIFixes"]
+offset_left = 3901.0
+offset_top = 1413.0
+offset_right = 4167.0
+offset_bottom = 1435.0
+color = Color(0.984314, 0.858824, 0.835294, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Tutorial05/UIFixes"]
+offset_left = 4154.0
+offset_top = 1408.0
+offset_right = 4174.0
+offset_bottom = 1428.0
+color = Color(0.984314, 0.858824, 0.835294, 1)
+
+[node name="RB" type="Label" parent="Tutorial05/UIFixes"]
+offset_left = 3907.0
+offset_top = 1376.0
+offset_right = 4146.0
+offset_bottom = 1410.0
+theme_override_colors/font_color = Color(0.501961, 0.439216, 0.921569, 1)
+theme_override_font_sizes/font_size = 24
+text = "Load by pressing RB,"
+
+[node name="Label2" type="Label" parent="Tutorial05/UIFixes"]
+offset_left = 3906.0
+offset_top = 1406.0
+offset_right = 4246.0
+offset_bottom = 1477.0
+theme_override_colors/font_color = Color(0.905882, 0.313726, 0.494118, 1)
+theme_override_constants/line_spacing = -8
+theme_override_font_sizes/font_size = 24
+text = "aim and Shoot with the
+Left Joystick and RB."
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
