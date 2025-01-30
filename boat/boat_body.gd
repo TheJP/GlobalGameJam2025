@@ -13,5 +13,5 @@ func _on_area_entered(other: Area2D) -> void:
 #	print("BoatBody collided with something: ", other.name, other.collision_layer)
 	if other.collision_layer == _terrain_collision_layer:
 		print("BoatBody collided with terrain")
-		Music.play_sound(Music.Sounds.Hit_ground)
+		Music.play_sound(Music.Sounds.Hit_ground, global_position, self)
 		crashed_on_ground.emit()

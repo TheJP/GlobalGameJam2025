@@ -21,7 +21,7 @@ enum Sounds {
 }
 
 
-func play_sound(sound: Sounds, sound_position: Vector2 = Vector2(0, 0), sound_parent: Node2D = null) -> AudioStreamPlayer2D:
+func play_sound(sound: Sounds, sound_position: Vector2, sound_parent: Node2D = null) -> AudioStreamPlayer2D:
 	if _sounds.has(sound):
 		var sound_info: SoundInfo = _sounds[sound]
 		var sound_instance: AudioStreamPlayer2D = AudioStreamPlayer2D.new()

@@ -5,7 +5,7 @@ var _main_menu_scene: PackedScene = load("res://menu/main_menu/main_menu.tscn")
 
 
 func _ready() -> void:
-	get_viewport().gui_focus_changed.connect(func(_control: Control) -> void: Music.play_sound(Music.Sounds.Menu_hover))
+	get_viewport().gui_focus_changed.connect(func(_control: Control) -> void: Music.play_sound(Music.Sounds.Menu_hover, global_position))
 
 
 func _process(_delta: float) -> void:
@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 
 
 func _switch_scene(scene: PackedScene) -> void:
-	Music.play_sound(Music.Sounds.Menu_click)
+	Music.play_sound(Music.Sounds.Menu_click, global_position)
 	get_tree().change_scene_to_packed(scene)
 
 

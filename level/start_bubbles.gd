@@ -13,7 +13,7 @@ func _ready() -> void:
 		print("Bubble: ", bubble)
 		if bubble is CPUParticles2D:
 			bubble.restart()
-	music = Music.play_sound(Music.Sounds.Water_bubbles_start)
+	music = Music.play_sound(Music.Sounds.Water_bubbles_start, global_position, self)
 
 
 func _process(delta: float) -> void:

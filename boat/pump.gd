@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	pump_bar_sprite.rotation = pump_position * pump_max_rotation
 
 	if pump_position == pump_goal and pump_goal != previous_pump_goal:
-		Music.play_sound(Music.Sounds.Pump)
+		Music.play_sound(Music.Sounds.Pump, global_position, self)
 		if pump_goal < 0:
 			PlayerInput.vibrate(PlayerInput.Action.ASCEND_A, 0.4, 0.0, 0.1)
 		else:

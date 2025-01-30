@@ -43,7 +43,7 @@ func get_hit(hit_position: Vector2, hit_severity: float) -> void:
 	airbubble.vertical_speed_while_expanding = 0
 	airbubble.scale_increase_speed /= 2
 	var height_loss: float = hit_severity
-	Music.play_sound(Music.Sounds.Being_shot_losing_air)
+	Music.play_sound(Music.Sounds.Being_shot_losing_air, global_position, self)
 	_lose_air(height_loss)
 
 func _lose_air(air_loss: float) -> void:
@@ -142,7 +142,7 @@ func _process(delta: float) -> void:
 	if PlayerInput.is_just_pressed(PlayerInput.Action.DESCEND) or (_respawn_timer_reached_zero and PlayerInput.is_pressed(PlayerInput.Action.DESCEND)):
 		var spawn_position_node := boat_bubble_node.get_air_bubble_spawn_position_node()
 		_current_air_bubble = _create_air_bubble(spawn_position_node)
-		_current_air_release_sound = Music.play_sound(Music.Sounds.Air_release)
+		_current_air_release_sound = Music.play_sound(Music.Sounds.Air_release, global_position, self)
 	if PlayerInput.is_pressed(PlayerInput.Action.DESCEND):
 		_lose_air(delta)
 	if PlayerInput.is_just_released(PlayerInput.Action.DESCEND):

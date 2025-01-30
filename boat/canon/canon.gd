@@ -48,25 +48,25 @@ func _process(_delta: float) -> void:
 	# Shoot the canon
 	if PlayerInput.is_just_pressed(PlayerInput.Action.FIRE):
 		if bullet_count > 0 and shot_cooldown <= 0 and reload_timer <= 0:
-			on_shoot()
+			_on_shoot()
 
 	# Reload the canon
 	if PlayerInput.is_just_pressed(PlayerInput.Action.RELOAD):
 		if bullet_count < canon_bullet_capacity and reload_timer <= 0:
 			reload_timer = canon_reload_time
 			ammo_counter.ammo_count = 0
-			Music.play_sound(Music.Sounds.Reload)
+			Music.play_sound(Music.Sounds.Reload, global_position, self)
 			started_reloading.emit()
 			var bullet_reload_tween := get_tree().create_tween()
 			bullet_reload_tween.tween_property(ammo_counter, "ammo_count", canon_bullet_capacity, canon_reload_time)
 			bullet_reload_tween.play()
 
 
-func on_shoot() -> void:
+func _on_shoot() -> void:
 	bullet_count -= 1
 	shot_cooldown = 1 / canon_fire_rate
 	ammo_counter.ammo_count = bullet_count
-	Music.play_sound(Music.Sounds.Shoot)
+	Music.play_sound(Music.Sounds.Shoot, global_position, self)
 	if shoot.get_connections().size() > 0:
 		shoot.emit(bullet, Vector2(cos(aim_angle), sin(aim_angle)), global_position)
 

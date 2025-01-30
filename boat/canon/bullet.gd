@@ -28,6 +28,6 @@ func _process(_delta: float) -> void:
 
 func on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy"):
-		Music.play_sound(Music.Sounds.Shoot_enemy)
+		Music.play_sound(Music.Sounds.Shoot_enemy, global_position, self)
 		if not continue_after_hit:
 			queue_free()

@@ -20,10 +20,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	for just_joined in PlayerInput.get_just_pressed_controllers("button_0"):
 		if PlayerInput.add_player(just_joined):
-			Music.play_sound(Music.Sounds.Player_joined)
+			Music.play_sound(Music.Sounds.Player_joined, global_position)
 	for just_cancelled in PlayerInput.get_just_pressed_controllers("cancel"):
 		if PlayerInput.remove_player(just_cancelled):
-			Music.play_sound(Music.Sounds.Player_left)
+			Music.play_sound(Music.Sounds.Player_left, global_position)
 
 	%AvatarPlayer1.visible = PlayerInput.player_to_controller.size() >= 1
 	%AvatarPlayer2.visible = PlayerInput.player_to_controller.size() >= 2
@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 		else:
 			_start_hold_time = 0.0
 		if _start_hold_time >= hold_to_start_duration and not _started:
-			Music.play_sound(Music.Sounds.Start_game)
+			Music.play_sound(Music.Sounds.Start_game, global_position)
 			get_tree().change_scene_to_packed(level_scene)
 			_started = true
 			ScoreManager.start_new_run()
