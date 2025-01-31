@@ -60,7 +60,7 @@ texture = ExtResource("5_f8ly1")
 position = Vector2(1075, -810)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bobbing/Bubble"]
-polygon = PackedVector2Array(-695, -720, -500, -580, -125, -470, 395, -490, 625, -595, 770, -815, 680, -955, 385, -1095, 25, -1115, -245, -1090, -530, -960, -700, -805)
+polygon = PackedVector2Array(-695, -720, -555, -610, -290, -490, 50, -440, 395, -490, 625, -595, 770, -785, 840, -810, 770, -835, 680, -975, 575, -1050, 390, -1110, 30, -1140, -245, -1090, -530, -960, -700, -805, -920, -975, -1005, -1005, -1020, -875, -980, -760, -1015, -640, -995, -545, -925, -560)
 
 [node name="Pump" type="Node2D" parent="Bobbing"]
 position = Vector2(-20, -161)
