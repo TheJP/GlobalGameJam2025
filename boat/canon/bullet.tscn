@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c04fd03ouydg7"]
+[gd_scene load_steps=4 format=3 uid="uid://cprgiusndevns"]
 
 [ext_resource type="Script" path="res://boat/canon/bullet.gd" id="1_xtve0"]
 [ext_resource type="Texture2D" uid="uid://bbfqrsrmvvjqf" path="res://boat/canon/bullet.png" id="2_e3jbp"]

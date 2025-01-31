@@ -1,7 +1,6 @@
 class_name Bullet
 extends Area2D
 
-@export var default_speed: float = 500
 @export var lifetime: float = 5
 @export var continue_after_hit: bool = false
 @export var rotation_speed: float = 1.3
@@ -11,10 +10,15 @@ extends Area2D
 var velocity: Vector2 = Vector2()
 var lifetime_timer: float = 0
 
-func initialize(shoot_direction: Vector2, spawn_position: Vector2, speed: float = default_speed) -> void:
+func initialize(start_velocity: Vector2, spawn_position: Vector2) -> void:
 	position = spawn_position
-	velocity = shoot_direction.normalized() * speed
+	velocity = start_velocity
 	rotation = velocity.angle()
+
+#func initialize(shoot_direction: Vector2, spawn_position: Vector2, speed: float) -> void:
+#	position = spawn_position
+#	velocity = shoot_direction.normalized() * speed
+#	rotation = velocity.angle()
 
 func _ready() -> void:
 	area_entered.connect(on_area_entered)

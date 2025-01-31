@@ -18,7 +18,6 @@ var value_scale: float = 5
 @export var speed_air_release: float = 65 * value_scale # the higher speed_air_release is compared to speed_down, the longer the boat will sink after stopping to release air.
 @export var size_change_speed: float = 0.5
 
-signal shoot(bullet: PackedScene, direction: Vector2, location: Vector2)
 signal crashed_on_ground()
 
 @onready var body_node: BoatBody = $Bobbing/Body
@@ -118,11 +117,6 @@ func _ready() -> void:
 	_update_scale()
 	pump_node.pump_up.connect(_on_Pump_pump_up)
 	boat_bubble_node.hit.connect(func(hit_position: Vector2, hit_severity: float) -> void: get_hit(hit_position, hit_severity))
-	# Extend some signals outwards
-	canon_node.shoot.connect(func(bullet: PackedScene, direction: Vector2, location: Vector2) -> void:
-		shoot.emit(bullet, direction, location)
-		self._shoot_bullet(bullet, direction, location)
-	)
 	body_node.crashed_on_ground.connect(func() -> void:
 		crashed_on_ground.emit()
 	)
@@ -196,10 +190,3 @@ func _handle_horizontal_movement(delta: float) -> void:
 	if position.x < min_x:
 		position.x = min_x
 	horizontal_movement_visualization.set_horizontal_movement(horizontal_movement)
-
-
-func _shoot_bullet(bullet: PackedScene, direction: Vector2, location: Vector2) -> void:
-	var bullet_instance: Bullet = bullet.instantiate()
-	bullet_instance.initialize(direction, location)
-	bullet_instance.position = location
-	level_node.add_child(bullet_instance)

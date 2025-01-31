@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvmhyn08vbokq"]
+[gd_scene load_steps=10 format=3 uid="uid://cvmhyn08vbokq"]
 
 [ext_resource type="Script" path="res://boat/canon/canon.gd" id="1_6yrf0"]
 [ext_resource type="Texture2D" uid="uid://2727mq8yw27w" path="res://icon.svg" id="1_ir402"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://boat/canon/ammo_counter.gd" id="5_byu06"]
 [ext_resource type="PackedScene" uid="uid://ccobcsk45wsko" path="res://boat/canon/ammo_empty.tscn" id="6_i0pon"]
 [ext_resource type="PackedScene" uid="uid://cr4200lwqifn7" path="res://boat/canon/ammo_full.tscn" id="7_w8w8j"]
+[ext_resource type="Script" path="res://boat/canon/canon_shooting.gd" id="8_hm4o7"]
+[ext_resource type="PackedScene" uid="uid://cprgiusndevns" path="res://boat/canon/bullet.tscn" id="9_k6wru"]
 
 [node name="Canon" type="Node2D"]
 script = ExtResource("1_6yrf0")
@@ -27,6 +29,12 @@ z_index = 8
 position = Vector2(676, -3.05176e-05)
 scale = Vector2(2, 2)
 texture = ExtResource("4_r17uo")
+
+[node name="CanonShooting" type="Node2D" parent="CanonRotatingNode"]
+position = Vector2(181.468, 20.035)
+rotation = 0.539307
+script = ExtResource("8_hm4o7")
+_bullet_scene = ExtResource("9_k6wru")
 
 [node name="AmmoCounter" type="Node2D" parent="."]
 position = Vector2(35, -213)

@@ -1,87 +1,83 @@
 class_name Canon
 extends Node2D
 
-@export var canon_aim_speed: float = 4
-@export var canon_input_deadzone: float = 0.1
-@export var canon_fire_rate: float = 2 # shots per second
-@export var canon_bullet_capacity: int = 5
-@export var canon_reload_time: float = 0.7 # seconds to reload
-
-@onready var aim_rotating_node: Node2D = $CanonRotatingNode
-@onready var ammo_counter: AmmoCounter = $AmmoCounter
-signal shoot(bullet: PackedScene, direction: Vector2, location: Vector2)
+@export var aim_speed: float = 4
+@export var input_deadzone: float = 0.1
+@export var fire_rate: float = 3 # shots per second
+@export var bullet_capacity: int = 10
+@export var reload_time: float = 0.7 # seconds to reload
+# Signals
 signal started_reloading
 signal finished_reloading
+# Child Nodes
+@onready var _aim_rotating_node: Node2D = $CanonRotatingNode
+@onready var _ammo_counter: AmmoCounter = $AmmoCounter
+@onready var _canon_shooting: CanonShooting = $CanonRotatingNode/CanonShooting
+
 # Aiming
-var aim_angle: float        = 0
-var aim_angle_target: float = 0
-var is_rotating: bool       = false
+var _aim_angle: float        = 0
+var _aim_angle_target: float = 0
+var _is_rotating: bool       = false
 # Shooting
-var bullet: PackedScene  = preload("res://boat/canon/bullet.tscn")
-var bullet_count: int    = canon_bullet_capacity
-var shot_cooldown: float = 0
-var reload_timer: float  = 0
+var _current_bullet_count: int    = bullet_capacity
+var _current_shot_cooldown: float = 0
+var _current_reload_timer: float  = 0
 
 
 func _ready() -> void:
-	aim_angle = aim_rotating_node.rotation
-	ammo_counter.initialize(canon_bullet_capacity)
+	_aim_angle = _aim_rotating_node.rotation
+	_ammo_counter.initialize(bullet_capacity)
+
 
 func _process(_delta: float) -> void:
-	if shot_cooldown > 0:
-		shot_cooldown -= _delta
-	if reload_timer > 0:
-		reload_timer -= _delta
-		if reload_timer <= 0:
-			bullet_count = canon_bullet_capacity
-			ammo_counter.ammo_count = bullet_count
+	if _current_shot_cooldown > 0:
+		_current_shot_cooldown -= _delta
+	if _current_reload_timer > 0:
+		_current_reload_timer -= _delta
+		if _current_reload_timer <= 0:
+			_current_bullet_count = bullet_capacity
+			_ammo_counter.ammo_count = _current_bullet_count
 			finished_reloading.emit()
 
 	# Rotate the canon
 	var aim_vector: Vector2 = PlayerInput.get_targetting_vector()
-	if aim_vector.length() > canon_input_deadzone:
-		aim_angle_target = atan2(aim_vector.y, aim_vector.x)
-		is_rotating = true
+	if aim_vector.length() > input_deadzone:
+		_aim_angle_target = atan2(aim_vector.y, aim_vector.x)
+		_is_rotating = true
 	else:
-		is_rotating = false
+		_is_rotating = false
 
 	# Shoot the canon
 	if PlayerInput.is_just_pressed(PlayerInput.Action.FIRE):
-		if bullet_count > 0 and shot_cooldown <= 0 and reload_timer <= 0:
+		if _current_bullet_count > 0 and _current_shot_cooldown <= 0 and _current_reload_timer <= 0:
 			_on_shoot()
 
 	# Reload the canon
 	if PlayerInput.is_just_pressed(PlayerInput.Action.RELOAD):
-		if bullet_count < canon_bullet_capacity and reload_timer <= 0:
-			reload_timer = canon_reload_time
-			ammo_counter.ammo_count = 0
+		if _current_bullet_count < bullet_capacity and _current_reload_timer <= 0:
+			_current_reload_timer = reload_time
+			_ammo_counter.ammo_count = 0
 			Music.play_sound(Music.Sounds.Reload, global_position, self)
 			started_reloading.emit()
 			var bullet_reload_tween := get_tree().create_tween()
-			bullet_reload_tween.tween_property(ammo_counter, "ammo_count", canon_bullet_capacity, canon_reload_time)
+			bullet_reload_tween.tween_property(_ammo_counter, "ammo_count", bullet_capacity, reload_time)
 			bullet_reload_tween.play()
 
 
 func _on_shoot() -> void:
-	bullet_count -= 1
-	shot_cooldown = 1 / canon_fire_rate
-	ammo_counter.ammo_count = bullet_count
+	_current_bullet_count -= 1
+	_current_shot_cooldown = 1 / fire_rate
+	_ammo_counter.ammo_count = _current_bullet_count
 	Music.play_sound(Music.Sounds.Shoot, global_position, self)
-	if shoot.get_connections().size() > 0:
-		shoot.emit(bullet, Vector2(cos(aim_angle), sin(aim_angle)), global_position)
+	var direction: Vector2 = Vector2(cos(_aim_angle), sin(_aim_angle))
+	_canon_shooting.shoot_bullet(direction)
 
 
 func _physics_process(delta: float) -> void:
-	if is_rotating:
-#		# TODO move over 0/2pi
-#		aim_angle = move_toward(aim_angle, aim_angle_target, 2 * PI / canon_aim_duration * delta)
-#		aim_rotating_node.rotation = aim_angle
-		# using angle_difference to rotate the shortest way:
-#		aim_angle = aim_angle + angle_difference(aim_angle, aim_angle_target) * 2 * PI / canon_aim_duration * delta
-#		aim_rotating_node.rotation = aim_angle
-		var difference := angle_difference(aim_angle, aim_angle_target)
-		if abs(difference) <= canon_aim_speed * delta:
-			aim_angle = aim_angle_target
+	if _is_rotating:
+		var difference := angle_difference(_aim_angle, _aim_angle_target)
+		if abs(difference) <= aim_speed * delta:
+			_aim_angle = _aim_angle_target
 		else:
-			aim_angle += sign(difference) * canon_aim_speed * delta
-		aim_rotating_node.rotation = aim_angle
+			_aim_angle += sign(difference) * aim_speed * delta
+		_aim_rotating_node.rotation = _aim_angle
