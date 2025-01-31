@@ -4,7 +4,7 @@ extends Node2D
 @export var aim_speed: float = 4
 @export var input_deadzone: float = 0.1
 @export var fire_rate: float = 3 # shots per second
-@export var bullet_capacity: int = 10
+@export var bullet_capacity: int = 5
 @export var reload_time: float = 0.7 # seconds to reload
 # Signals
 signal started_reloading
