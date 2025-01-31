@@ -51,4 +51,4 @@ func _process(delta: float) -> void:
 	if !is_running():
 		return
 	_current_time += delta
-	print("Current time: ", _current_time)
+#	print("Current time: ", _current_time)

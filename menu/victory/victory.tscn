@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c1ayh7vkt7a28"]
+[gd_scene load_steps=21 format=3 uid="uid://c1ayh7vkt7a28"]
 
 [ext_resource type="Texture2D" uid="uid://yy5s0wliko0h" path="res://menu/sprites/background_no_buttons/victory.png" id="1_vnsue"]
 [ext_resource type="Texture2D" uid="uid://dbvk4vd6umlpm" path="res://menu/sprites/victory_template.png" id="2_31sx4"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://5ijhgpv6ykts" path="res://menu/sprites/ui_sprites/buttons/home_hover.png" id="6_x5igk"]
 [ext_resource type="Texture2D" uid="uid://cvdtjrtd5hsos" path="res://menu/sprites/ui_sprites/buttons/home_pressed.png" id="7_pqqqy"]
 [ext_resource type="Texture2D" uid="uid://jwq7ch5gaptl" path="res://menu/sprites/ui_sprites/buttons/home_default.png" id="8_mqh4j"]
+[ext_resource type="Script" path="res://menu/victory/time_end_display.gd" id="10_qys4k"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tpvuu"]
 texture = ExtResource("3_0221k")
@@ -81,6 +82,15 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_qu1rt")
 theme_override_styles/hover = SubResource("StyleBoxTexture_ldafl")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_xrqo3")
 theme_override_styles/normal = SubResource("StyleBoxTexture_rbr3s")
+
+[node name="TimeEndDisplay" type="Label" parent="."]
+layout_mode = 0
+offset_left = 245.0
+offset_top = 985.0
+offset_right = 342.0
+offset_bottom = 1008.0
+text = "Time: 000:00"
+script = ExtResource("10_qys4k")
 
 [connection signal="button_up" from="Play" to="." method="_on_play_button_up"]
 [connection signal="button_up" from="Home" to="." method="_on_home_button_up"]
