@@ -18,6 +18,7 @@ enum Sounds {
 	Player_joined,
 	Player_left,
 	Water_bubbles_start,
+	Bubble_pop,
 }
 
 
@@ -73,4 +74,5 @@ var _sounds: Dictionary = {
 	Sounds.Start_game: SoundInfo.new(Sounds.Start_game, "Menu_click.mp3", true), # TODO add separate sound
 	Sounds.Player_joined: SoundInfo.new(Sounds.Player_joined, "Menu_click.mp3", true), # TODO add separate sound
 	Sounds.Player_left: SoundInfo.new(Sounds.Player_left, "Menu_click.mp3", true), # TODO add separate sound
+	Sounds.Bubble_pop: SoundInfo.new(Sounds.Bubble_pop, "Bubble_pop_short.mp3", true)
 }

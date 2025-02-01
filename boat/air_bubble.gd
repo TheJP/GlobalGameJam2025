@@ -8,6 +8,7 @@ extends Area2D
 @export var vertical_speed_while_expanding: float = 0
 
 var _float_upwards: bool = false
+var _is_popping: bool = false
 var _finished_expanding_callback: Callable
 var _position_node: Node2D
 var _horizontal_offset: float = 0
@@ -31,6 +32,8 @@ func finish_expanding() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	if _is_popping:
+		return
 	if _float_upwards:
 		position.y -= upwards_speed * _delta
 		if position.y < -10000:
@@ -57,6 +60,12 @@ func _on_area_entered(_area: Area2D) -> void:
 
 func _pop() -> void:
 	print("AirBubble popped (by enemy or terrain)")
-	# TODO animate popping
-	# TODO play sound
-	queue_free()
+	_is_popping = true
+	_float_upwards = false
+	var tween := get_tree().create_tween()
+	tween.set_ease(Tween.EASE_IN)
+	tween.tween_property(self, "scale", Vector2(scale.x + 1, scale.y + 1), 0.05)
+	tween.tween_callback(func () -> void: Music.play_sound(Music.Sounds.Bubble_pop, global_position))
+	tween.tween_property(self, "scale", Vector2(0, 0), 0.05)
+	tween.tween_callback(self.queue_free)
+	
