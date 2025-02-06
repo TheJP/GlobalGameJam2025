@@ -3,7 +3,7 @@ extends Node2D
 
 signal pump_up
 
-@export var pump_duration:float = 0.1 # seconds for the pump to move from one end to the other
+@export var pump_duration:float = 0.15 # seconds for the pump to move from one end to the other
 @export var pump_max_rotation:float = 2 * PI / 10
 
 @onready var pump_bar_sprite: Sprite2D = $PumpBarSprite
@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 		# we are already at the goal
 		return
 
-	pump_position = move_toward(pump_position, pump_goal, 1 / pump_duration * delta)
+	pump_position = move_toward(pump_position, pump_goal, 2.0 / pump_duration * delta) # 2.0 because the pump moves from -1 to +1, i.e. a total of 2
 	pump_bar_sprite.rotation = pump_position * pump_max_rotation
 
 	if pump_position == pump_goal and pump_goal != previous_pump_goal:
