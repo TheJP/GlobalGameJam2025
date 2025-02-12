@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Hola, Soy Fish!"
-config/version="0.1"
+config/version="1.1"
 run/main_scene="res://menu/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/image="res://thumbnail.png"
@@ -32,6 +32,10 @@ gdscript/warnings/untyped_declaration=2
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
+
+[dotnet]
+
+project/assembly_name="Hola- Soy Fish!"
 
 [global_group]
 
