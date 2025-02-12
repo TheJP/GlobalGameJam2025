@@ -2,4 +2,6 @@
 .godot/
 /android/
 .idea
-/[b|B]uilds
+/build
+/builds
+
