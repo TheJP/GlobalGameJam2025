@@ -18,8 +18,10 @@
 offsets = PackedFloat32Array(0, 0.786667, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="Boat" type="Node2D" groups=["boat"]]
+[node name="Boat" type="CharacterBody2D" groups=["boat"]]
 scale = Vector2(0.2, 0.2)
+collision_layer = 5
+collision_mask = 41
 script = ExtResource("1_2rl37")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -32,57 +34,66 @@ rotation_smoothing_speed = 50.0
 [node name="Bobbing" type="Node2D" parent="."]
 script = ExtResource("2_s3atp")
 
-[node name="Canon" parent="Bobbing" instance=ExtResource("6_qdx53")]
+[node name="Canon" parent="." instance=ExtResource("6_qdx53")]
 position = Vector2(362, -223)
+scale = Vector2(1, 1)
 
-[node name="Body" type="Area2D" parent="Bobbing"]
+[node name="Body" type="Area2D" parent="."]
+scale = Vector2(1, 1)
 collision_layer = 4
-collision_mask = 32
+collision_mask = 40
 script = ExtResource("2_yxq3b")
 
-[node name="BodyVisualization" type="Sprite2D" parent="Bobbing/Body"]
+[node name="BodyVisualization" type="Sprite2D" parent="Body"]
 texture = ExtResource("3_hybxx")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bobbing/Body"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body"]
 polygon = PackedVector2Array(252, 221, -299, 220, -442, 93, -539, -65, 146, -147, 551, -145, 522, -77, 438, 68, 341, 185)
 
-[node name="Bubble" type="Area2D" parent="Bobbing" groups=["fish"]]
+[node name="Bubble" type="Area2D" parent="." groups=["fish"]]
 position = Vector2(0, -200)
+scale = Vector2(1, 1)
 collision_layer = 2
 collision_mask = 40
 script = ExtResource("3_1wwvv")
 
-[node name="BubbleVisualization" type="Sprite2D" parent="Bobbing/Bubble"]
+[node name="BubbleVisualization" type="Sprite2D" parent="Bubble"]
 position = Vector2(0, -800)
 texture = ExtResource("5_f8ly1")
 
-[node name="AirBubbleSpawnPosition" type="Node2D" parent="Bobbing/Bubble"]
+[node name="AirBubbleSpawnPosition" type="Node2D" parent="Bubble"]
 position = Vector2(1075, -810)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bobbing/Bubble"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bubble"]
 polygon = PackedVector2Array(-695, -720, -555, -610, -290, -490, 50, -440, 395, -490, 625, -595, 770, -785, 840, -810, 770, -835, 680, -975, 575, -1050, 390, -1110, 30, -1140, -245, -1090, -530, -960, -700, -805, -920, -975, -1005, -1005, -1020, -875, -980, -760, -1015, -640, -995, -545, -925, -560)
 
-[node name="Pump" type="Node2D" parent="Bobbing"]
+[node name="InvincibilityTimer" type="Timer" parent="Bubble"]
+wait_time = 0.8
+one_shot = true
+
+[node name="Pump" type="Node2D" parent="."]
 position = Vector2(-20, -161)
+scale = Vector2(1, 1)
 script = ExtResource("5_rbixw")
 
-[node name="PumpBarSprite" type="Sprite2D" parent="Bobbing/Pump"]
+[node name="PumpBarSprite" type="Sprite2D" parent="Pump"]
 texture = ExtResource("7_o1iwa")
 
-[node name="People" type="Node2D" parent="Bobbing/Pump/PumpBarSprite"]
+[node name="People" type="Node2D" parent="Pump/PumpBarSprite"]
 
-[node name="PersonLeft" type="Sprite2D" parent="Bobbing/Pump/PumpBarSprite/People"]
+[node name="PersonLeft" type="Sprite2D" parent="Pump/PumpBarSprite/People"]
 position = Vector2(-115, -39)
 texture = ExtResource("9_hub34")
 
-[node name="PersonRight" type="Sprite2D" parent="Bobbing/Pump/PumpBarSprite/People"]
+[node name="PersonRight" type="Sprite2D" parent="Pump/PumpBarSprite/People"]
 position = Vector2(115, -39)
 texture = ExtResource("10_fw2ny")
 
-[node name="HorizontalMovementVisualization" type="Node2D" parent="Bobbing"]
+[node name="HorizontalMovementVisualization" type="Node2D" parent="."]
+scale = Vector2(1, 1)
 script = ExtResource("9_k6ht6")
 
-[node name="HorizontalBubbles" type="CPUParticles2D" parent="Bobbing/HorizontalMovementVisualization"]
+[node name="HorizontalBubbles" type="CPUParticles2D" parent="HorizontalMovementVisualization"]
 z_index = 1
 position = Vector2(-570, 40)
 amount = 30
@@ -103,3 +114,10 @@ angle_max = 180.0
 scale_amount_min = 0.8
 scale_amount_max = 1.8
 color_ramp = SubResource("Gradient_qcf7q")
+
+[node name="SoyFishCollider" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -605)
+polygon = PackedVector2Array(30, -5.00006, 340, -40.0001, 525, -95.0001, 665, -175, 770, -285, 790, -355, 1065, -355, 1055, -460, 790, -455, 730, -590, 630, -660, 505, -720, 390, -755, 215, -775, 15, -775, -180, -745, -360, -690, -540, -605, -725, -460, -940, -635, -1015, -630, -1075, -510, -1030, -355, -1080, -210, -1015, -85.0001, -940, -85.0001, -695, -240, -655, -205, -515, -125, -355, -60.0001, -160, -15.0001)
+
+[node name="BoatBodyCollider" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-305, 220, -430, 120, -530, -55, 150, -150, 540, -145, 430, 80, 310, 195, 180, 230)

@@ -1,5 +1,5 @@
 class_name Boat
-extends Node2D
+extends CharacterBody2D
 
 @export var level_node: Level = get_parent()
 
@@ -20,11 +20,13 @@ var value_scale: float = 5
 
 signal crashed_on_ground()
 
-@onready var body_node: BoatBody = $Bobbing/Body
-@onready var boat_bubble_node: BoatBubble = $Bobbing/Bubble
-@onready var pump_node: Pump = $Bobbing/Pump
-@onready var canon_node: Canon = $Bobbing/Canon
-@onready var horizontal_movement_visualization: HorizontalMovementVisualization = $Bobbing/HorizontalMovementVisualization
+@onready var body_node: BoatBody = $Body
+@onready var boat_bubble_node: BoatBubble = $Bubble
+@onready var boat_bubble_collision_node: CollisionPolygon2D = $SoyFishCollider
+@onready var boat_body_collider: CollisionPolygon2D = $BoatBodyCollider
+@onready var pump_node: Pump = $Pump
+@onready var canon_node: Canon = $Canon
+@onready var horizontal_movement_visualization: HorizontalMovementVisualization = $HorizontalMovementVisualization
 
 @onready var air_bubble: PackedScene = preload("res://boat/air_bubble.tscn")
 
@@ -113,14 +115,19 @@ var _target_height: float
 
 
 func _ready() -> void:
+	motion_mode = MotionMode.MOTION_MODE_GROUNDED
 	_target_height = initial_height
 	_update_scale()
 	pump_node.pump_up.connect(_on_Pump_pump_up)
 	boat_bubble_node.hit.connect(func(hit_position: Vector2, hit_severity: float) -> void: get_hit(hit_position, hit_severity))
+	body_node.bounced_against_enemy.connect(_on_body_bounced_against_enemy)
 	body_node.crashed_on_ground.connect(func() -> void:
 		crashed_on_ground.emit()
 	)
 
+func _on_body_bounced_against_enemy(enemy: CollisionObject2D) -> void:
+	pass
+	
 
 var _current_air_release_sound: AudioStreamPlayer2D = null
 
@@ -148,11 +155,38 @@ func _process(delta: float) -> void:
 			_current_air_release_sound = null
 
 
-
 func _physics_process(delta: float) -> void:
+	# vertical movement
 	var speed: float = speed_up if _target_height > -position.y else speed_down
-	position = position.move_toward(Vector2(position.x, -_target_height), speed * delta)
-	_handle_horizontal_movement(delta)
+	var new_position := position.move_toward(Vector2(position.x, -_target_height), speed * delta)
+	# horizontal movement
+	if _respawn_pause_timer > 0:
+		return
+	var horizontal_movement: float = PlayerInput.get_horizontal_movement()
+	var horizontal_speed: float = speed_right if horizontal_movement > 0 else speed_left
+	new_position.x += horizontal_movement * horizontal_speed * delta
+	var max_x := level_node.max_x
+	var min_x := level_node.min_x
+	if new_position.x > max_x:
+		new_position.x = max_x
+	if new_position.x < min_x:
+		new_position.x = min_x
+	velocity = new_position - position
+	var collision := move_and_collide(velocity)
+	if collision:
+		var other_collider := collision.get_collider()
+		if other_collider.has_method("collider_got_hit"):
+			other_collider.collider_got_hit(collision, self) # TODO this is very hacky, but since there are no interfaces, I'm not reallys sure how to do this better in gdscript
+		
+		var own_collider := collision.get_local_shape()
+		if own_collider == boat_bubble_collision_node:
+			boat_bubble_node.handle_collision(collision)
+		elif own_collider == boat_body_collider:
+			body_node.handle_collision(collision)
+		else:
+			print("other collision - should not happen")
+		
+	horizontal_movement_visualization.set_horizontal_movement(horizontal_movement)
 
 
 func _on_Pump_pump_up() -> void:
@@ -170,23 +204,9 @@ func _update_scale() -> void:
 	var duration: float     = abs(target_scale - boat_bubble_node.scale.x) * (1 / size_change_speed)
 	_balloon_scale_tween = get_tree().create_tween()
 	_balloon_scale_tween.tween_property(boat_bubble_node, "scale", Vector2(target_scale, target_scale), duration)
+	_balloon_scale_tween.parallel().tween_property(boat_bubble_collision_node, "scale", Vector2(target_scale, target_scale), duration)
 	_balloon_scale_tween.play()
 
 
 func _get_target_bubble_size() -> float:
 	return (_target_height - min_height) / (max_height - min_height) * (max_scale - min_scale) + min_scale
-
-
-func _handle_horizontal_movement(delta: float) -> void:
-	if _respawn_pause_timer > 0:
-		return
-	var horizontal_movement: float = PlayerInput.get_horizontal_movement()
-	var horizontal_speed: float = speed_right if horizontal_movement > 0 else speed_left
-	position.x += horizontal_movement * horizontal_speed * delta
-	var max_x := level_node.max_x
-	var min_x := level_node.min_x
-	if position.x > max_x:
-		position.x = max_x
-	if position.x < min_x:
-		position.x = min_x
-	horizontal_movement_visualization.set_horizontal_movement(horizontal_movement)
