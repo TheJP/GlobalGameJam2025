@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjmt50x7nsyxm"]
+
+[ext_resource type="Script" path="res://menu/in_game/player_controls_display.gd" id="1_0gkfd"]
+[ext_resource type="Texture2D" uid="uid://nqoj3ip3qh2v" path="res://menu/sprites/ui_sprites/player1.png" id="1_oa1gb"]
+
+[node name="PlayerControlsDisplay" type="VBoxContainer"]
+offset_right = 338.0
+offset_bottom = 237.0
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_0gkfd")
+
+[node name="Player" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_oa1gb")
+stretch_mode = 2
+
+[node name="Controls" type="HBoxContainer" parent="."]
+layout_mode = 2

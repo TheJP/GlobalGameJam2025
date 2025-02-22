@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://css2u2s5nqsx5"]
+[gd_scene load_steps=22 format=3 uid="uid://css2u2s5nqsx5"]
 
 [ext_resource type="Texture2D" uid="uid://blcwh0jtf80gh" path="res://menu/sprites/ui_sprites/player1_controls.png" id="1_638yq"]
 [ext_resource type="Script" path="res://menu/in_game/in_game.gd" id="1_jphff"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://5ijhgpv6ykts" path="res://menu/sprites/ui_sprites/buttons/home_hover.png" id="6_a2hnv"]
 [ext_resource type="Texture2D" uid="uid://cvdtjrtd5hsos" path="res://menu/sprites/ui_sprites/buttons/home_pressed.png" id="7_yprcg"]
 [ext_resource type="Texture2D" uid="uid://jwq7ch5gaptl" path="res://menu/sprites/ui_sprites/buttons/home_default.png" id="8_x5t36"]
+[ext_resource type="PackedScene" uid="uid://bjmt50x7nsyxm" path="res://menu/in_game/player_controls_display.tscn" id="10_spns5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2esk"]
 bg_color = Color(0, 0, 0, 0.494118)
@@ -54,6 +55,7 @@ grow_vertical = 2
 script = ExtResource("1_jphff")
 
 [node name="Player1Controls" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 60.0
 offset_top = 51.0
@@ -64,6 +66,7 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="Player2Controls" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -134,6 +137,16 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_vy5ab")
 theme_override_styles/hover = SubResource("StyleBoxTexture_wk44i")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_sa647")
 theme_override_styles/normal = SubResource("StyleBoxTexture_0t1gy")
+
+[node name="Player1ControlsDisplay" parent="." instance=ExtResource("10_spns5")]
+layout_mode = 0
+player_id = 0
+
+[node name="Player2ControlsDisplay" parent="." instance=ExtResource("10_spns5")]
+layout_mode = 0
+offset_left = 1590.0
+offset_right = 1928.0
+player_id = 1
 
 [connection signal="button_up" from="PauseMenu/Back" to="." method="_on_back_button_up"]
 [connection signal="button_up" from="PauseMenu/Home" to="." method="_on_home_button_up"]
