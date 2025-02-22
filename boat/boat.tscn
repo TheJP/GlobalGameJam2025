@@ -37,7 +37,7 @@ script = ExtResource("2_s3atp")
 [node name="Canon" parent="." instance=ExtResource("6_qdx53")]
 position = Vector2(362, -223)
 
-[node name="Body" type="Area2D" parent="."]
+[node name="Body" type="Area2D" parent="." groups=["boat_body"]]
 collision_layer = 4
 collision_mask = 40
 script = ExtResource("2_yxq3b")
@@ -110,9 +110,9 @@ scale_amount_min = 0.8
 scale_amount_max = 1.8
 color_ramp = SubResource("Gradient_qcf7q")
 
-[node name="SoyFishCollider" type="CollisionPolygon2D" parent="."]
+[node name="SoyFishCollider" type="CollisionPolygon2D" parent="." groups=["fish"]]
 position = Vector2(0, -605)
 polygon = PackedVector2Array(30, -5.00006, 340, -40.0001, 525, -95.0001, 665, -175, 770, -285, 790, -355, 1065, -355, 1055, -460, 790, -455, 730, -590, 630, -660, 505, -720, 390, -755, 215, -775, 15, -775, -180, -745, -360, -690, -540, -605, -725, -460, -940, -635, -1015, -630, -1075, -510, -1030, -355, -1080, -210, -1015, -85.0001, -940, -85.0001, -695, -240, -655, -205, -515, -125, -355, -60.0001, -160, -15.0001)
 
-[node name="BoatBodyCollider" type="CollisionPolygon2D" parent="."]
+[node name="BoatBodyCollider" type="CollisionPolygon2D" parent="." groups=["boat_body"]]
 polygon = PackedVector2Array(-305, 220, -430, 120, -530, -55, 150, -150, 540, -145, 430, 80, 310, 195, 180, 230)
