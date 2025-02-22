@@ -36,10 +36,8 @@ script = ExtResource("2_s3atp")
 
 [node name="Canon" parent="." instance=ExtResource("6_qdx53")]
 position = Vector2(362, -223)
-scale = Vector2(1, 1)
 
 [node name="Body" type="Area2D" parent="."]
-scale = Vector2(1, 1)
 collision_layer = 4
 collision_mask = 40
 script = ExtResource("2_yxq3b")
@@ -52,7 +50,6 @@ polygon = PackedVector2Array(252, 221, -299, 220, -442, 93, -539, -65, 146, -147
 
 [node name="Bubble" type="Area2D" parent="." groups=["fish"]]
 position = Vector2(0, -200)
-scale = Vector2(1, 1)
 collision_layer = 2
 collision_mask = 40
 script = ExtResource("3_1wwvv")
@@ -73,7 +70,6 @@ one_shot = true
 
 [node name="Pump" type="Node2D" parent="."]
 position = Vector2(-20, -161)
-scale = Vector2(1, 1)
 script = ExtResource("5_rbixw")
 
 [node name="PumpBarSprite" type="Sprite2D" parent="Pump"]
@@ -90,7 +86,6 @@ position = Vector2(115, -39)
 texture = ExtResource("10_fw2ny")
 
 [node name="HorizontalMovementVisualization" type="Node2D" parent="."]
-scale = Vector2(1, 1)
 script = ExtResource("9_k6ht6")
 
 [node name="HorizontalBubbles" type="CPUParticles2D" parent="HorizontalMovementVisualization"]

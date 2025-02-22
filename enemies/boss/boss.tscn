@@ -25,7 +25,7 @@ animations = [{
 "speed": 7.0
 }]
 
-[node name="Boss" type="Node2D"]
+[node name="Boss" type="Node2D" groups=["enemy"]]
 position = Vector2(1784, 538)
 script = ExtResource("1_j8ix8")
 swim_speed = 400.0
@@ -81,5 +81,13 @@ texture = ExtResource("3_apag1")
 region_rect = Rect2(0, 0, 1358, 76)
 patch_margin_right = 30
 script = ExtResource("3_t4yh4")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." groups=["enemy"]]
+collision_layer = 8
+collision_mask = 22
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatableBody2D" groups=["enemy"]]
+position = Vector2(-1, -1)
+polygon = PackedVector2Array(71, -255, 381, -339, 455, -233, 362, -44, 340, 86, 468, 302, 151, 332, -24, 219, -141, 29, -379, 35, -437, -67, -421, -247, -259, -280, -69, -185)
 
 [connection signal="area_entered" from="Body" to="." method="_on_body_area_entered"]

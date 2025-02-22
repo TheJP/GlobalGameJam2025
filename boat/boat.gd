@@ -155,6 +155,8 @@ func _process(delta: float) -> void:
 			_current_air_release_sound = null
 
 
+var bounce_back_velocity := Vector2.ZERO
+
 func _physics_process(delta: float) -> void:
 	# vertical movement
 	var speed: float = speed_up if _target_height > -position.y else speed_down
@@ -171,13 +173,19 @@ func _physics_process(delta: float) -> void:
 		new_position.x = max_x
 	if new_position.x < min_x:
 		new_position.x = min_x
-	velocity = new_position - position
+	#velocity = (new_position - position) + bounce_back_velocity
+	var steering_velocity := new_position - position
+	if bounce_back_velocity.length() > 0:
+		velocity = Vector2(bounce_back_velocity.x, bounce_back_velocity.y + steering_velocity.y)
+	else:
+		velocity = steering_velocity
 	var collision := move_and_collide(velocity)
 	if collision:
+		# inform other collider, if it needs it
 		var other_collider := collision.get_collider()
 		if other_collider.has_method("collider_got_hit"):
 			other_collider.collider_got_hit(collision, self) # TODO this is very hacky, but since there are no interfaces, I'm not reallys sure how to do this better in gdscript
-		
+		# handle the collision on the boat side
 		var own_collider := collision.get_local_shape()
 		if own_collider == boat_bubble_collision_node:
 			boat_bubble_node.handle_collision(collision)
@@ -185,6 +193,12 @@ func _physics_process(delta: float) -> void:
 			body_node.handle_collision(collision)
 		else:
 			print("other collision - should not happen")
+		#bounce back
+		bounce_back_velocity = velocity.bounce(collision.get_normal()) * 1
+		var bbv_tween := get_tree().create_tween()
+		bbv_tween.tween_property(self, "bounce_back_velocity", Vector2.ZERO, 0.5)
+		bbv_tween.set_ease(Tween.EASE_OUT)
+		
 		
 	horizontal_movement_visualization.set_horizontal_movement(horizontal_movement)
 
