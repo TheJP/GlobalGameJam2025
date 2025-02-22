@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bedvjvquj330j"]
+[gd_scene load_steps=20 format=3 uid="uid://bedvjvquj330j"]
 
 [ext_resource type="PackedScene" uid="uid://coo4vnsykx1i1" path="res://boat/boat.tscn" id="1_b3wcc"]
 [ext_resource type="Script" path="res://level/level.gd" id="1_lgprj"]
@@ -18,8 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://d2awdygr0n3n1" path="res://menu/sprites/ui_sprites/tutorial04.png" id="16_pqvxe"]
 [ext_resource type="Texture2D" uid="uid://151kpftf5h26" path="res://menu/sprites/ui_sprites/tutorial05.png" id="17_28f1d"]
 [ext_resource type="PackedScene" uid="uid://d2x2ja21qnior" path="res://level/start_bubbles.tscn" id="18_rtkhe"]
+[ext_resource type="PackedScene" uid="uid://cbpionso82r22" path="res://enemies/dropper/dropper.tscn" id="19_tkicy"]
 
-[node name="Level2" type="Node2D"]
+[node name="Level1" type="Node2D"]
 script = ExtResource("1_lgprj")
 
 [node name="Background" parent="." instance=ExtResource("4_disay")]
@@ -29,13 +30,6 @@ position = Vector2(7, 462)
 position = Vector2(-235, 248)
 level_node = NodePath("..")
 initial_height = -235.0
-max_height = 530.0
-min_height = -1910.0
-min_scale = 0.5
-max_scale = 1.5
-size_change_speed = 0.5
-respawn_pause_time = 0.6
-initial_spawn_pause_time = 0.0
 
 [node name="Spawn" parent="." instance=ExtResource("3_hw2up")]
 
@@ -181,3 +175,6 @@ Left Joystick and RB."
 [node name="InGame" parent="CanvasLayer" instance=ExtResource("15_yklb0")]
 
 [node name="StartBubbles" parent="." instance=ExtResource("18_rtkhe")]
+
+[node name="Dropper" parent="." instance=ExtResource("19_tkicy")]
+position = Vector2(242, -227)

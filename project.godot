@@ -45,6 +45,7 @@ player_bullet="The bullets shot by the players"
 boat="the player boat"
 checkpoint=""
 terrain=""
+boat_body="The lower part of the boat"
 
 [input]
 
